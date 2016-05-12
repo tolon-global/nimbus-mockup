@@ -1,6 +1,6 @@
 body {
-    font: 16pt "Open Sans", sans-serif;
-    color: #eed;
+    font: 16pt "Clear Sans", "Open Sans", sans-serif;
+    color: #F9F9F2;
     background-color: #2A3B44;
     margin: 0;
 }
@@ -19,7 +19,7 @@ body {
 }
 .card header section {
     margin: 1em .5em;
-    font-size: 1.5em;
+    font-size: 1.2em;
     display: table-cell;
     vertical-align: middle;
     flex-grow: 1;
