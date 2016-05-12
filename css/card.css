@@ -6,9 +6,11 @@ body {
 }
 
 .card {
-    display: flex;
+    display: none;
     flex-direction: column;
-
+}
+.card:target {
+    display: flex;
 }
 .card header {
     flex-basis: 80%;
@@ -27,6 +29,7 @@ body {
     flex-grow: 0;
     font-weight: 200;
     font-style: italic;
+    margin-bottom: .5em;
 }
 
 .card nav {
