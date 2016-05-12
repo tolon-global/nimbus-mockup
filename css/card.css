@@ -67,3 +67,33 @@ body {
     font-size: .75em;
     font-weight: 100;
 }
+
+.history {
+    background-color: #412A44;
+    padding: 1em 0;
+}
+.history li.positive strong { background-color: #38a; }
+.history li.negative strong { background-color: #842; }
+.history li strong {
+    display: inline-block;
+    padding: 0 .4em;
+    border-radius: .25em;
+}
+.history li {
+    padding: .5ex;
+}
+.history li:nth-of-type(2n+1) {
+    background-color: rgba(249, 249, 242, .1)
+}
+
+.history ol {
+    list-style-type: none;
+    padding: 0;
+    margin: .5em 0;
+}
+
+.history h1 {
+    margin: 0 .5em;
+    font-size: .75em;
+    font-weight: 100;
+}
