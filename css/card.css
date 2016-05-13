@@ -1,5 +1,5 @@
 body {
-    font: 16pt "Clear Sans", "Open Sans", sans-serif;
+    font: 14pt "Clear Sans", "Open Sans", sans-serif;
     color: #F9F9F2;
     background-color: #2A3B44;
     margin: 0;
@@ -57,15 +57,23 @@ body {
     flex-basis: 80%;
 }
 
-.card main section {
-    margin: .5em;
-}
-
 .card main section h2 {
-    margin: 0;
-    margin-top: 2em;
+    margin: 2em 1em 1em;
     font-size: .75em;
     font-weight: 100;
+}
+
+.card main video {
+    background-color: rgba(0,0,0,.3);
+    background-image: url('video.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+}
+
+.card main ol {
+    margin: .5em;
+    padding-left: 1.5em
 }
 
 .history {
