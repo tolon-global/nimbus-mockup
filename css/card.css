@@ -23,6 +23,7 @@ body {
     display: table-cell;
     vertical-align: middle;
     flex-grow: 1;
+
 }
 
 .card header .question {
@@ -30,6 +31,19 @@ body {
     font-weight: 200;
     font-style: italic;
     margin-bottom: .5em;
+}
+
+.card header .process {
+    position: relative;
+    padding-right: 2em;
+}
+
+.card header .process::after {
+    opacity: .5;
+    content: "\2298";
+    position: absolute;
+    font-size: 2em;
+    right: 0; top: 0;
 }
 
 .card nav {
@@ -48,9 +62,18 @@ body {
     background-color: #38a;
     order: 2;
 }
+.card nav .positive::after {
+    content: "\25b8";
+    opacity: 0.5;
+}
+
 .card nav .negative {
     background-color: #842;
     order: 1;
+    opacity: 0.5;
+}
+.card nav .negative::before {
+    content: "\25c2";
 }
 
 .card main {
