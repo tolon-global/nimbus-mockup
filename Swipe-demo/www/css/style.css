@@ -1,0 +1,116 @@
+/* Empty. Add your own CSS if you like */
+#container {
+  width: 100%;
+  display: block;
+  height: 100%;
+  padding-top: 15%;
+  padding-right: 5%;
+  padding-left: 5%;
+  padding-bottom: 40%;
+  position: relative;
+  list-style-type: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.containet-detail{
+  padding-bottom: 5%;
+}
+.buddy {
+  display: none;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  color: #fff;
+  padding-top: 20%;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.rotate-left {
+  transform: rotate(-90deg) scale(0.9);
+  transition: 1s;
+  margin-right: -400px !important;
+  margin-top: -200% !important;
+  cursor: e-resize;
+  opacity: 0;
+}
+.rotate-right {
+  transform: rotate(90deg) scale(0.9);
+  transition: 1s;
+  opacity: 0;
+  margin-right: 400px !important;
+  margin-top: -200% !important;
+  cursor: w-resize;
+}
+.bar-subheader {
+  height: 20%;
+  top: 80%;
+  z-index: 1;
+  transition: top 0.25s ease;
+}
+.has-subheader {
+    top: 44px;
+}
+.den12{
+  height: 5%;
+}
+.btn-positive{
+  background-color: #38a;
+  border:none;
+  position:fixed; top:0px; right: 0px; width:50%; height: 100%;
+transition: top 0.25s ease;
+}
+.btn-negative{
+  background-color: #842;
+  border: none;
+  position:fixed; top:0px; left: 0px; width:50%; height: 100%;
+  transition: top 0.25s ease;
+}
+.deneme{
+  top:0px;
+  height: 100%;
+}
+.rot{
+  transform: rotate(-90deg);
+}
+.rotate-next-right {
+  transform: rotate(90deg) scale(0);
+  transition: 0s;
+  transform: rotate(-90deg) scale(1);
+  transition: 1s;
+  opacity: 0;
+  margin-left: 0 !important;
+  margin-bottom: 100% !important;
+  cursor: w-resize;
+}
+.like {
+  border-radius: 5px;
+  padding: 5px 10px;
+  border: 2px solid green;
+  color: green;
+  text-transform: uppercase;
+  font-size: 15px;
+  position: absolute;
+  top: 50px;
+  right: 40px;
+  text-shadow: none;
+}
+.dislike {
+  border-radius: 5px;
+  padding: 5px 10px;
+  border: 2px solid red;
+  color: red;
+  text-transform: uppercase;
+  font-size: 15px;
+  position: absolute;
+  top: 50px;
+  left: 40px;
+  text-shadow: none;
+}
+video::-webkit-media-controls-fullscreen-button {
+  display: none;
+}

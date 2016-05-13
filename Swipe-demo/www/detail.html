@@ -1,0 +1,13 @@
+<ion-view title="Tolon Makina">
+  <ion-nav-back-button class="button-clear">
+  <i class="ion-arrow-left-c"></i> Back
+  </ion-nav-back-button>
+  <ion-content class="padding" ng-controller="DetailCtrl">
+    <ion-list class="item-text-wrap" >
+      <ion-item ng-repeat="data in chats[next_page].content">
+        <video width="320" height="240" controls><source ng-src="{{data.src | trusted}}"type="video/mp4"></video>
+        <b>{{chats[next_page].detail[data.id-1].id}}.</b> {{chats[next_page].detail[data.id-1].text}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
