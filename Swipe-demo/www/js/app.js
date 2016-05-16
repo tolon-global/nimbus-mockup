@@ -138,7 +138,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
       return $sce.trustAsResourceUrl(url);
     };
   }])
-  .controller('cll', function($scope, $ionicHistory, $state) {
+  .controller('cll', function($scope, $ionicPopup) {
 
     $scope.detail = false;
     $scope.next_page=next_page-1;
@@ -163,6 +163,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
       }
 
       next_page=$scope.next_page;
+      $scope.detail=false;
     });
 
     $(".buddy").on("swipeleft",function(){
@@ -170,7 +171,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
       if ( $(this).is(':last-child') ) {
         $('.buddy:nth-child(1)').removeClass ('rotate-left rotate-right').delay(1000).fadeIn(1);
       } else {
-        $(this).next().removeClass('rotate-left rotate-right').delay(1000).fadeIn(1);
+        $(this).next().removeClass('rotate-left rotate-right rot').delay(1000).fadeIn(1);
       }
       if(datas.flowchart.element_list[$scope.next_page].type == "Terminal" || datas.flowchart.element_list[$scope.next_page].type =="Process") {
         list_before.push(datas.flowchart.element_list[$scope.next_page].next-1);
@@ -182,35 +183,34 @@ angular.module('starter', ['ionic', 'ngCordova'])
       }
 
       next_page=$scope.next_page;
+      $scope.detail=false;
+      $(".bar-subheader").removeClass('has-subheader');
+      $(".bar-subheader").removeClass('den12');
+      $(".den11").removeClass('deneme');
+      $(".container").removeClass('containet-detail');
     });
     $(".buddy").on("swipedown",function(){
-      if($scope.next_page>=1){
-      $(this).addClass('rotate-right').delay(1000).fadeOut(1);
+        $scope.list_before=list_before;
+        var listPopup = $ionicPopup.show({
+          template: '<ion-list>                                '+
+          '  <ion-item ng-repeat="item in list_before"> '+
+          '    {{item}}                              '+
+          '  </ion-item>                            '+
+          '</ion-list>                               ',
 
-      if ( $(this).is(':last-child') ) {
-        $('.buddy:nth-child(1)').removeClass ('rotate-left rotate-right').delay(1000).fadeIn(1);
-      } else {
-        $(this).next().removeClass('rotate-left rotate-right').fadeIn(1000);
-      }
-      list_before.pop();
-        $scope.next_page=list_before[list_before.length-1];
-      }
-      else if($scope.next_page>0){
-        $(this).addClass('rotate-right').delay(1000).fadeOut(1);
-
-        if ( $(this).is(':last-child') ) {
-          $('.buddy:nth-child(1)').removeClass ('rotate-left rotate-right').delay(1000).fadeIn(1);
-        } else {
-          $(this).next().removeClass('rotate-left rotate-right').fadeIn(1000);
-        }
-          $scope.next_page = 0;
-      }
-      next_page=$scope.next_page;
+          title: 'List',
+          scope: $scope,
+          buttons: [
+            { text: 'Cancel' },
+          ]
+        });
+      $scope.detail=false;
     });
     $(".buddy").on("swipeup",function(){
       $(".bar-subheader").addClass('has-subheader');
       $(".bar-subheader").addClass('den12');
       $(".den11").addClass('deneme');
+      $(".container").addClass('containet-detail');
       $scope.detail=true;
 
     });

@@ -1,5 +1,5 @@
 /* Empty. Add your own CSS if you like */
-#container {
+.container {
   width: 100%;
   display: block;
   height: 100%;
@@ -15,6 +15,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  transition: bottom 0.25s ease;
 }
 .containet-detail{
   padding-bottom: 5%;
@@ -76,6 +77,10 @@ transition: top 0.25s ease;
 }
 .rot{
   transform: rotate(-90deg);
+  transition: top 0.25s ease;
+}
+.rot1{
+  transform: rotate(90deg);
 }
 .rotate-next-right {
   transform: rotate(90deg) scale(0);
