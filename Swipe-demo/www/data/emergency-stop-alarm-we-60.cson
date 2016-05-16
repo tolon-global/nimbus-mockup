@@ -1,0 +1,71 @@
+flow:
+    start: 'button-pressed' # id of the first card in this flow.
+    cards: [
+        'check-alarm':
+            title: "Check alarm"
+            processes: [ # links to process descriptions
+                'check-emergency-stop-alarm'
+            ]
+            question: "Has the alarm message been removed?"
+            positive:
+                label: "Yes, clear" # label is optional, defaults to "Yes"
+                target: 'problem-solved'
+            negative:
+                label: "No, still there" # label is optional, defaults to "No"
+                target: 'escalate'
+
+
+        'button-pressed': # used as a unique id and in the uri
+            title: "Check button pressed state" # used in history
+            processes: [ # links to process descriptions
+                'check-esb-mechanically'
+            ]
+            question: "Is the button in the pressed state?"
+            positive:
+                label: "Yes, pressed" # label is optional, defaults to "Yes"
+                target: 'release-esb'
+            negative:
+                # label: "No" # label is optional, defaults to "No"
+                target: 'replace-esb'
+
+        'release-esb':
+            title: "Release ESB"
+            processes: [ # inline process descriptions
+                title: "Release the ESB"
+                steps: [
+                    "Twist the Emergency Stop Button clockwise ⟳ to release it"
+                    "The button should be pushed up by its springs"
+                ]
+            ]
+            question: "Has the button been released?"
+            positive:
+                label: "Yes, released"
+                target: 'release-esb/check-alarm'
+            negative:
+                label: "No, depressed"
+                target: 'replace-esb'
+
+        'release-esb/check-alarm':
+            template: 'check-alarm' # template defines the default values, overridden by defined values
+            negative:
+                target: 'check-contact'
+
+        'replace-esb':
+            title: "Replace ESB"
+            processes: [
+                title: "Replace the ESB"
+                steps: [
+                    "Open the top cover of the machine"
+                    "Unscrew the ESB cable terminals from the ESB contact socket"
+                    "Remove the contact of the ESB from its back by using a screwdriver"
+                    "Unbolt the plastic nut from the back of the ESB"
+                    "Pull the ESB from the front of the CP"
+                    "Put a new ESB into the empty ESB slot"
+                    "Bolt the plastic nut onto its bolt at the back of the ESB"
+                    "Plug the contact of the ESB into its socket"
+                    "Screw the ESB cable terminals into the ESB contact socket"
+                    "Close the top cover of the machine"
+                ]
+            ]
+            continue: 'release-esb/check-alarm'
+    ]
