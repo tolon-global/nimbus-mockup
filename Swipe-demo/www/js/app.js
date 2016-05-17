@@ -10,8 +10,8 @@ var datas={"flowchart": {
     {"id": "2","title": "Check the \"Emergency Stop Button\" (ESB) mechanically","content": [{"id":"1", "src":"https://fog.bilims.com/beta/video/ht_0002.mp4"}],"detail":[{"id":"1", "text":"Press the left ESB to check if the button can be pressed"}],"type": "Process","next":"3","left":"null","right":"null"},
     {"id": "3","title": "Is the button in the \"pressed\" state?","content":[{"id":"", "src":""}],"detail":[{"id":"", "text":""}],"type": "Decision","next":"null","left":"4","right":"5"},
     {"id": "4","title": "Replace the left ESB","content":[{"id":"1", "src":"https://fog.bilims.com/beta/video/ht_0021.mp4"},
-      {"id":"2", "src":"https://fog.bilims.com/beta/video/ht_0021.mp4"},{"id":"3", "src":"https://fog.bilims.com/beta/video/ht_0022.mp4"},{"id":"4", "src":"https://fog.bilims.com/beta/video/ht_0022.mp4"},
-      {"id":"5", "src":"https://fog.bilims.com/beta/video/ht_0020.mp4"},{"id":"6", "src":"https://fog.bilims.com/beta/video/ht_0023.mp4"},{"id":"7", "src":"https://fog.bilims.com/beta/video/ht_0023.mp4"},
+      {"id":"2", "src":"https://fog.bilims.com/beta/video/ht_0022.mp4"},{"id":"3", "src":"https://fog.bilims.com/beta/video/ht_0023.mp4"},{"id":"4", "src":"https://fog.bilims.com/beta/video/ht_0020.mp4"},
+      {"id":"5", "src":"https://fog.bilims.com/beta/video/ht_0023.mp4"},{"id":"6", "src":"https://fog.bilims.com/beta/video/ht_0024.mp4"},{"id":"7", "src":"https://fog.bilims.com/beta/video/ht_0023.mp4"},
       {"id":"8", "src":"https://fog.bilims.com/beta/video/ht_0024.mp4"}],
       "detail":[{"id":"1", "text":"Unscrew the ESB cable terminals from the ESB contact socket"},{"id":"2", "text":"Remove the contact of the ESB from its back by using a screwdriver"},
         {"id":"3", "text":"Plug the new ESB contact into its socket"},{"id":"4", "text":"Screw the ESB cable terminals into the ESB contact socket"},{"id":"5", "text":"Check the conductivity of the contact sockets with short-circuit test by inserting the multimeter leads into the contact sockets or the contact screws and testing for both positions of the contact switch. The contact should be in short-circuit when the switch is in open position (unpressed) and the contrary in closed position (pressed)"},
@@ -139,18 +139,24 @@ angular.module('starter', ['ionic', 'ngCordova'])
     };
   }])
   .controller('cll', function($scope, $ionicPopup) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> data
 
     $scope.detail = false;
     $scope.next_page=next_page-1;
-      $scope.chats = datas.flowchart.element_list;
+    $scope.chats = datas.flowchart.element_list;
+    $scope.data12 = {
+      val: '-1'
+    };
 
     $(".buddy").on("swiperight",function(){
       $(this).addClass('rotate-left').delay(1000).fadeOut(1);
       if ( $(this).is(':last-child') ) {
-        $('.buddy:nth-child(1)').removeClass ('rotate-left rotate-right').delay(1000).fadeIn(1);
+        $('.buddy:nth-child(1)').removeClass ('rotate-left rotate-right').delay(1000).fadeIn(100);
       } else {
-        $(this).next().removeClass('rotate-left rotate-right rot');
-        $(this).next().addClass('rotate-next-right').delay(1000).fadeIn(1);
+        $(this).next().addClass('rotate-next-right rot').delay(1000).fadeIn(100);
       }
       if(datas.flowchart.element_list[$scope.next_page].type == "Terminal" || datas.flowchart.element_list[$scope.next_page].type =="Process") {
         list_before.push(datas.flowchart.element_list[$scope.next_page].next-1);
@@ -169,9 +175,13 @@ angular.module('starter', ['ionic', 'ngCordova'])
     $(".buddy").on("swipeleft",function(){
       $(this).addClass('rotate-right').delay(1000).fadeOut(1);
       if ( $(this).is(':last-child') ) {
-        $('.buddy:nth-child(1)').removeClass ('rotate-left rotate-right').delay(1000).fadeIn(1);
+        $('.buddy:nth-child(1)').removeClass ('rotate-left rotate-right').delay(1000).fadeIn(100);
       } else {
+<<<<<<< HEAD
         $(this).next().removeClass('rotate-left rotate-right rot').delay(1000).fadeIn(1);
+=======
+        $(this).next().removeClass('rotate-left rotate-right rot').delay(1000).fadeIn(100);
+>>>>>>> data
       }
       if(datas.flowchart.element_list[$scope.next_page].type == "Terminal" || datas.flowchart.element_list[$scope.next_page].type =="Process") {
         list_before.push(datas.flowchart.element_list[$scope.next_page].next-1);
@@ -189,6 +199,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
       $(".den11").removeClass('deneme');
       $(".container").removeClass('containet-detail');
     });
+<<<<<<< HEAD
     $(".buddy").on("swipedown",function(){
         $scope.list_before=list_before;
         var listPopup = $ionicPopup.show({
@@ -197,16 +208,55 @@ angular.module('starter', ['ionic', 'ngCordova'])
           '    {{item}}                              '+
           '  </ion-item>                            '+
           '</ion-list>                               ',
+=======
+
+
+    $(".buddy").on("swipedown",function(){
+
+        $scope.list_before=list_before;
+        $scope.data12= {};
+        $scope.data12.val=-1;
+      if($scope.detail==false)
+        var listPopup = $ionicPopup.show({
+          template: '<ion-list onscroll="cntList()">                                '+
+          '  <ion-radio ng-repeat="item in list_before"  ng-value="item" ng-model="data12.val"> '+
+          '    {{item}}                              '+
+          '  </ion-radio>                            '+
+          '</ion-list>                             ',
+>>>>>>> data
 
           title: 'List',
           scope: $scope,
           buttons: [
+<<<<<<< HEAD
             { text: 'Cancel' },
           ]
         });
       $scope.detail=false;
+=======
+            {text: 'OK',
+              onTap: function(e) {
+                if ($scope.data12.val==-1) {
+                  //don't allow the user to close unless he enters wifi password
+                  e.preventDefault();
+                } else {
+                  $scope.next_page=$scope.data12.val;
+                  $scope.detail=false;
+                  $(".bar-subheader").removeClass('has-subheader');
+                  $(".bar-subheader").removeClass('den12');
+                  $(".den11").removeClass('deneme');
+                  $(".container").removeClass('containet-detail');
+                  return $scope.next_page;
+                }}},
+            {text: 'CANCEL'}
+          ]
+        });
+>>>>>>> data
     });
+
+
     $(".buddy").on("swipeup",function(){
+      $scope.chats = datas.flowchart.element_list;
       $(".bar-subheader").addClass('has-subheader');
       $(".bar-subheader").addClass('den12');
       $(".den11").addClass('deneme');
@@ -214,7 +264,9 @@ angular.module('starter', ['ionic', 'ngCordova'])
       $scope.detail=true;
 
     });
-
+    function cntListt(){
+      console.log("girdi")
+    };
     $scope.ans_yes = function () {
       console.log("girdi");
       if(datas.flowchart.element_list[$scope.next_page].type == "Terminal" || datas.flowchart.element_list[$scope.next_page].type =="Process") {
@@ -239,7 +291,9 @@ angular.module('starter', ['ionic', 'ngCordova'])
       }
       next_page=$scope.next_page;
     }
-
+    function getScope(){
+      console.log($scope.next_page);
+    }
   })
   .controller('DetailCtrl', function($scope) {
 
