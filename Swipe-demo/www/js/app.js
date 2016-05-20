@@ -216,6 +216,8 @@ angular.module('starter', ['ionic', 'ngCordova'])
                   //don't allow the user to close unless he enters wifi password
                   e.preventDefault();
                 } else {
+                  $scope.list_before.splice($scope.data12.val, $scope.list_before.length);
+                  list_before.push($scope.data12.val);
                   $scope.next_page = $scope.data12.val;
                   $(".bar-subheader").removeClass('has-subheader');
                   $(".bar-subheader").removeClass('den12');
