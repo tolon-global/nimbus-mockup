@@ -139,11 +139,6 @@ angular.module('starter', ['ionic', 'ngCordova'])
     };
   }])
   .controller('cll', function($scope, $ionicPopup) {
-<<<<<<< HEAD
-=======
-
->>>>>>> data
-
     $scope.detail = false;
     $scope.next_page=next_page-1;
     $scope.chats = datas.flowchart.element_list;
@@ -177,11 +172,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
       if ( $(this).is(':last-child') ) {
         $('.buddy:nth-child(1)').removeClass ('rotate-left rotate-right').delay(1000).fadeIn(100);
       } else {
-<<<<<<< HEAD
-        $(this).next().removeClass('rotate-left rotate-right rot').delay(1000).fadeIn(1);
-=======
         $(this).next().removeClass('rotate-left rotate-right rot').delay(1000).fadeIn(100);
->>>>>>> data
       }
       if(datas.flowchart.element_list[$scope.next_page].type == "Terminal" || datas.flowchart.element_list[$scope.next_page].type =="Process") {
         list_before.push(datas.flowchart.element_list[$scope.next_page].next-1);
@@ -199,16 +190,6 @@ angular.module('starter', ['ionic', 'ngCordova'])
       $(".den11").removeClass('deneme');
       $(".container").removeClass('containet-detail');
     });
-<<<<<<< HEAD
-    $(".buddy").on("swipedown",function(){
-        $scope.list_before=list_before;
-        var listPopup = $ionicPopup.show({
-          template: '<ion-list>                                '+
-          '  <ion-item ng-repeat="item in list_before"> '+
-          '    {{item}}                              '+
-          '  </ion-item>                            '+
-          '</ion-list>                               ',
-=======
 
 
     $(".buddy").on("swipedown",function(){
@@ -216,42 +197,44 @@ angular.module('starter', ['ionic', 'ngCordova'])
         $scope.list_before=list_before;
         $scope.data12= {};
         $scope.data12.val=-1;
-      if($scope.detail==false)
+      if($scope.detail==false) {
         var listPopup = $ionicPopup.show({
-          template: '<ion-list onscroll="cntList()">                                '+
-          '  <ion-radio ng-repeat="item in list_before"  ng-value="item" ng-model="data12.val"> '+
-          '    {{item}}                              '+
-          '  </ion-radio>                            '+
+          template: '<ion-list onscroll="cntList()" style="background-color: rgba(249, 249, 242, 1)">                                ' +
+          '  <ion-radio ng-repeat="item in list_before"  ng-value="item" ng-model="data12.val"> ' +
+          '    {{item}}                              ' +
+          '  </ion-radio>                            ' +
           '</ion-list>                             ',
->>>>>>> data
 
           title: 'List',
           scope: $scope,
           buttons: [
-<<<<<<< HEAD
-            { text: 'Cancel' },
-          ]
-        });
-      $scope.detail=false;
-=======
-            {text: 'OK',
-              onTap: function(e) {
-                if ($scope.data12.val==-1) {
+            {
+              text: 'OK',
+              onTap: function (e) {
+                if ($scope.data12.val == -1) {
                   //don't allow the user to close unless he enters wifi password
                   e.preventDefault();
                 } else {
-                  $scope.next_page=$scope.data12.val;
-                  $scope.detail=false;
+                  $scope.next_page = $scope.data12.val;
                   $(".bar-subheader").removeClass('has-subheader');
                   $(".bar-subheader").removeClass('den12');
                   $(".den11").removeClass('deneme');
                   $(".container").removeClass('containet-detail');
                   return $scope.next_page;
-                }}},
+                }
+              }
+            },
             {text: 'CANCEL'}
           ]
         });
->>>>>>> data
+      }
+      else{
+        $scope.detail=false;
+        $(".bar-subheader").removeClass('has-subheader');
+        $(".bar-subheader").removeClass('den12');
+        $(".den11").removeClass('deneme');
+        $(".container").removeClass('containet-detail');
+      }
     });
 
 

@@ -1,4 +1,12 @@
 /* Empty. Add your own CSS if you like */
+ion-content {
+  font: 14pt "Clear Sans", "Open Sans", sans-serif;
+  color: #F9F9F2;
+  background-color: #2A3B44;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
 .container {
   width: 100%;
   display: block;
@@ -17,6 +25,9 @@
   user-select: none;
   transition: bottom 0.25s ease;
 }
+.item{
+  color:  #F9F9F2;
+}
 .containet-detail{
   padding-bottom: 10% ;
 }
@@ -32,10 +43,9 @@
 }
 .buddy {
   display: none;
-  background: #fff;
+  background: rgba(0,0,0,0);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  color: #fff;
   padding-top: 10%;
   width: 100%;
   height: 100%;
