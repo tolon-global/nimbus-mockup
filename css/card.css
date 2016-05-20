@@ -2,7 +2,7 @@
 
 body {
     font: 14pt "Clear Sans", "Open Sans", sans-serif;
-    color: #F9F9F2;
+    color: rgba(255, 255, 255, 0.8);
     background-color: #2A3B44;
     margin: 0;
 }
