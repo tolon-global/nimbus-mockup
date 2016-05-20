@@ -195,12 +195,13 @@ angular.module('starter', ['ionic', 'ngCordova'])
     $(".buddy").on("swipedown",function(){
 
         $scope.list_before=list_before;
+        console.log(list_before)
         $scope.data12= {};
         $scope.data12.val=-1;
       if($scope.detail==false) {
         var listPopup = $ionicPopup.show({
-          template: '<ion-list onscroll="cntList()" style="background-color: rgba(249, 249, 242, 1)">                                ' +
-          '  <ion-radio ng-repeat="item in list_before"  ng-value="item" ng-model="data12.val"> ' +
+          template: '<ion-list onscroll="cntList()" style="background-color: rgba(20, 20, 20, 0.4)">                                ' +
+          '  <ion-radio  style="background: rgba(20, 20, 20, 0.4)" ng-repeat="item in list_before"  ng-value="item" ng-model="data12.val"> ' +
           '    {{item}}                              ' +
           '  </ion-radio>                            ' +
           '</ion-list>                             ',
@@ -239,7 +240,6 @@ angular.module('starter', ['ionic', 'ngCordova'])
 
 
     $(".buddy").on("swipeup",function(){
-      $scope.chats = datas.flowchart.element_list;
       $(".bar-subheader").addClass('has-subheader');
       $(".bar-subheader").addClass('den12');
       $(".den11").addClass('deneme');
