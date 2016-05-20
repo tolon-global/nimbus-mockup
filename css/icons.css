@@ -8,7 +8,8 @@
     font-style: normal;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^="icon-"]::before, [class*=" icon-"]::before,
+[class^="icon-"]::after, [class*=" icon-"]::after {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'nimbus-icons' !important;
     speak: none;
@@ -17,7 +18,7 @@
     font-variant: normal;
     text-transform: none;
     line-height: 1;
-    
+
     /* Enable Ligatures ================ */
     letter-spacing: 0;
     -webkit-font-feature-settings: "liga";
@@ -71,4 +72,3 @@
 .icon-video:before {
     content: "\e906";
 }
-
