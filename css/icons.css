@@ -1,14 +1,13 @@
 @font-face {
     font-family: 'nimbus-icons';
     src:
-        url('fonts/nimbus-icons.ttf') format('truetype'),
-        url('fonts/nimbus-icons.woff') format('woff'),
-        url('fonts/nimbus-icons.svg#nimbus-icons') format('svg');
+        url('fonts/nimbus-icons.ttf?m7mr7g') format('truetype'),
+        url('fonts/nimbus-icons.woff?m7mr7g') format('woff'),
+        url('fonts/nimbus-icons.svg?m7mr7g#nimbus-icons') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
-.card header .process::after,
 [class^="icon-"], [class*=" icon-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'nimbus-icons' !important;
@@ -18,7 +17,7 @@
     font-variant: normal;
     text-transform: none;
     line-height: 1;
-
+    
     /* Enable Ligatures ================ */
     letter-spacing: 0;
     -webkit-font-feature-settings: "liga";
@@ -33,15 +32,35 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.card header .process::after,
+.icon-nimbus:before {
+    content: "\e902";
+}
 .icon-escape:before {
     content: "\e900";
 }
 .icon-guide:before {
     content: "\e901";
 }
-.icon-nimbus:before {
-    content: "\e902";
+.icon-service:before {
+    content: "\e905";
+}
+.icon-history:before {
+    content: "\e907";
+}
+.icon-check:before {
+    content: "\e908";
+}
+.icon-cross:before {
+    content: "\e909";
+}
+.icon-menu:before {
+    content: "\e90a";
+}
+.icon-left:before {
+    content: "\e90b";
+}
+.icon-right:before {
+    content: "\e90c";
 }
 .icon-pause:before {
     content: "\e903";
@@ -49,9 +68,7 @@
 .icon-play:before {
     content: "\e904";
 }
-.icon-service:before {
-    content: "\e905";
-}
 .icon-video:before {
     content: "\e906";
 }
+
