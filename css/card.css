@@ -1,3 +1,5 @@
+@import "icons.css";
+
 body {
     font: 14pt "Clear Sans", "Open Sans", sans-serif;
     color: #F9F9F2;
@@ -40,7 +42,7 @@ body {
 
 .card header .process::after {
     opacity: .5;
-    content: "\2298";
+    /* content: "\2298"; */
     position: absolute;
     font-size: 2em;
     right: 0; top: 0;
