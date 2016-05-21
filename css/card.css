@@ -58,24 +58,35 @@ body {
     flex: 1;
     font-weight: bold;
     padding: 1em;
+    position: relative;
 }
 
 .card nav .positive {
     background-color: #38a;
     order: 2;
+    padding-right: 2.2em;
 }
 .card nav .positive::after {
-    content: "\25b8";
-    opacity: 0.5;
+    content: "\e90c";
+    right: 0;
 }
 
 .card nav .negative {
     background-color: #842;
     order: 1;
-    opacity: 0.5;
+    padding-left: 2.2em;
 }
 .card nav .negative::before {
-    content: "\25c2";
+    content: "\e90b";
+    left: 0;
+}
+
+.card nav .positive::after,
+.card nav .negative::before {
+    font-size: 2.4em;
+    top: .25em;
+    opacity: 0.5;
+    position: absolute;
 }
 
 .card main {

@@ -7,7 +7,8 @@
     font-weight: normal;
     font-style: normal;
 }
-
+.card nav .positive::after,
+.card nav .negative::before,
 [class^="icon-"]::before, [class*=" icon-"]::before,
 [class^="icon-"]::after, [class*=" icon-"]::after {
     /* use !important to prevent issues with browser extensions that change fonts */
