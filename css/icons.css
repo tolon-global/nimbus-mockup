@@ -7,6 +7,8 @@
     font-weight: normal;
     font-style: normal;
 }
+
+.history h1::before,
 .card nav .positive::after,
 .card nav .negative::before,
 [class^="icon-"]::before, [class*=" icon-"]::before,

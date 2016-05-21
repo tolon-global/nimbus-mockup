@@ -114,7 +114,7 @@ body {
 
 .history {
     background-color: #412A44;
-    padding: 1em 0;
+    padding: 1em 0 0.5em;
 }
 .history li.positive strong { background-color: #38a; }
 .history li.negative strong { background-color: #842; }
@@ -137,7 +137,13 @@ body {
 }
 
 .history h1 {
-    margin: 0 .5em;
+    margin: 1em .5em 0;
     font-size: .75em;
     font-weight: 100;
+}
+.history h1::before {
+    content: "\e907";
+    margin-right: .5ex;
+    font-size: 1.6em;
+    vertical-align: middle;
 }
