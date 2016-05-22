@@ -8,6 +8,7 @@
     font-style: normal;
 }
 
+.card header .process::after,
 .history h1::before,
 .card nav .positive::after,
 .card nav .negative::before,

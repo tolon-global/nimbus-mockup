@@ -42,7 +42,7 @@ body {
 
 .card header .process::after {
     opacity: .5;
-    /* content: "\2298"; */
+    content: "\e900";
     position: absolute;
     font-size: 2em;
     right: 0; top: 0;
