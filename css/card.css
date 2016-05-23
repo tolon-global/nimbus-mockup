@@ -149,3 +149,27 @@ body {
     font-size: 1.6em;
     vertical-align: middle;
 }
+
+
+.video-controls {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    background-color: hsla(360, 0%, 0%, 0.2);
+    align-items: center;
+}
+.video-controls button {
+    font-size: 2em;
+    color: inherit;
+    flex-grow: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.video-controls progress {
+    -webkit-appearance: none;
+    height: 2em;
+    flex-grow: 1;
+}
+.video-controls progress::-webkit-progress-bar { background: none; }
+.video-controls progress::-webkit-progress-value { background: #38a; }

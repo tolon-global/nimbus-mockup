@@ -8,6 +8,7 @@
     font-style: normal;
 }
 
+.video-controls button,
 .card header .process::after,
 .history h1::before,
 .card nav .positive::after,
