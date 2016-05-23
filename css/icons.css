@@ -8,6 +8,7 @@
     font-style: normal;
 }
 
+.card main li.current::before,
 .video-controls button,
 .card header .process::after,
 .history h1::before,

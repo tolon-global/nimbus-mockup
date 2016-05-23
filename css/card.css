@@ -114,6 +114,14 @@ body {
     padding-left: 1.5em
 }
 
+.card main li.current { color: white; }
+.card main li.current::before {
+    content: "\e906";
+    float: right;
+    margin-left: .5em;
+    font-size: 2em;
+}
+
 .history {
     background-color: #412A44;
     padding: 1em 0 0.5em;
