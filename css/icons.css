@@ -8,6 +8,7 @@
     font-style: normal;
 }
 
+.card input[type=radio]:checked + label::after,
 .card.escape header section:first-child::before,
 .card main li.current::before,
 .video-controls button,
