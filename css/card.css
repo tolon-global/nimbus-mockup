@@ -222,3 +222,12 @@ body {
     font-size: 2em;
     vertical-align: middle;
 }
+
+.card main p {
+    margin: 0em .5em 1em;
+}
+
+strong {
+    color: white;
+    font-weight: inherit;
+}
