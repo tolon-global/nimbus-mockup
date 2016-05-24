@@ -197,3 +197,9 @@ body {
 .card input::-webkit-input-placeholder {
   color: #405A68;
 }
+.card.escape { background-color: #442227;}
+.card.escape header section:first-child::before {
+    content: "\e900 ";
+    font-size: 2em;
+    vertical-align: middle;
+}
