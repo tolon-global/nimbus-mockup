@@ -95,6 +95,9 @@ angular.module('starter', ['ionic', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
+    if(window.StatusBar) {
+      StatusBar.hide();
+    }
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -105,9 +108,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
       // a much nicer keyboard experience.
       cordova.plugins.Keyboard.disableScroll(true);
     }
-    if(window.StatusBar) {
-      StatusBar.styleDefault();
-    }
+
   });
 })
   .config(function($stateProvider, $urlRouterProvider) {
@@ -278,6 +279,18 @@ angular.module('starter', ['ionic', 'ngCordova'])
     }
     function getScope(){
       console.log($scope.next_page);
+    }
+
+    $scope.loadMore = function() {
+      if($scope.chats[next_page].content.length>=8){
+        $(".bar-subheader").addClass('has-subheader');
+        $(".bar-subheader").addClass('den12');
+        $(".den11").addClass('deneme');
+        $(".container").addClass('containet-detail');
+        $scope.detail = true;
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+      }
+
     }
   })
   .controller('DetailCtrl', function($scope) {

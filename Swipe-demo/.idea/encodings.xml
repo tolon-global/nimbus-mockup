@@ -9,5 +9,10 @@
     <file url="file://$PROJECT_DIR$/www/main.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/new.json" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/open.html" charset="UTF-8" />
+    <file url="file://D:/pushNews/server.js" charset="UTF-8" />
+    <file url="file://D:/pushNews/www/js/app.js" charset="UTF-8" />
+    <file url="file://D:/pushNews/www/js/controllers.js" charset="UTF-8" />
+    <file url="file://D:/pushNews/www/js/services.js" charset="UTF-8" />
+    <file url="file://D:/pushNews/www/templates/login.html" charset="UTF-8" />
   </component>
 </project>
