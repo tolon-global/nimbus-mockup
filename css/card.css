@@ -125,6 +125,7 @@ body {
 .history {
     background-color: #412A44;
     padding: 1em 0 0.5em;
+    max-height: 90vh;
 }
 .history li.positive strong { background-color: #38a; }
 .history li.negative strong { background-color: #842; }
@@ -139,11 +140,24 @@ body {
 .history li:nth-of-type(2n+1) {
     background-color: rgba(249, 249, 242, .1)
 }
-
+.history ol li:before {
+    content: counter(history-counter, decimal);
+    counter-increment: history-counter;
+    opacity: .5;
+    font-size: .5em;
+    display: inline-block;
+    width: 1em;
+    text-align: right;
+    padding-right: .7em;
+    vertical-align: text-top;
+}
 .history ol {
     list-style-type: none;
     padding: 0;
     margin: .5em 0;
+    max-height: 80vh;
+    overflow-y: scroll;
+    counter-reset: history-counter;
 }
 
 .history h1 {
