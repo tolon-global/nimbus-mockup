@@ -143,6 +143,8 @@ angular.module('starter', ['ionic', 'ngCordova'])
     $scope.detail = false;
     $scope.next_page=next_page-1;
     $scope.chats = datas.flowchart.element_list;
+    $scope.closeInfiniteScroll=true;
+    $('.buddy2').removeClass('buddy1');
     $scope.data12 = {
       val: '-1'
     };
@@ -169,12 +171,13 @@ angular.module('starter', ['ionic', 'ngCordova'])
     });
 
     $(".buddy").on("swipeleft",function(){
-      $(this).addClass('rotate-right').delay(1000).fadeOut(1);
+      $(this).addClass('rotate-right').fadeOut(1000);
       if ( $(this).is(':last-child') ) {
         $('.buddy:nth-child(1)').removeClass ('rotate-left rotate-right').delay(1000).fadeIn(100);
       } else {
         $(this).next().removeClass('rotate-left rotate-right rot').delay(1000).fadeIn(100);
       }
+      $('.buddy3').removeClass('buddy1').delay(1000);
       if(datas.flowchart.element_list[$scope.next_page].type == "Terminal" || datas.flowchart.element_list[$scope.next_page].type =="Process") {
         list_before.push(datas.flowchart.element_list[$scope.next_page].next-1);
         $scope.next_page = datas.flowchart.element_list[$scope.next_page].next-1;
@@ -234,8 +237,8 @@ angular.module('starter', ['ionic', 'ngCordova'])
       }
       else{
         $scope.detail=false;
-        $(".bar-subheader").removeClass('has-subheader');
-        $(".bar-subheader").removeClass('den12');
+        $(".buttons1").removeClass('has-subheader');
+        $(".buttons1").removeClass('den12');
         $(".den11").removeClass('deneme');
         $(".container").removeClass('containet-detail');
       }
@@ -243,11 +246,16 @@ angular.module('starter', ['ionic', 'ngCordova'])
 
 
     $(".buddy").on("swipeup",function(){
-      $(".bar-subheader").addClass('has-subheader');
-      $(".bar-subheader").addClass('den12');
-      $(".den11").addClass('deneme');
-      $(".container").addClass('containet-detail');
-      $scope.detail=true;
+      if($scope.chats[$scope.next_page].content.length<=7) {
+        $(".buttons1").addClass('has-subheader');
+        $(".buttons1").addClass('den12');
+        $(".den11").addClass('deneme');
+        $(".container").addClass('containet-detail');
+        $scope.detail = true;
+      }
+      else{
+        $scope.closeInfiniteScroll=false;
+      }
 
     });
     function cntListt(){
@@ -282,14 +290,12 @@ angular.module('starter', ['ionic', 'ngCordova'])
     }
 
     $scope.loadMore = function() {
-      if($scope.chats[next_page].content.length>=8){
-        $(".bar-subheader").addClass('has-subheader');
-        $(".bar-subheader").addClass('den12');
+        $(".buttons1").addClass('has-subheader');
+        $(".buttons1").addClass('den12');
         $(".den11").addClass('deneme');
         $(".container").addClass('containet-detail');
-        $scope.detail = true;
         $scope.$broadcast('scroll.infiniteScrollComplete');
-      }
+        $scope.detail = true;
 
     }
   })

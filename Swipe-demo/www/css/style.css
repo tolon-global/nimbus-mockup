@@ -17,11 +17,10 @@ h3{
   font-weight: bold;
 }
 .container {
-  width: 100%;
+  width: 300%;
   display: block;
   height: 100%;
   padding-right: 1em;
-  padding-left: 5%;
   padding-bottom: 1em;
   position: relative;
   list-style-type: none;
@@ -56,14 +55,20 @@ h3{
   color: black;
 }
 .buddy {
+  margin-left: 2%;
+  float: left;
   display: none;
   background: rgba(0,0,0,0);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0);
   padding-top: 1.8em;
-  width: 100%;
+  width: 30%;
   height: 100%;
   text-align: center;
+}
+
+.buddy1{
+  margin-left: 40%;
 }
 .rotate-left {
   transform: rotate(-90deg) scale(0.9);
@@ -74,21 +79,24 @@ h3{
   opacity: 0;
 }
 .rotate-right {
-  transform: rotate(90deg) scale(0.9);
+  transform: rotate(0deg) scale(0.05);
   transition: 1s;
   opacity: 0;
   margin-right: 400px !important;
   margin-top: -200% !important;
   cursor: w-resize;
 }
-.bar-subheader {
+.buttons1{
+  position: fixed;
+  left: 0;
   height: 20%;
-  top: 80%;
+  width: 100%;
   z-index: 1;
   transition: top 0.25s ease;
+  top: 80%;
 }
 .has-subheader {
-    top: 44px;
+    top: 0px;
 }
 .den12{
   height: 5%;
@@ -97,17 +105,19 @@ h3{
   color: #f9f9f2;
 }
 .btn-positive{
+  float: left;
   background-color: #38a;
   border:none;
-  position:fixed; top:0px; right: 0px; width:50%; height: 100%;
+  top:0px; right: 0px; width:50%; height: 100%;
   transition: top 0.25s ease;
   color: #f9f9f2;
   font-size: 2em !important;
 }
 .btn-negative{
+  float: left;
   background-color: #842;
   border: none;
-  position:fixed; top:0px; left: 0px; width:50%; height: 100%;
+  top:0px; left: 0px; width:50%; height: 100%;
   transition: top 0.25s ease;
   color: #f9f9f2;
   font-size: 2em !important;
