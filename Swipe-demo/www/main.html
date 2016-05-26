@@ -1,6 +1,15 @@
 
 <ion-view title="" style="width: 100%; height: 100%" hide-nav-bar="true">
   <ion-content ng-controller="cll" scroll="false">
+    <ion-scroll class="history hist-close">
+    <div>
+      <ion-list onscroll="cntList()" style="background-color: #494BC7">
+        <ion-radio  class="rd1" style="background: #494BC7 !important;" ng-repeat="item in list_before"  ng-value="item" ng-model="data12.val">
+          {{item}}
+        </ion-radio>
+      </ion-list>
+    </div>
+      </ion-scroll>
     <div class="container" on-swipe-left="onSwipeLeft()" on-swipe-right="onSwipeRight()" on-swipe-down="onSwipeDown()">
       <div class="buddy buddy1 buddy2"  style="display: block">
         <h3 class="stage__title">{{chats[next_page].title}}</h3>
@@ -21,11 +30,11 @@
               </ion-item>
             </div>
 
-          </ion-list>
-            <ion-infinite-scroll ng-if="!closeInfiniteScroll"
-              on-infinite="loadMore()"
-              distance="5%">
+            <ion-infinite-scroll  ng-if="!closeInfiniteScroll&&!detail"
+                                  on-infinite="loadMore()"
+                                  distance="1%">
             </ion-infinite-scroll>
+          </ion-list>
             </ion-scroll>
         </div>
         <div class="buttons1">
@@ -70,12 +79,12 @@
                 <b>{{ text1.id }}.</b> {{ text1.text }}
               </ion-item>
             </div>
-
-          </ion-list>
-            <ion-infinite-scroll  ng-if="!closeInfiniteScroll"
-              on-infinite="loadMore()"
-              distance="1%">
+            <ion-infinite-scroll  ng-if="!closeInfiniteScroll&&!detail"
+                                  on-infinite="loadMore()"
+                                  distance="1%">
             </ion-infinite-scroll>
+          </ion-list>
+
           </ion-scroll>
         </div>
         <div class="buttons1">

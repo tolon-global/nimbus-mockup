@@ -90,7 +90,6 @@ var datas={"flowchart": {
 
 
 var next_page=1;
-var list_before=[0];
 angular.module('starter', ['ionic', 'ngCordova'])
 
 .run(function($ionicPlatform) {
@@ -139,12 +138,15 @@ angular.module('starter', ['ionic', 'ngCordova'])
       return $sce.trustAsResourceUrl(url);
     };
   }])
-  .controller('cll', function($scope, $ionicPopup) {
+  .controller('cll', function($scope, $ionicScrollDelegate) {
     $scope.detail = false;
     $scope.next_page=next_page-1;
     $scope.chats = datas.flowchart.element_list;
+    $scope.list_before=[0];
     $scope.closeInfiniteScroll=true;
+    $scope.hist1=false;
     $('.buddy2').removeClass('buddy1');
+
     $scope.data12 = {
       val: '-1'
     };
@@ -157,12 +159,12 @@ angular.module('starter', ['ionic', 'ngCordova'])
         $(this).next().addClass('rotate-next-right rot').delay(1000).fadeIn(100);
       }
       if(datas.flowchart.element_list[$scope.next_page].type == "Terminal" || datas.flowchart.element_list[$scope.next_page].type =="Process") {
-        list_before.push(datas.flowchart.element_list[$scope.next_page].next-1);
+        $scope.list_before.push(datas.flowchart.element_list[$scope.next_page].next-1);
         $scope.next_page = datas.flowchart.element_list[$scope.next_page].next-1;
       }
       else
       {
-        list_before.push(datas.flowchart.element_list[$scope.next_page].right-1);
+        $scope.list_before.push(datas.flowchart.element_list[$scope.next_page].right-1);
         $scope.next_page = datas.flowchart.element_list[$scope.next_page].right-1;
       }
 
@@ -179,11 +181,11 @@ angular.module('starter', ['ionic', 'ngCordova'])
       }
       $('.buddy3').removeClass('buddy1').delay(1000);
       if(datas.flowchart.element_list[$scope.next_page].type == "Terminal" || datas.flowchart.element_list[$scope.next_page].type =="Process") {
-        list_before.push(datas.flowchart.element_list[$scope.next_page].next-1);
+        $scope.list_before.push(datas.flowchart.element_list[$scope.next_page].next-1);
         $scope.next_page = datas.flowchart.element_list[$scope.next_page].next-1;
       }
       else{
-        list_before.push(datas.flowchart.element_list[$scope.next_page].left-1);
+        $scope.list_before.push(datas.flowchart.element_list[$scope.next_page].left-1);
         $scope.next_page = datas.flowchart.element_list[$scope.next_page].left - 1;
       }
 
@@ -197,13 +199,23 @@ angular.module('starter', ['ionic', 'ngCordova'])
 
 
     $(".buddy").on("swipedown",function(){
-
-        $scope.list_before=list_before;
-        console.log(list_before)
+        console.log($scope.list_before)
         $scope.data12= {};
         $scope.data12.val=-1;
-      if($scope.detail==false) {
-        var listPopup = $ionicPopup.show({
+      $(".history").removeClass('hist-close');
+      $(".buddy").addClass('hist-open-buddy');
+
+      console.log($scope.detail);
+     if($scope.detail==false) {
+       console.log('wwwwwwwwwwwww');
+       $scope.hist1=true;
+       $(".history").addClass('hist-open');
+       $(".history").css('top','-40px');
+       $(".buddy").addClass('hist-open-buddy');
+       $(".container").addClass('hist-open-container');
+       $ionicScrollDelegate.scrollBottom();
+       //$ionicScrollDelegate.scrollBottom();
+        /*var listPopup = $ionicPopup.show({
           template: '<ion-list onscroll="cntList()" style="background-color: rgba(20, 20, 20, 0.4)">                                ' +
           '  <ion-radio  style="background: rgba(20, 20, 20, 0.4)" ng-repeat="item in list_before"  ng-value="item" ng-model="data12.val"> ' +
           '    {{item}}                              ' +
@@ -233,29 +245,45 @@ angular.module('starter', ['ionic', 'ngCordova'])
             },
             {text: 'CANCEL'}
           ]
-        });
+        });*/
       }
       else{
-        $scope.detail=false;
+       $scope.closeInfiniteScroll=true;
         $(".buttons1").removeClass('has-subheader');
         $(".buttons1").removeClass('den12');
         $(".den11").removeClass('deneme');
         $(".container").removeClass('containet-detail');
+        $(".history").removeClass('hist-open');
+        $(".buddy").removeClass('hist-open-buddy');
+       $(".container").addClass('hist-open-container');
+       console.log('dededededededed');
+       $scope.detail=false;
       }
     });
 
 
     $(".buddy").on("swipeup",function(){
-      if($scope.chats[$scope.next_page].content.length<=7) {
+      if($scope.hist1==false){
+        console.log('gggggggggggggg');
         $(".buttons1").addClass('has-subheader');
         $(".buttons1").addClass('den12');
         $(".den11").addClass('deneme');
         $(".container").addClass('containet-detail');
-        $scope.detail = true;
+        $(".history").removeClass('hist-open');
+        $(".buddy").removeClass('hist-open-buddy');
+        $(".container").removeClass('hist-open-container');
+        console.log($scope.detail);
+        $scope.closeInfiniteScroll=false;
+        $scope.detail=false;
+        $scope.hist1=false;
       }
       else{
-        $scope.closeInfiniteScroll=false;
+        $(".history").removeClass('hist-open');
+        $(".buddy").removeClass('hist-open-buddy');
+        $(".container").removeClass('hist-open-container');
+        $scope.hist1=false;
       }
+
 
     });
     function cntListt(){
@@ -264,11 +292,11 @@ angular.module('starter', ['ionic', 'ngCordova'])
     $scope.ans_yes = function () {
       console.log("girdi");
       if(datas.flowchart.element_list[$scope.next_page].type == "Terminal" || datas.flowchart.element_list[$scope.next_page].type =="Process") {
-        list_before.push(datas.flowchart.element_list[$scope.next_page].next-1);
+        $scope.list_before.push(datas.flowchart.element_list[$scope.next_page].next-1);
         $scope.next_page = datas.flowchart.element_list[$scope.next_page].next-1;
       }
       else{
-        list_before.push(datas.flowchart.element_list[$scope.next_page].left-1);
+        $scope.list_before.push(datas.flowchart.element_list[$scope.next_page].left-1);
         $scope.next_page = datas.flowchart.element_list[$scope.next_page].left - 1;
       }
       next_page=$scope.next_page;
@@ -276,11 +304,11 @@ angular.module('starter', ['ionic', 'ngCordova'])
 
     $scope.ans_no = function () {
       if(datas.flowchart.element_list[$scope.next_page].type == "Terminal" || datas.flowchart.element_list[$scope.next_page].type =="Process") {
-        list_before.push(datas.flowchart.element_list[$scope.next_page].next-1);
+        $scope.list_before.push(datas.flowchart.element_list[$scope.next_page].next-1);
         $scope.next_page = datas.flowchart.element_list[$scope.next_page].next-1;
       }
       else{
-        list_before.push(datas.flowchart.element_list[$scope.next_page].right-1);
+        $scope.list_before.push(datas.flowchart.element_list[$scope.next_page].right-1);
         $scope.next_page = datas.flowchart.element_list[$scope.next_page].right - 1;
       }
       next_page=$scope.next_page;
@@ -290,12 +318,18 @@ angular.module('starter', ['ionic', 'ngCordova'])
     }
 
     $scope.loadMore = function() {
-        $(".buttons1").addClass('has-subheader');
-        $(".buttons1").addClass('den12');
-        $(".den11").addClass('deneme');
-        $(".container").addClass('containet-detail');
-        $scope.$broadcast('scroll.infiniteScrollComplete');
-        $scope.detail = true;
+      $ionicScrollDelegate.scrollTop();
+      $(".buttons1").addClass('has-subheader');
+      $(".buttons1").addClass('den12');
+      $(".den11").addClass('deneme');
+      $(".container").addClass('containet-detail');
+      $(".history").removeClass('hist-open');
+      $(".buddy").removeClass('hist-open-buddy');
+      $(".container").removeClass('hist-open-container');
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+      console.log('girdiiiiiiii');
+      $scope.detail = true;
+      $scope.closeInfiniteScroll=true;
 
     }
   })

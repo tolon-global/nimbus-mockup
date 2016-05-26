@@ -1,9 +1,21 @@
 /* Empty. Add your own CSS if you like */
+@import "icons.css";
+body {
+  font: 14pt "Clear Sans", "Open Sans", sans-serif;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #35393B;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
 ion-content {
   font: 14pt "Clear Sans", "Open Sans", sans-serif;
-  color: #F9F9F2;
-  background-color: #2A3B44;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #35393B;
   margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
 }
@@ -11,12 +23,40 @@ header {
   flex-grow: 0;
   padding: 1rem;
 }
+h1, h4 {
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 1rem;
+  font-weight: 100;
+}
+
+h1 {
+  font-size: 1.75em;
+}
+h1::before {
+  margin-right: 1ex;
+}
+
+.guides {
+  height: 46%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #2E442A;
+}
+.service {
+  height: 46%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #2A3B44;
+}
 h3{
   color: #F9F9F2;
   font-size: 1.2em;
   font-weight: bold;
 }
 .container {
+  background-color: #2A3B44;
   width: 300%;
   display: block;
   height: 100%;
@@ -31,15 +71,16 @@ h3{
   -ms-user-select: none;
   user-select: none;
   transition: bottom 0.25s ease;
+  top:-20px;
 }
 .popup-container .popup {
   background-color: rgba(0,0,0,0.3);
 }
 .item{
-  color:  #black;
+  color: black;
 }
 .containet-detail{
-  padding-bottom: 10% ;
+ margin-top: 15% ;
 }
 .list-container{
   min-height:60%; max-height: 60%;
@@ -94,15 +135,38 @@ h3{
   z-index: 1;
   transition: top 0.25s ease;
   top: 80%;
+
 }
 .has-subheader {
     top: 0px;
 }
 .den12{
-  height: 5%;
+  height: 10%;
+}
+.hist-open{
+  z-index: 1;
+  margin-top: 40px;
+  top:0;
+}
+.hist-open-container{
+  margin-top: -20px;
+}
+.hist-open-buddy{
+  height: 60%;
 }
 .button{
   color: #f9f9f2;
+}
+.history{
+  height: 15%;
+  z-index: 0;
+  width:100%;
+}
+.history-open{
+  height: 20%;
+  position: fixed;
+  top:-40px;
+  z-index: 0;
 }
 .btn-positive{
   float: left;
@@ -111,7 +175,7 @@ h3{
   top:0px; right: 0px; width:50%; height: 100%;
   transition: top 0.25s ease;
   color: #f9f9f2;
-  font-size: 2em !important;
+  font-size: 2em;
 }
 .btn-negative{
   float: left;
@@ -170,3 +234,26 @@ h3{
 video::-webkit-media-controls-fullscreen-button {
   display: none;
 }
+
+.video {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  background-color: hsla(360, 0%, 0%, 0.2);
+  align-items: center;
+}
+.video button {
+  font-size: 2em;
+  color: inherit;
+  flex-grow: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.video progress {
+  -webkit-appearance: none;
+  height: 2em;
+  flex-grow: 1;
+}
+.video-controls progress::-webkit-progress-bar { background: none; }
+.video-controls progress::-webkit-progress-value { background: #38a; }

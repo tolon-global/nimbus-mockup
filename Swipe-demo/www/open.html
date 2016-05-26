@@ -1,6 +1,19 @@
 <ion-view title="" style="width: 100%; height: 100%;" hide-nav-bar="true">
   <ion-content class="padding" ng-controller="OpenCtrl" style=" color: rgba(255, 255, 255, 0.8); background-color: #35393B;">
-    <a class="button icon-guide  button-dark" style="width: 100%!important; height: 48%!important; font-size: 70px; margin-bottom: 5%; padding-top: 15%;  background-color: #2E442A;" ng-click="Kilavuz()"> <div style="min-height: 15%"></div>KILAVUZ</a>
-    <a class="button icon-service button-dark" style="width: 100%; height: 48%; font-size: 75px; padding-top: 15%; background-color: #2A3B44;" ng-click="Servis()"><div style="min-height: 15%" ></div>SERVİS</a>
-  </ion-content>
+
+    <header class="icon-nimbus">
+      Nimbus 0.1.0
+    </header>
+    <section class="guides" ng-click="Kilavuz()">
+      <h1 class="icon-guide">Guides</h1>
+      <h4>
+        User, service, installation and spare part manuals
+      </h4>
+    </section>
+    <section class="service" ng-click="Servis()">
+      <h1 class="icon-service">Service</h1>
+      <h4>Step by step guided servicing</h4>
+    </section>
+
+     </ion-content>
 </ion-view>
