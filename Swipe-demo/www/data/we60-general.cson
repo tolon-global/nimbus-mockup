@@ -27,3 +27,26 @@ processes: # naked process description (outside a flow/reusable)
                 'left-panel': null # unset a tag
             only: # do this process only if the tags below are true
                 'left-panel': 'open'
+
+    'power/on':
+        title: 'Turn the power on'
+        steps: [
+            {include: 'power/connect'}
+            {image: 'i1285'} # image as a step. Resolves to 'i1285.png'
+            'Twist the power switch 90° clockwise ⤾'
+        ]
+        tags:
+            done:
+                'power': on
+            skip:
+                'power': on
+
+    'power/off':
+        title: 'Turn the power off'
+        steps:
+            'Twist the power switch 90° anti-clockwise ⤿'
+        tags:
+            skip:
+                'power': off
+            done:
+                'power': off
