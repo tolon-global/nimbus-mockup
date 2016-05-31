@@ -143,6 +143,9 @@ h3{
 .den12{
   height: 10%;
 }
+.den13{
+  top: 90%;
+}
 .hist-open{
   z-index: 1;
   margin-top: 40px;

@@ -3,10 +3,11 @@
   <ion-content ng-controller="cll" scroll="false">
     <ion-scroll class="history hist-close">
     <div>
-      <ion-list onscroll="cntList()" style="background-color: #494BC7">
-        <ion-radio  class="rd1" style="background: #494BC7 !important;" ng-repeat="item in list_before"  ng-value="item" ng-model="data12.val">
-          {{item}}
-        </ion-radio>
+      <ion-list onscroll="cntList()" class="item-text-wrap" >
+        <ion-item  class="rd1" ng-style="{'background-color': '#412A44', 'color':'white'}" ng-repeat="item in list_before"  ng-value="item" ng-model="data12.val" ng-click="goHist(item)">
+            {{chats[item].title}}   <i ng-if="answers[item]== 'Yes'" style="background-color: #38a;display: inline-block; padding: 0 .4em; border-radius: .25em; ">{{answers[item]}}</i>
+          <i ng-if="answers[item]== 'No'" style="background-color: #842;display: inline-block; padding: 0 .4em; border-radius: .25em;">{{answers[item]}}</i>
+        </ion-item>
       </ion-list>
     </div>
       </ion-scroll>
