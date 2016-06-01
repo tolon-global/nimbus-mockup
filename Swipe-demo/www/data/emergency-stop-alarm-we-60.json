@@ -1,0 +1,126 @@
+{
+    "flow": {
+        "start": "button-pressed",
+        "cards": [
+            {
+                "check-alarm": {
+                    "title": "Check alarm",
+                    "processes": [
+                        "check-emergency-stop-alarm"
+                    ],
+                    "question": "Has the alarm message been removed?",
+                    "positive": {
+                        "label": "Yes, clear",
+                        "target": "problem-solved"
+                    },
+                    "negative": {
+                        "label": "No, still there",
+                        "target": "escalate"
+                    }
+                },
+                "button-pressed": {
+                    "title": "Check button pressed state",
+                    "processes": [
+                        "check-esb-mechanically"
+                    ],
+                    "question": "Is the button in the pressed state?",
+                    "positive": {
+                        "label": "Yes, pressed",
+                        "target": "release-esb"
+                    },
+                    "negative": {
+                        "target": "replace-esb"
+                    }
+                },
+                "release-esb": {
+                    "title": "Release ESB",
+                    "processes": [
+                        {
+                            "title": "Release the ESB",
+                            "steps": [
+                                "Twist the Emergency Stop Button clockwise ⟳ to release it",
+                                "The button should be pushed up by its springs"
+                            ]
+                        }
+                    ],
+                    "question": "Has the button been released?",
+                    "positive": {
+                        "label": "Yes, released",
+                        "target": "release-esb/check-alarm"
+                    },
+                    "negative": {
+                        "label": "No, depressed",
+                        "target": "replace-esb"
+                    }
+                },
+                "release-esb/check-alarm": {
+                    "template": "check-alarm",
+                    "negative": {
+                        "target": "check-contact"
+                    }
+                },
+                "replace-esb": {
+                    "title": "Replace ESB",
+                    "processes": [
+                        {
+                            "title": "Replace the ESB",
+                            "steps": [
+                                {
+                                    "include": "we60-general/left-panel/open"
+                                },
+                                "Unscrew the ESB cable terminals from the ESB contact socket",
+                                "Remove the contact of the ESB from its back by using a screwdriver",
+                                "Unbolt the plastic nut from the back of the ESB",
+                                "Pull the ESB from the front of the CP",
+                                "Put a new ESB into the empty ESB slot",
+                                "Bolt the plastic nut onto its bolt at the back of the ESB",
+                                "Plug the contact of the ESB into its socket",
+                                "Screw the ESB cable terminals into the ESB contact socket",
+                                {
+                                    "include": "we60-general/left-panel/close"
+                                }
+                            ]
+                        }
+                    ],
+                    "append": "release-esb/check-alarm"
+                },
+                "check-contact": {
+                    "title": "Check ESB contact",
+                    "processes": [
+                        {
+                            "title": "Check the contacts on the ESB",
+                            "steps": [
+                                {
+                                    "include": "we60-general/left-panel/open"
+                                },
+                                "Check the conductivity of the contact sockets with short-circuit test\nby inserting the multimeter leads into the contact sockets or the contact\nscrews and testing for both positions of the contact switch. The contact\nshould be in short-circuit when the switch is in open position (unpressed)\nand the contrary in closed position (pressed)"
+                            ]
+                        }
+                    ],
+                    "question": "Is the contact functioning?",
+                    "negative": "replace-esb-contact",
+                    "positive": "check-unbridged-power-output"
+                },
+                "replace-esb-contact": {
+                    "template": "check-alarm",
+                    "title": "Replace ESB contact",
+                    "processes": [
+                        {
+                            "title": "Replace the contact on the ESB",
+                            "steps": [
+                                {
+                                    "include": "we60-general/left-panel/open"
+                                },
+                                "Unscrew the ESB cable terminals from the ESB contact socket",
+                                "Remove the contact of the ESB from its back by using a screwdriver",
+                                "Plug the new ESB contact into its socket",
+                                "Screw the ESB cable terminals into the ESB contact socket"
+                            ]
+                        },
+                        "$template"
+                    ]
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,52 @@
+processes: # naked process description (outside a flow/reusable)
+    'left-panel/open': # this name resolves to 'we60-general/left-panel/open' when referenced externally
+        title: 'Open the left front panel'
+        video: 'S0129' # refer to a video filename. Resolves to "video/S0129.en.mp4"
+        steps:
+            '00:01.12': "Unscrew the two fixing screws on the left edge"
+            '00:03.00': "Release the latch"
+            '00:04.20': "Swing the panel left"
+            # optional time code notation for video subtitling and jumping. 'mm:ss.ff'
+        tags:
+            done: # set these tags if the process is complete without problems
+                'left-panel': 'open'
+            escape: # set these tags if the user escapes the process
+                'left-panel': 'open' # yes, the same!
+            skip: # skip (gray out) this process if the tags below are true
+                'left-panel': 'open'
+
+    'left-panel/close':
+        title: 'Close the left front panel'
+        steps: [
+            "Close the panel"
+            "Fix the latch"
+            "Screw back the two fixing screws on the left edge"
+        ]
+        tags:
+            done:
+                'left-panel': null # unset a tag
+            only: # do this process only if the tags below are true
+                'left-panel': 'open'
+
+    'power/on':
+        title: 'Turn the power on'
+        steps: [
+            {include: 'power/connect'}
+            {image: 'i1285'} # image as a step. Resolves to 'i1285.png'
+            'Twist the power switch 90° clockwise ⤾'
+        ]
+        tags:
+            done:
+                'power': on
+            skip:
+                'power': on
+
+    'power/off':
+        title: 'Turn the power off'
+        steps:
+            'Twist the power switch 90° anti-clockwise ⤿'
+        tags:
+            skip:
+                'power': off
+            done:
+                'power': off
