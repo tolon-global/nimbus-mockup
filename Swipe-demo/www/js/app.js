@@ -217,9 +217,6 @@ angular.module('starter', ['ionic', 'ngCordova'])
       } else {
         $(this).next().removeClass('rotate-left rotate-right rot').fadeIn(100);
       }
-      function findIndex(item,item1) {
-        return item === 1;
-      }
       $('.buddy3').removeClass('buddy1').delay(100);
       if(datas.flowchart.element_list[$scope.next_page].type == "Terminal" || datas.flowchart.element_list[$scope.next_page].type =="Process") {
         if($scope.list_before.indexOf(datas.flowchart.element_list[$scope.next_page].next-1)==-1){
@@ -252,6 +249,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
 
     $(".buddy").on("swipedown",function(){
         console.log($scope.list_before)
+      console.log($scope.answers);
         $scope.data12= {};
         $scope.data12.val=-1;
       $(".history").removeClass('hist-close');

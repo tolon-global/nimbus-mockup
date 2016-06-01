@@ -5,8 +5,9 @@
     <div>
       <ion-list onscroll="cntList()" class="item-text-wrap" >
         <ion-item  class="rd1" ng-style="{'background-color': '#412A44', 'color':'white'}" ng-repeat="item in list_before"  ng-value="item" ng-model="data12.val" ng-click="goHist(item)">
-            {{chats[item].title}}   <i ng-if="answers[item]== 'Yes'" style="background-color: #38a;display: inline-block; padding: 0 .4em; border-radius: .25em; ">{{answers[item]}}</i>
-          <i ng-if="answers[item]== 'No'" style="background-color: #842;display: inline-block; padding: 0 .4em; border-radius: .25em;">{{answers[item]}}</i>
+            {{chats[item].title}}   <i ng-if="answers[list_before.indexOf(item)]== 'Yes'" style="background-color: #38a;display: inline-block; padding: 0 .4em; border-radius: .25em; ">{{answers[list_before.indexOf(item)]}}</i>
+          {{console.log(item)}}
+          <i ng-if="answers[list_before.indexOf(item)]== 'No'" style="background-color: #842;display: inline-block; padding: 0 .4em; border-radius: .25em;">{{answers[list_before.indexOf(item)]}}</i>
         </ion-item>
       </ion-list>
     </div>
