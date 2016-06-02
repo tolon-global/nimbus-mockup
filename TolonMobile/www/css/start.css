@@ -4,7 +4,8 @@
     font: 14pt "Clear Sans", "Open Sans", sans-serif;
     color: rgba(255, 255, 255, 0.8);
     background-color: #35393B;
-  display: block;
+    display: flex;
+  flex-direction: column;
     margin: 0;
     height: 100%;
 }
@@ -12,10 +13,6 @@
 header {
     flex-grow: 0;
     padding: 1rem;
-}
-section {
-    flex-grow: 1;
-    padding-top: 10%;
 }
 
 h1, h4 {
@@ -30,11 +27,13 @@ h1::before {
     margin-right: 1ex;
 }
 
-.guides {
+section.guides {
     background-color: #2E442A;
-  height: 13em;
+  height: 40%;
+  padding-top: 10%;
 }
 .service {
-    background-color: #2A3B44;
-    height: 13em;
+  background-color: #2A3B44;
+  padding-top : 10%;
+  height: 40%;
 }
