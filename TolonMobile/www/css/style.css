@@ -1,0 +1,34 @@
+nav{
+  position: fixed;
+  left: 0;
+  height: 18%;
+  width: 100%;
+  z-index: 1;
+  transition: top 0.25s ease;
+  top: 82%;
+
+}
+.has-subheader {
+    top: 0px;
+    height: 8%;
+    position: fixed;
+    transition: top 0.25s ease;
+}
+.detail{
+  -webkit-animation:animatebottom 0.4s;
+  animation:animatebottom 0.4s;
+  margin-top:5vh;
+  position:fixed;
+  visibility: hidden;
+
+}
+body{
+  font: 14pt "Clear Sans", "Open Sans", sans-serif;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #35393B;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+/*06.34 eklendi*/
