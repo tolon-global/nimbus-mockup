@@ -1,5 +1,5 @@
 <ion-view id="a" on-swipe-down="swipedown()" on-swipe-up="swipeup()" hide-nav-bar="true" scroll="false">
-  <ion-content ng-controller="mainCtrl" style="background-color: #2A3B44;">
+  <ion-content ng-controller="mainCtrl" style="width:200%;background-color: #2A3B44;">
     <section class="history" style="overflow: auto; visibility:hidden;">
       <ol>
         <li><em>Machine type? <strong>TWE60</strong></em></li>
@@ -38,29 +38,43 @@
       </ol>
       <h1>History</h1>
     </section>
-    <section class="n-card" id="replace-esb">
+    <section class="n-card serhat" id="replace-esb">
       <header>
-        <section class="n-process">
-          Replace the <abbr title="Emergency Stop Button">ESB</abbr>
-        </section>
-        <section class="n-process">
-          Check the <em>Emergency Stop Alarm</em> status
+        <section class="n-process" ng-repeat="data in val.processes">
+          {{data}}
         </section>
         <section class="question">
-          Has the alarm message been removed?
+          {{val.question}}
         </section>
       </header>
-
     </section>
-    <nav>
+    <section class="n-card serhat1" id="replace-esb">
+      <header>
+        <section class="n-process" ng-repeat="data in val1.processes">
+          {{data}}
+        </section>
+        <section class="question">
+          {{val1.question}}
+        </section>
+      </header>
+    </section>
+    <nav class="serhat" >
       <section class="n-positive">
-        Yes
+        {{val.positive.label}}
       </section>
       <section class="n-negative">
-        No, still there.
+        {{val.negative.label}}
       </section>
     </nav>
-    <main id="detail"  scroll="false" style="padding-top: 6%">
+    <nav class="serhat1" >
+      <section class="n-positive">
+        {{val.positive.label}}
+      </section>
+      <section class="n-negative">
+        {{val.negative.label}}
+      </section>
+    </nav>
+    <main id="detail"  scroll="false">
       <section>
 
         <h2 style="margin: 2em 1em 1em; font-size: .75em; font-weight: 100;">Replace the <abbr title="Emergency Stop Button">ESB</abbr></h2>

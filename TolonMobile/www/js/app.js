@@ -31,7 +31,7 @@ var db={
           "question": "Is the button in the pressed state?",
           "positive": {
             "label": "Yes, pressed",
-            "target": "release-esb"
+            "target": "replace-esb"
           },
           "negative": {
             "target": "replace-esb"
@@ -65,29 +65,23 @@ var db={
           }
         },
         "replace-esb": {
-          "title": "Replace ESB",
+          "title": "Check button pressed state1",
           "processes": [
-            {
-              "title": "Replace the ESB",
-              "steps": [
-                {
-                  "include": "we60-general/left-panel/open"
-                },
-                "Unscrew the ESB cable terminals from the ESB contact socket",
-                "Remove the contact of the ESB from its back by using a screwdriver",
-                "Unbolt the plastic nut from the back of the ESB",
-                "Pull the ESB from the front of the CP",
-                "Put a new ESB into the empty ESB slot",
-                "Bolt the plastic nut onto its bolt at the back of the ESB",
-                "Plug the contact of the ESB into its socket",
-                "Screw the ESB cable terminals into the ESB contact socket",
-                {
-                  "include": "we60-general/left-panel/close"
-                }
-              ]
-            }
+            "check-esb-mechanically1",
+            "check-esb-mechanically2",
+            "check-esb-mechanically3",
+            "check-esb-mechanically4",
+            "check-esb-mechanically5"
+
           ],
-          "append": "release-esb/check-alarm"
+          "question": "Is the button in the pressed state?1123123123",
+          "positive": {
+            "label": "Yes, pressed",
+            "target": "button-pressed"
+          },
+          "negative": {
+            "target": "button-pressed"
+          }
         },
         "check-contact": {
           "title": "Check ESB contact",
@@ -188,6 +182,18 @@ angular.module('starter', ['ionic'])
   })
   .controller('mainCtrl', function($scope) {
     console.log(db);
+    $scope.db=db.flow;
+    $scope.start=db.flow.start;
+    console.log($scope.db.cards[0][$scope.start]);
+    $scope.val=$scope.db.cards[0][$scope.start];
+    $scope.val1=$scope.db.cards[0][$scope.val.negative.target];
+
+    if($scope.val.negative.label== null){
+      $scope.val.negative.label="No";
+    }
+    if($scope.val.positive.label== null){
+      $scope.val.positive.label="Yes";
+    }
     $(document).ready(function(){
       $(".btn1").click(function(){
         $("p").slideUp("fast","linear");
@@ -238,5 +244,50 @@ angular.module('starter', ['ionic'])
         }
 
       } );
+      $('#a').on('swipeleft',function(){
+        $scope.val1=$scope.db.cards[0][$scope.val.negative.target];
+        console.log( $scope.val)
+        if($scope.val1.negative.label== null){
+          $scope.val1.negative.label="No";
+        }
+        if($scope.val1.positive.label== null){
+          $scope.val1.positive.label="Yes";
+        }
+        $(".serhat1").css('left','50%')
+        $(".serhat").addClass('slideLeft');
+        $(".serhat1").addClass('slideLeft1');
+
+        setTimeout(function(){
+          $(".serhat").removeClass('slideLeft');
+          $(".serhat1").removeClass('slideLeft1');
+          $scope.val=$scope.db.cards[0][$scope.val.negative.target];
+          $scope.val1=$scope.db.cards[0][$scope.val1.negative.target];
+          $scope.$apply();
+        },500);
+
+
+      } );
     });
+    $('#a').on('swiperight',function(){
+      $scope.val1=$scope.db.cards[0][$scope.val.positive.target];
+      console.log( $scope.val)
+      if($scope.val1.negative.label== null){
+        $scope.val1.negative.label="No";
+      }
+      if($scope.val1.positive.label== null){
+        $scope.val1.positive.label="Yes";
+      }
+      $(".serhat1").css('left','-50%')
+      $(".serhat").addClass('slideRight');
+      $(".serhat1").addClass('slideRight1');
+
+      setTimeout(function(){
+        $(".serhat").removeClass('slideRight');
+        $(".serhat1").removeClass('slideRight1');
+        $scope.val=$scope.db.cards[0][$scope.val.positive.target];
+        $scope.val1=$scope.db.cards[0][$scope.val1.positive.target];
+        $scope.$apply();
+      },500);
+    } );
+
   })
