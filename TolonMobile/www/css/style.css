@@ -9,7 +9,7 @@ nav{
 
 }
 .has-subheader {
-    top: 0px;
+    top: 0;
     height: 8%;
     position: fixed;
     transition: top 0.25s ease;
@@ -20,6 +20,4 @@ nav{
   margin-top:5vh;
   position:fixed;
   visibility: hidden;
-
 }
-/*06.34 eklendi*/
