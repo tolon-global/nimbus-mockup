@@ -5,13 +5,14 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
 
-    <link href="css/style.css" rel="stylesheet">
- <link rel="stylesheet" href="css/card.css" media="screen">
-    <link rel="stylesheet" href="css/start.css" media="screen">
+
+    <link rel="stylesheet" href="lib/ionic/css/ionic.css" media="screen">
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
-
+    <link href="css/style.css" rel="stylesheet">
+    <link  href="css/card.css" rel="stylesheet" >
+    <link rel="stylesheet" href="css/start.css">
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
@@ -21,131 +22,11 @@
     <!-- your app's js -->
     <script src="js/app.js"></script>
     <script src="js/jquery.min.js"></script>
-
-      <script>
-
-$(document).ready(function(){
-    $(".btn1").click(function(){
-        $("p").slideUp("fast","linear");
-    });
-    $(".btn2").click(function(){
-        $("p").css('visibility','visible');
-        $("p").slideDown();
-    });
-    function load() {
-            $(".history").slideUp();
-            $("#detail").addClass("detail");
-      }
-      window.onload = load;
-
-    /*var supportTouch = $.support.touch,
-            scrollEvent = "touchmove scroll",
-            touchStartEvent = supportTouch ? "touchstart" : "mousedown",
-            touchStopEvent = supportTouch ? "touchend" : "mouseup",
-            touchMoveEvent = supportTouch ? "touchmove" : "mousemove";
-    $.event.special.swipeupdown = {
-        setup: function() {
-            var thisObject = this;
-            var $this = $(thisObject);
-            $this.bind(touchStartEvent, function(event) {
-                var data = event.originalEvent.touches ?
-                        event.originalEvent.touches[ 0 ] :
-                        event,
-                        start = {
-                            time: (new Date).getTime(),
-                            coords: [ data.pageX, data.pageY ],
-                            origin: $(event.target)
-                        },
-                        stop;
-
-                function moveHandler(event) {
-                    if (!start) {
-                        return;
-                    }
-                    var data = event.originalEvent.touches ?
-                            event.originalEvent.touches[ 0 ] :
-                            event;
-                    stop = {
-                        time: (new Date).getTime(),
-                        coords: [ data.pageX, data.pageY ]
-                    };
-
-                    // prevent scrolling
-                    if (Math.abs(start.coords[1] - stop.coords[1]) > 10) {
-                        event.preventDefault();
-                    }
-                }
-                $this
-                        .bind(touchMoveEvent, moveHandler)
-                        .one(touchStopEvent, function(event) {
-                    $this.unbind(touchMoveEvent, moveHandler);
-                    if (start && stop) {
-                        if (stop.time - start.time < 1000 &&
-                                Math.abs(start.coords[1] - stop.coords[1]) > 30 &&
-                                Math.abs(start.coords[0] - stop.coords[0]) < 75) {
-                            start.origin
-                                    .trigger("swipeupdown")
-                                    .trigger(start.coords[1] > stop.coords[1] ? "swipeup" : "swipedown");
-                        }
-                    }
-                    start = stop = undefined;
-                });
-            });
-        }
-    };
-    $.each({
-        swipedown: "swipeupdown",
-        swipeup: "swipeupdown"
-    }, function(event, sourceEvent){
-        $.event.special[event] = {
-            setup: function(){
-                $(this).bind(sourceEvent, $.noop);
-            }
-        };
-    });*/
-var historyOpen=0;
-var detailOpen=0;
-$('#a').on('swipedown',function(){
-  if (historyOpen==0 && detailOpen==0) {
-    $(".history").css('visibility','visible');
-    $(".history").slideDown();
-    historyOpen++;
-    console.log("History = > "+historyOpen);
-      console.log("Detail = > "+detailOpen);
-  }
-  else if (detailOpen==1 && historyOpen==0 ) {
-    $("#replace-esb").css('visibility','visible');
-    $("#detail").css('visibility','hidden');
-    $("nav").removeClass("has-subheader");
-    detailOpen--;
-    console.log("History = > "+historyOpen);
-      console.log("Detail = > "+detailOpen);
-  }
-} );
-$('#a').on('swipeup',function(){
-  if (historyOpen==1 && detailOpen==0) {
-      $(".history").slideUp();
-      historyOpen--;
-      console.log("History = > "+historyOpen);
-        console.log("Detail = > "+detailOpen);
-  }
-  else if (detailOpen==0 && historyOpen==0) {
-    $("#replace-esb").css('visibility','hidden');
-    $("#detail").css('visibility','visible');
-    $("nav").addClass("has-subheader");
-    detailOpen++;
-    console.log("History = > "+historyOpen);
-      console.log("Detail = > "+detailOpen);
-  }
-
-} );
-});
-</script>
   </head>
   <body ng-app="starter">
 
-  <ion-pane ng-app="starter" style="width: 100%; height: 100%">
-    <ion-nav-bar class="bar-dark" style="width: 100%; height: 100%">
+  <ion-pane ng-app="starter">
+    <ion-nav-bar class="bar-dark">
     </ion-nav-bar>
     <ion-nav-view style="width: 100%; height: 100%">
     </ion-nav-view>

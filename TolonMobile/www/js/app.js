@@ -167,3 +167,74 @@ angular.module('starter', ['ionic'])
   $urlRouterProvider.otherwise('/');
 
 })
+  .controller('OpenCtrl', function($scope, $state) {
+    $scope.Servis = function() {
+      $state.go('main');
+      //$cordovaBarcodeScanner.scan().then(function(imageData) {
+      //  console.log("Barcode Format -> " + imageData.format);
+      //  console.log("Cancelled -> " + imageData.cancelled);
+      //  res1 = AESDecryptCtr(imageData.text,'tolon001',256);
+      //  alert(res1);
+      //  if(res1=="WE110"){
+      //    //$state.go('main');
+      //  }else{
+      //    alert("QrCode is not Valid Please Try Again!");
+      //  }
+      //}, function(error) {
+      //  console.log("An error happened -> " + error);
+      //});
+    };
+
+  })
+  .controller('mainCtrl', function($scope) {
+    $(document).ready(function(){
+      $(".btn1").click(function(){
+        $("p").slideUp("fast","linear");
+      });
+      $(".btn2").click(function(){
+        $("p").css('visibility','visible');
+        $("p").slideDown();
+      });
+      function load() {
+        $(".history").slideUp();
+        $("#detail").addClass("detail");
+      }
+      window.onload = load;
+      var historyOpen=0;
+      var detailOpen=0;
+      $('#a').on('swipedown',function(){
+        if (historyOpen==0 && detailOpen==0) {
+          $(".history").css('visibility','visible');
+          $(".history").slideDown();
+          historyOpen++;
+          console.log("History = > "+historyOpen);
+          console.log("Detail = > "+detailOpen);
+        }
+        else if (detailOpen==1 && historyOpen==0 ) {
+          $("#replace-esb").css('visibility','visible');
+          $("#detail").css('visibility','hidden');
+          $("nav").removeClass("has-subheader");
+          detailOpen--;
+          console.log("History = > "+historyOpen);
+          console.log("Detail = > "+detailOpen);
+        }
+      } );
+      $('#a').on('swipeup',function(){
+        if (historyOpen==1 && detailOpen==0) {
+          $(".history").slideUp();
+          historyOpen--;
+          console.log("History = > "+historyOpen);
+          console.log("Detail = > "+detailOpen);
+        }
+        else if (detailOpen==0 && historyOpen==0) {
+          $("#replace-esb").css('visibility','hidden');
+          $("#detail").css('visibility','visible');
+          $("nav").addClass("has-subheader");
+          detailOpen++;
+          console.log("History = > "+historyOpen);
+          console.log("Detail = > "+detailOpen);
+        }
+
+      } );
+    });
+  })

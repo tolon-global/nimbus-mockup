@@ -7,7 +7,7 @@ body {
     margin: 0;
 }
 
-.card {
+.n-card {
     flex-direction: column;
     display: flex;
     height: 100vh; /*05.09 eklendi. */
@@ -34,12 +34,12 @@ body {
     margin-bottom: .5em;
 }
 
-.card header .process {
+.card header .n-process {
     position: relative;
     padding-right: 2em;
 }
 
-.card header .process::after {
+.card header .n-process::after {
     opacity: .5;
     content: "\e900";
     position: absolute;
@@ -60,28 +60,28 @@ nav {
     position: relative;
 }
 
- nav .positive {
+ nav .n-positive {
     background-color: #38a;
     order: 2;
     padding-right: 2.2em;
 }
-nav .positive::after {
+nav .n-positive::after {
     content: "\e90c";
     right: 0;
 }
 
-nav .negative {
+nav .n-negative {
     background-color: #842;
     order: 1;
     padding-left: 2.2em;
 }
-nav .negative::before {
+nav .n-negative::before {
     content: "\e90b";
     left: 0;
 }
 
-nav .positive::after,
-nav .negative::before {
+nav .n-positive::after,
+nav .n-negative::before {
     font-size: 2.4em;
     top: .25em;
     opacity: 0.5;
@@ -111,12 +111,12 @@ nav .negative::before {
 #detail ol {
     margin: .5em;
     padding-left: 1.5em;
-   height:50vh; 
+   height:50vh;
    overflow: auto;
 }
 
-.card main li.current { color: white; }
-.card main li.current::before {
+.card main li.n-current { color: white; }
+.card main li.n-current::before {
     content: "\e906";
     float: right;
     margin-left: .5em;
@@ -129,8 +129,8 @@ nav .negative::before {
     max-height: 60vh;/* 90 dı 60 yapıldı 04.56*/
 
 }
-.history li.positive strong { background-color: #38a; }
-.history li.negative strong { background-color: #842; }
+.history li.n-positive strong { background-color: #38a; }
+.history li.n-negative strong { background-color: #842; }
 .history li strong {
     display: inline-block;
     padding: 0 .4em;

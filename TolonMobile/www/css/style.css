@@ -22,13 +22,4 @@ nav{
   visibility: hidden;
 
 }
-body{
-  font: 14pt "Clear Sans", "Open Sans", sans-serif;
-  color: rgba(255, 255, 255, 0.8);
-  background-color: #35393B;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
 /*06.34 eklendi*/
