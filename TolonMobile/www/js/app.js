@@ -187,6 +187,7 @@ angular.module('starter', ['ionic'])
 
   })
   .controller('mainCtrl', function($scope) {
+    console.log(db);
     $(document).ready(function(){
       $(".btn1").click(function(){
         $("p").slideUp("fast","linear");
@@ -195,11 +196,12 @@ angular.module('starter', ['ionic'])
         $("p").css('visibility','visible');
         $("p").slideDown();
       });
+      load();
       function load() {
         $(".history").slideUp();
         $("#detail").addClass("detail");
       }
-      window.onload = load;
+      window.onload = load();
       var historyOpen=0;
       var detailOpen=0;
       $('#a').on('swipedown',function(){
