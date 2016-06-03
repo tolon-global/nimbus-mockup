@@ -122,25 +122,27 @@ n-card main li.current::before {
     font-size: 2em;
 }
 
-.history {
+n-history {
     background-color: #412A44;
     padding: 1em 0 0.5em;
     max-height: 90vh;
+    display: block;
+    overflow-y: scroll;
 }
-.history li.positive strong { background-color: #38a; }
-.history li.negative strong { background-color: #842; }
-.history li strong {
+n-history li.positive strong { background-color: #38a; }
+n-history li.negative strong { background-color: #842; }
+n-history li strong {
     display: inline-block;
     padding: 0 .4em;
     border-radius: .25em;
 }
-.history li {
+n-history li {
     padding: .5ex;
 }
-.history li:nth-of-type(2n+1) {
+n-history li:nth-of-type(2n+1) {
     background-color: rgba(249, 249, 242, .1)
 }
-.history ol li:before {
+n-history li:before {
     content: counter(history-counter, decimal);
     counter-increment: history-counter;
     opacity: .5;
@@ -151,7 +153,7 @@ n-card main li.current::before {
     padding-right: .7em;
     vertical-align: text-top;
 }
-.history ol {
+n-history {
     list-style-type: none;
     padding: 0;
     margin: .5em 0;
@@ -160,12 +162,18 @@ n-card main li.current::before {
     counter-reset: history-counter;
 }
 
-.history h1 {
+n-history h1 {
     margin: 1em .5em 0;
     font-size: .75em;
     font-weight: 100;
 }
-.history h1::before {
+
+n-history::after {
+    display:block;
+    content: 'History';
+}
+
+n-history::after::before {
     content: "\e907";
     margin-right: .5ex;
     font-size: 1.6em;
