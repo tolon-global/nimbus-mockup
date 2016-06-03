@@ -46,11 +46,29 @@
           <div class="swiper-container swiper-container-h">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
-                <ion-item ng-repeat="data in val.processes">
-                  Replace ESB, <em>{{data}}</em>
-                </ion-item>
+               Vertical Slide 1
               </div>
-              <div class="swiper-slide">Vertical Slide 2</div>
+              <div class="swiper-slide">
+                   <section class="n-card" id="check-esb">
+                      <header>
+                           <section class="n-process">
+                               Check the <abbr title="Emergency Stop Button">ESB</abbr> mechanically
+                           </section>
+                           <section class="question">
+                               Is the button in the <em>pressed</em> state?
+                           </section>
+                      </header>
+                      <nav>
+                           <section class="n-positive">
+                               Yes, pressed
+                           </section>
+                           <section class="n-negative">
+                               No, released
+                           </section>
+                      </nav>
+                    
+                   </section>
+              </div>
               <div class="swiper-slide">Vertical Slide 3</div>
             </div>
           </div>
@@ -87,44 +105,6 @@
       </div>
       <!-- Add Pagination -->
     </div>
-
-    <section class="n-card serhat">
-      <header>
-        <section class="n-process" ng-repeat="data in val.processes">
-          {{data}}
-        </section>
-        <section class="question">
-          {{val.question}}
-        </section>
-      </header>
-    </section>
-    <section class="n-card serhat1" id="replace-esb">
-      <header>
-        <section class="n-process" ng-repeat="data in val1.processes">
-          {{data}}
-        </section>
-        <section class="question">
-          {{val1.question}}
-        </section>
-      </header>
-    </section>
-    <nav class="serhat" >
-      <section class="n-positive" ng-click="PosClick()">
-        {{val.positive.label}}
-      </section>
-      <section class="n-negative" ng-click="NegClick()">
-        {{val.negative.label}}
-      </section>
-    </nav>
-    <nav class="serhat1" >
-      <section class="n-positive">
-        {{val1.positive.label}}
-      </section>
-      <section class="n-negative">
-        {{val1.negative.label}}
-      </section>
-    </nav>
-
 
   </ion-content>
 

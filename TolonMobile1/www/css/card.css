@@ -48,13 +48,13 @@ body {
     right: 0; top: 0;
 }
 
-nav {
+
+.n-card nav {
     flex-basis: 20%;
     display: flex;
     flex-direction: row;
-    width:50%;
 }
- nav section {
+.n-card nav section {
     text-align: center;
     flex: 1;
     font-weight: bold;
@@ -62,28 +62,28 @@ nav {
     position: relative;
 }
 
- nav .n-positive {
+.n-card nav .n-positive {
     background-color: #38a;
     order: 2;
     padding-right: 2.2em;
 }
-nav .n-positive::after {
+.n-card nav .n-positive::after {
     content: "\e90c";
     right: 0;
 }
 
-nav .n-negative {
+.n-card nav .n-negative {
     background-color: #842;
     order: 1;
     padding-left: 2.2em;
 }
-nav .n-negative::before {
+.n-card nav .n-negative::before {
     content: "\e90b";
     left: 0;
 }
 
-nav .n-positive::after,
-nav .n-negative::before {
+.n-card nav .n-positive::after,
+.n-card nav .n-negative::before {
     font-size: 2.4em;
     top: .25em;
     opacity: 0.5;
