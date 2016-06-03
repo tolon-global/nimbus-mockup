@@ -26,7 +26,10 @@ var db={
         "button-pressed": {
           "title": "Check button pressed state",
           "processes": [
-            "check-esb-mechanically"
+            "check-esb-mechanically",
+            "check-esb-mechanically1",
+            "check-esb-mechanically2",
+            "check-esb-mechanically3"
           ],
           "question": "Is the button in the pressed state?",
           "positive": {
@@ -71,8 +74,24 @@ var db={
             "check-esb-mechanically2",
             "check-esb-mechanically3",
             "check-esb-mechanically4",
-            "check-esb-mechanically5"
-
+            "check-esb-mechanically5",
+          ],
+          "question": "Is the button in the pressed state?1123123123",
+          "positive": {
+            "label": "Yes, pressed",
+            "target": "button-pressed"
+          },
+          "negative": {
+            "target": "check-content"
+          }
+        },
+        "check-content": {
+          "title": "Check button pressed state44",
+          "processes": [
+            "check-esb-mechanically14",
+            "check-esb-mechanically24",
+            "check-esb-mechanically34",
+            "check-esb-mechanically44",
           ],
           "question": "Is the button in the pressed state?1123123123",
           "positive": {
@@ -82,23 +101,6 @@ var db={
           "negative": {
             "target": "button-pressed"
           }
-        },
-        "check-contact": {
-          "title": "Check ESB contact",
-          "processes": [
-            {
-              "title": "Check the contacts on the ESB",
-              "steps": [
-                {
-                  "include": "we60-general/left-panel/open"
-                },
-                "Check the conductivity of the contact sockets with short-circuit test\nby inserting the multimeter leads into the contact sockets or the contact\nscrews and testing for both positions of the contact switch. The contact\nshould be in short-circuit when the switch is in open position (unpressed)\nand the contrary in closed position (pressed)"
-              ]
-            }
-          ],
-          "question": "Is the contact functioning?",
-          "negative": "replace-esb-contact",
-          "positive": "check-unbridged-power-output"
         },
         "replace-esb-contact": {
           "template": "check-alarm",
@@ -182,15 +184,21 @@ angular.module('starter', ['ionic'])
     };
 
   })
-  .controller('mainCtrl', function($scope) {
-
+  .controller('mainCtrl', function($scope, $rootScope) {
+    var arr = ['.cll', '.cll1','.cll2']
+    var arr1 = ['id0', 'id1','id2']
+    var index=1;
     $scope.db=db.flow;
     $scope.start=db.flow.start;
     console.log($scope.db.cards[0][$scope.start]);
     $scope.val=$scope.db.cards[0][$scope.start];
-    $scope.val1=$scope.db.cards[0][$scope.val.negative.target];
     console.log($scope.val);
-    copyDiv('fake-card2');
+
+    for(var i=0;i<$scope.val.processes.length;i++){
+      var z = $scope.db.cards[0][$scope.start].processes[i];
+      $(arr[index]).html($(arr[index]).html() + "<section class='n-process'' id='"+arr1[index] + i + "'>"+ z+ "</section>");
+    }
+
     if($scope.val.negative.label== null){
       $scope.val.negative.label="No";
     };
@@ -206,24 +214,39 @@ angular.module('starter', ['ionic'])
     });
     var swiperV = new Swiper('.swiper-container-v', {
       direction: 'vertical',
-      spaceBetween: 0,
+      spaceBetween: 1,
       initialSlide:1
 
     });
     swiperH.on('SlideNextStart', function () {
+      index++;
+      if(index==3){
+        index=0;
+      }
       console.log('slide change end');
-      copyDiv('fake-card3');
+      $(arr[index]).html("");
+      $scope.start=$scope.val.positive.target;
+      for(var i=0;i<$scope.db.cards[0][$scope.start].processes.length;i++){
+        var z = $scope.db.cards[0][$scope.start].processes[i];
+          $(arr[index]).html($(arr[index]).html() + "<section class='n-process'' id='"+arr1[index] + i + "'>"+ z+ "</section>");
+      }
+      $scope.val=$scope.db.cards[0][$scope.start];
     });
     swiperH.on('SlidePrevStart', function () {
-      console.log('slide change start');
-      copyDiv('fake-card1');
+      index--;
+      if(index==-1){
+        index=3;
+      }
+      console.log('slide change end');
+      $(arr[index]).html("");
+      $scope.start=$scope.val.negative.target;
+      console.log($scope.val)
+      for(var i=0;i<$scope.db.cards[0][$scope.start].processes.length;i++){
+        var z = $scope.db.cards[0][$scope.start].processes[i];
+        $(arr[index]).html($(arr[index]).html() + "<section class='n-process'' id='"+arr1[index] + i + "'>"+ z+ "</section>");
+      }
+      $scope.val=$scope.db.cards[0][$scope.start];
     });
-    function copyDiv(id) {
-      var mainDivContent = document.getElementById('main-card');
-      var firstDivContent = document.getElementById(id);
-      firstDivContent.innerHTML = mainDivContent.innerHTML;
-    }
-
   })
 
 

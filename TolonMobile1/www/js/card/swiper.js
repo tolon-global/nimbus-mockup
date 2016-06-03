@@ -44,7 +44,7 @@
             // Autoheight
             autoHeight: false,
             // Set wrapper width
-            setWrapperSize: true,
+            setWrapperSize: false,
             // Virtual Translate
             virtualTranslate: false,
             // Effects
