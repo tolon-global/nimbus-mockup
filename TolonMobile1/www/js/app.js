@@ -205,6 +205,7 @@ angular.module('starter', ['ionic'])
     if($scope.val.positive.label== null){
       $scope.val.positive.label="Yes";
     };
+    $(arr[index]).html($(arr[index]).html() + "<section class='question'' id='"+arr1[index] + i +  "'>"+ $scope.val.question + "</section>");
     $('.n-positive').text( $scope.val.positive.label);
     $('.n-negative').text( $scope.val.negative.label);
     var swiperH = new Swiper('.swiper-container-h', {
@@ -238,6 +239,7 @@ angular.module('starter', ['ionic'])
       if($scope.val.positive.label== null){
         $scope.val.positive.label="Yes";
       };
+      $(arr[index]).html($(arr[index]).html() + "<section class='question'' id='"+arr1[index] + i +  "'>"+ $scope.val.question + "</section>");
 
       $('.n-positive').text( $scope.val.positive.label);
       $('.n-negative').text( $scope.val.negative.label);
@@ -262,58 +264,10 @@ angular.module('starter', ['ionic'])
       if($scope.val.positive.label== null){
         $scope.val.positive.label="Yes";
       };
+      $(arr[index]).html($(arr[index]).html() + "<section class='question'' id='"+arr1[index] + i +  "'>"+ $scope.val.question + "</section>");
       $('.n-positive').text( $scope.val.positive.label);
       $('.n-negative').text( $scope.val.negative.label);
       $scope.val=$scope.db.cards[0][$scope.start];
     });
   })
 
-
-/*$('#a').on('swipeleft',function(){
- if(historyOpen==0){
- $scope.val1=$scope.db.cards[0][$scope.val.negative.target];
- console.log( $scope.val)
- if($scope.val1.negative.label== null){
- $scope.val1.negative.label="No";
- }
- if($scope.val1.positive.label== null){
- $scope.val1.positive.label="Yes";
- }
- $(".serhat1").css('left','50%')
- $(".serhat").addClass('slideLeft');
- $(".serhat1").addClass('slideLeft1');
-
- setTimeout(function(){
- $(".serhat").removeClass('slideLeft');
- $(".serhat1").removeClass('slideLeft1');
- $scope.val=$scope.db.cards[0][$scope.val.negative.target];
- $scope.val1=$scope.db.cards[0][$scope.val1.negative.target];
- $scope.$apply();
- },500);
-
- }
- } );
- });
- $('#a').on('swiperight',function(){
- if(historyOpen==0) {
- $scope.val1 = $scope.db.cards[0][$scope.val.positive.target];
- console.log($scope.val)
- if ($scope.val1.negative.label == null) {
- $scope.val1.negative.label = "No";
- }
- if ($scope.val1.positive.label == null) {
- $scope.val1.positive.label = "Yes";
- }
- $(".serhat1").css('left', '-50%')
- $(".serhat").addClass('slideRight');
- $(".serhat1").addClass('slideRight1');
-
- setTimeout(function () {
- $(".serhat").removeClass('slideRight');
- $(".serhat1").removeClass('slideRight1');
- $scope.val = $scope.db.cards[0][$scope.val.positive.target];
- $scope.val1 = $scope.db.cards[0][$scope.val1.positive.target];
- $scope.$apply();
- }, 500);
- }
- } );*/
