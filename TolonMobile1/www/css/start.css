@@ -1,0 +1,39 @@
+@import "icons.css";
+
+.start{
+    font: 14pt "Clear Sans", "Open Sans", sans-serif;
+    color: rgba(255, 255, 255, 0.8);
+    background-color: #35393B;
+    display: flex;
+  flex-direction: column;
+    margin: 0;
+    height: 100%;
+}
+
+header {
+    flex-grow: 0;
+    padding: 1rem;
+}
+
+h1, h4 {
+    margin: 0 1rem;
+    font-weight: 300;
+}
+
+h1 {
+    font-size: 2.75em;
+}
+h1::before {
+    margin-right: 1ex;
+}
+
+section.guides {
+    background-color: #2E442A;
+  height: 40%;
+  padding-top: 10%;
+}
+.service {
+  background-color: #2A3B44;
+  padding-top : 10%;
+  height: 40%;
+}
