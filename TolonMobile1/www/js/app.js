@@ -95,7 +95,7 @@ var db={
           ],
           "question": "Is the button in the pressed state?1123123123",
           "positive": {
-            "label": "Yes, pressed",
+            "label": "Yes, pressed and ddd",
             "target": "button-pressed"
           },
           "negative": {
@@ -205,6 +205,8 @@ angular.module('starter', ['ionic'])
     if($scope.val.positive.label== null){
       $scope.val.positive.label="Yes";
     };
+    $('.n-positive').text( $scope.val.positive.label);
+    $('.n-negative').text( $scope.val.negative.label);
     var swiperH = new Swiper('.swiper-container-h', {
       spaceBetween: 0,
       loop:true,
@@ -230,6 +232,15 @@ angular.module('starter', ['ionic'])
         var z = $scope.db.cards[0][$scope.start].processes[i];
           $(arr[index]).html($(arr[index]).html() + "<section class='n-process'' id='"+arr1[index] + i + "'>"+ z+ "</section>");
       }
+      if($scope.val.negative.label== null){
+        $scope.val.negative.label="No";
+      };
+      if($scope.val.positive.label== null){
+        $scope.val.positive.label="Yes";
+      };
+
+      $('.n-positive').text( $scope.val.positive.label);
+      $('.n-negative').text( $scope.val.negative.label);
       $scope.val=$scope.db.cards[0][$scope.start];
     });
     swiperH.on('SlidePrevStart', function () {
@@ -245,6 +256,14 @@ angular.module('starter', ['ionic'])
         var z = $scope.db.cards[0][$scope.start].processes[i];
         $(arr[index]).html($(arr[index]).html() + "<section class='n-process'' id='"+arr1[index] + i + "'>"+ z+ "</section>");
       }
+      if($scope.val.negative.label== null){
+        $scope.val.negative.label="No";
+      };
+      if($scope.val.positive.label== null){
+        $scope.val.positive.label="Yes";
+      };
+      $('.n-positive').text( $scope.val.positive.label);
+      $('.n-negative').text( $scope.val.negative.label);
       $scope.val=$scope.db.cards[0][$scope.start];
     });
   })
