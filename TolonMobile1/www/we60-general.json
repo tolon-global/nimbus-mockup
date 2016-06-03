@@ -1,0 +1,72 @@
+{
+    "processes": {
+        "left-panel/open": {
+            "title": "Open the left front panel",
+            "video": "S0129",
+            "steps": {
+                "00:01.12": "Unscrew the two fixing screws on the left edge",
+                "00:03.00": "Release the latch",
+                "00:04.20": "Swing the panel left"
+            },
+            "tags": {
+                "done": {
+                    "left-panel": "open"
+                },
+                "escape": {
+                    "left-panel": "open"
+                },
+                "skip": {
+                    "left-panel": "open"
+                }
+            }
+        },
+        "left-panel/close": {
+            "title": "Close the left front panel",
+            "steps": [
+                "Close the panel",
+                "Fix the latch",
+                "Screw back the two fixing screws on the left edge"
+            ],
+            "tags": {
+                "done": {
+                    "left-panel": null
+                },
+                "only": {
+                    "left-panel": "open"
+                }
+            }
+        },
+        "power/on": {
+            "title": "Turn the power on",
+            "steps": [
+                {
+                    "include": "power/connect"
+                },
+                {
+                    "image": "i1285"
+                },
+                "Twist the power switch 90° clockwise ⤾"
+            ],
+            "tags": {
+                "done": {
+                    "power": true
+                },
+                "skip": {
+                    "power": true
+                }
+            }
+        },
+        "power/off": {
+            "title": "Turn the power off",
+            "steps": "Twist the power switch 90° anti-clockwise ⤿",
+            "tags": {
+                "skip": {
+                    "power": false
+                },
+                "done": {
+                    "power": false
+                }
+            }
+        }
+    }
+}
