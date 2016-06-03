@@ -2021,7 +2021,6 @@
             }
 
             if (!s.params.virtualTranslate) {
-              console.log(y)
                 if (s.support.transforms3d) s.wrapper.transform('translate3d(' + x + 'px, ' + y + 'px, ' + z + 'px)');
                 else s.wrapper.transform('translate(' + x + 'px, ' + y + 'px)');
             }

@@ -190,6 +190,7 @@ angular.module('starter', ['ionic'])
     $scope.val=$scope.db.cards[0][$scope.start];
     $scope.val1=$scope.db.cards[0][$scope.val.negative.target];
     console.log($scope.val);
+    copyDiv('fake-card2');
     if($scope.val.negative.label== null){
       $scope.val.negative.label="No";
     };
@@ -199,13 +200,30 @@ angular.module('starter', ['ionic'])
     var swiperH = new Swiper('.swiper-container-h', {
       spaceBetween: 0,
       loop:true,
-      initialSlide:1
+      initialSlide:1,
+      nextButton: '.n-positive',
+      prevButton: '.n-negative'
     });
     var swiperV = new Swiper('.swiper-container-v', {
       direction: 'vertical',
       spaceBetween: 0,
       initialSlide:1
+
     });
+    swiperH.on('SlideNextStart', function () {
+      console.log('slide change end');
+      copyDiv('fake-card3');
+    });
+    swiperH.on('SlidePrevStart', function () {
+      console.log('slide change start');
+      copyDiv('fake-card1');
+    });
+    function copyDiv(id) {
+      var mainDivContent = document.getElementById('main-card');
+      var firstDivContent = document.getElementById(id);
+      firstDivContent.innerHTML = mainDivContent.innerHTML;
+    }
+
   })
 
 
