@@ -8,73 +8,84 @@ var db={
     "start": "button-pressed",
     "cards": [
       {
-        "check-alarm": {
-          "title": "Check alarm",
-          "processes": [
-            "check-emergency-stop-alarm"
-          ],
-          "question": "Has the alarm message been removed?",
-          "positive": {
-            "label": "Yes, clear",
-            "target": "problem-solved"
-          },
-          "negative": {
-            "label": "No, still there",
-            "target": "escalate"
-          }
-        },
         "button-pressed": {
           "title": "Check button pressed state",
           "processes": [
-            "check-esb-mechanically",
-            "check-esb-mechanically1",
-            "check-esb-mechanically2",
-            "check-esb-mechanically3"
+               "Unscrew the ESB cable terminals from the ESB contact socket",
+               "Remove the contact of the ESB from its back by using a screwdriver",
+               "Unbolt the plastic nut from the back of the ESB",
+               "Pull the ESB from the front of the CP",
+               "Put a new ESB into the empty ESB slot",
           ],
           "question": "Is the button in the pressed state?",
           "positive": {
             "label": "Yes, pressed",
-            "target": "replace-esb"
+            "target": "release-esb"
           },
           "negative": {
-            "target": "replace-esb"
+            "target": "check-alarm"
           }
         },
         "release-esb": {
           "title": "Release ESB",
           "processes": [
-            {
-              "title": "Release the ESB",
-              "steps": [
+
                 "Twist the Emergency Stop Button clockwise ⟳ to release it",
-                "The button should be pushed up by its springs"
-              ]
-            }
+                "The button should be pushed up by its springs",
+
           ],
           "question": "Has the button been released?",
           "positive": {
-            "label": "Yes, released",
-            "target": "release-esb/check-alarm"
+            "label": "Released",
+            "target": "check-alarm"
           },
           "negative": {
             "label": "No, depressed",
             "target": "replace-esb"
           }
         },
-        "release-esb/check-alarm": {
-          "template": "check-alarm",
+
+        "check-alarm": {
+          "title": "Check Alarm",
+          "processes": [
+
+                "sadasdasdas",
+                "xzcxzcxzc",
+
+          ],
+          "question": "Has the button been released?",
+          "positive": {
+            "label": "Released",
+            "target": "finish"
+          },
           "negative": {
-            "target": "check-contact"
+            "label": "No, depressed",
+            "target": "button-pressed"
+          }
+        },
+        "finish": {
+          "title": "Release ESB",
+          "processes": [
+
+               "Finish",
+
+          ],
+          "question": "Has the button been released?",
+          "positive": {
+            "label": "Finish",
+            "target": "finish"
+          },
+          "negative": {
+            "label": "Report",
+            "target": "finish"
           }
         },
         "replace-esb": {
           "title": "Check button pressed state1",
           "processes": [
-            "check-esb-mechanically1",
-            "check-esb-mechanically2",
-            "check-esb-mechanically3",
-            "check-esb-mechanically4",
-            "check-esb-mechanically5",
+               "Bolt the plastic nut onto its bolt at the back of the ESB",
+               "Plug the contact of the ESB into its socket",
+               "Screw the ESB cable terminals into the ESB contact socket",
           ],
           "question": "Is the button in the pressed state?1123123123",
           "positive": {
@@ -85,41 +96,15 @@ var db={
             "target": "check-content"
           }
         },
-        "check-content": {
-          "title": "Check button pressed state44",
-          "processes": [
-            "check-esb-mechanically14",
-            "check-esb-mechanically24",
-            "check-esb-mechanically34",
-            "check-esb-mechanically44",
-          ],
-          "question": "Is the button in the pressed state?1123123123",
-          "positive": {
-            "label": "Yes, pressed and ddd",
-            "target": "button-pressed"
-          },
-          "negative": {
-            "target": "button-pressed"
-          }
-        },
         "replace-esb-contact": {
           "template": "check-alarm",
           "title": "Replace ESB contact",
           "processes": [
-            {
-              "title": "Replace the contact on the ESB",
-              "steps": [
-                {
-                  "include": "we60-general/left-panel/open"
-                },
-                "Unscrew the ESB cable terminals from the ESB contact socket",
-                "Remove the contact of the ESB from its back by using a screwdriver",
-                "Plug the new ESB contact into its socket",
-                "Screw the ESB cable terminals into the ESB contact socket"
-              ]
-            },
-            "$template"
-          ]
+               "Bolt the plastic nut onto its bolt at the back of the ESB",
+               "Plug the contact of the ESB into its socket",
+               "Screw the ESB cable terminals into the ESB contact socket",
+          ],
+
         }
       }
     ]
@@ -193,7 +178,14 @@ angular.module('starter', ['ionic'])
     console.log($scope.db.cards[0][$scope.start]);
     $scope.val=$scope.db.cards[0][$scope.start];
     console.log($scope.val);
-
+    $(".history").scroll(function() {
+        console.log("scroltop"+$(".history").scrollTop());
+        console.log("history height"+$(".history").height());
+        console.log("swiper-slide"+$("#xzc").height());
+  if($(".history").scrollTop()== $(".history").height()-8) {
+      alert("bottom!");
+  }
+});
     for(var i=0;i<$scope.val.processes.length;i++){
       var z = $scope.db.cards[0][$scope.start].processes[i];
       $(arr[index]).html($(arr[index]).html() + "<section class='n-process'' id='"+arr1[index] + i + "'>"+ z+ "</section>");
