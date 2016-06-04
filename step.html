@@ -41,160 +41,87 @@
             </li>
         </n-history>
         <n-card id="serial-number">
-            <header>
-                <section class="process">
-                    Enter the serial number
-                    <input type="number" name="some_name" value="" placeholder="Serial number">
-                </section>
-            </header>
-            <nav>
-                <section class="positive">
-                    Done
-                </section>
-                <section class="negative">
-                    I can't
-                </section>
-            </nav>
-            <main>
-                <section>
-                    <h2>Enter the serial number</h2>
-                    <ol>
-                        <li>The serial number can be found at the backplate</li>
-                    </ol>
-                </section>
-            </main>
+            <n-question>Enter the machine serial number</n-question>
+            <n-input id="serial" type="number">Serial number</n-input>
+            <n-button id="qr">Get from QR-code</n-button>
+            <n-positive>Done</n-positive>
+            <n-negative>I can't</n-negative>
+            <n-description>
+                The serial number can be found at the backplate
+                <n-image src="i01453"/>
+                or from the <code>service</code> menu <code>machine data</code> section
+                <n-image src="i5837"/>
+            </n-description>
         </n-card>
         <n-card id="check-esb">
-            <header>
-                <section class="process">
-                    Check the <abbr title="Emergency Stop Button">ESB</abbr> mechanically
-                </section>
-                <section class="question">
-                    Is the button in the <em>pressed</em> state?
-                </section>
-            </header>
-            <nav>
-                <section class="positive">
-                    Yes, pressed
-                </section>
-                <section class="negative">
-                    No, released
-                </section>
-            </nav>
-            <main>
-                <section>
-                    <h2>Check the <abbr title="Emergency Stop Button">ESB</abbr> mechanically</h2>
-                    <ol>
-                        <li>Press the <abbr title="Emergency Stop Button">ESB</abbr> to check if the button can be pressed</li>
-                    </ol>
-                </section>
-            </main>
+            <n-process>
+                <n-title>Check the <abbr title="Emergency Stop Button">ESB</abbr> mechanically</n-title>
+                <n-step>Press the <abbr title="Emergency Stop Button">ESB</abbr> to check if the button can be pressed</n-step>
+            </n-process>
+            <n-question>
+                Is the button in the <em>pressed</em> state?
+            </n-question>
+            <n-positive>Yes, pressed</n-positive>
+            <n-negative>No, released</n-negative>
         </n-card>
         <n-card id="replace-esb">
-            <header>
-                <section class="process">
-                    Replace the <abbr title="Emergency Stop Button">ESB</abbr>
-                </section>
-                <section class="process">
-                    Check the <em>Emergency Stop Alarm</em> status
-                </section>
-                <section class="question">
-                    Has the alarm message been removed?
-                </section>
-            </header>
-            <nav>
-                <section class="positive">
-                    Yes
-                </section>
-                <section class="negative">
-                    No, still there.
-                </section>
-            </nav>
-            <main>
-                <section>
-                    <h2>Replace the <abbr title="Emergency Stop Button">ESB</abbr></h2>
-                    <video src="videofile.ogg" poster="posterimage.jpg">
-
-                    </video>
-                    <div class="video-controls">
-                        <button class="play">play</button>
-                        <progress value="50" max="100">50%</progress>
-                        <button class="prev">left</button>
-                        <button class="next">right</button>
-                    </div>
-                    <ol>
-                        <li>Open the top cover of the machine</li>
-                        <li>Unscrew the ESB cable terminals from the ESB contact socket</li>
-                        <li class="current">Remove the contact of the ESB from its back by using a screwdriver</li>
-                        <li>Unbolt the plastic nut from the back of the ESB</li>
-                        <li>Pull the ESB from the front of the CP</li>
-                        <li>Put a new ESB into the empty ESB slot</li>
-                        <li>Bolt the plastic nut onto its bolt at the back of the ESB</li>
-                        <li>Plug the contact of the ESB into its socket</li>
-                        <li>Screw the ESB cable terminals into the ESB contact socket</li>
-                        <li>Close the top cover of the machine</li>
-                    </ol>
-                </section>
-                <section>
-                    <h2>Check the <em>Emergency Stop Alarm</em> status</h2>
-                    <ol>
-                        <li>Press the Emergency Reset Button</li>
-                        <li>Check if the Emergency Stop Alarm message has been removed</li>
-                    </ol>
-                </section>
-            </main>
+            <n-process>
+                <n-title>Replace the <abbr title="Emergency Stop Button">ESB</abbr></n-title>
+                <n-video src="ht0345"/>
+                <n-step t="00.00">Unscrew the ESB cable terminals from the ESB contact socket</n-step>
+                <n-step t="04.10">Remove the contact of the ESB from its back by using a screwdriver</n-step>
+                <n-step t="06.00">Unbolt the plastic nut from the back of the ESB</n-step>
+                <n-step t="07.24">Pull the ESB from the front of the CP</n-step>
+                <n-step t="09.10">Put a new ESB into the empty ESB slot</n-step>
+                <n-step t="12.00">Bolt the plastic nut onto its bolt at the back of the ESB</n-step>
+                <n-step t="14.50">Plug the contact of the ESB into its socket</n-step>
+                <n-step t="18.15">Screw the ESB cable terminals into the ESB contact socket</n-step>
+            </n-process>
+            <n-process>
+                <n-title>Check the <em>Emergency Stop Alarm</em> status</n-title>
+                <n-step>Press the Emergency Reset Button</n-step>
+                <n-step>Check if the Emergency Stop Alarm message has been removed</n-step>
+            </n-process>
+            <n-question>Has the alarm message been removed?</n-question>
+            <n-positive>Yes</n-positive>
+            <n-negative>No, still there.</n-negative>
         </n-card>
         <n-card n-type="escape" id="escape-replace-esb">
-            <header>
-                <section class="question">
-                    What's wrong?
-                    <input type="radio" name="whats-wrong" value="no-parts" id="no-parts">
-                    <label for="no-parts">No parts</label>
-                    <input type="radio" name="whats-wrong" value="no-tools" id="no-tools">
-                    <label for="no-tools">No tools</label>
-                    <input type="radio" name="whats-wrong" value="no-time" id="no-time">
-                    <label for="no-time">No time</label>
-                    <input type="radio" name="whats-wrong" value="no-skills" id="no-skills">
-                    <label for="no-skills">No skills</label>
-                </section>
-            </header>
-            <nav>
-                <section class="negative">Something else…</section>
-                <section class="positive">That's it</section>
-            </nav>
-            <main>
-                <section>
-                    <h2>No parts</h2>
-                    <p>
-                        Choose <strong>No parts</strong> if you don't currently have the spare parts
-                        and consumables required for the procedure. You can come
-                        back with the parts later, or order them.
-                    </p>
-                </section>
-                <section>
-                    <h2>No tools</h2>
-                    <p>
-                        Choose <strong>No tools</strong> if you don't have the required tools or other
-                        equipment (like lifting equipment) needed to finish the repairs. You can
-                        come back later, or ask for support.
-                    </p>
-                </section>
-                <section>
-                    <h2>No time</h2>
-                    <p>
-                        Choose <strong>No time</strong> if working hours are over, or if you have
-                        another appointment you must keep, and you will come back for this later.
-                    </p>
-                </section>
-                <section>
-                    <h2>No skills</h2>
-                    <p>
-                        Choose <strong>No skills</strong> if you do not have the required
-                        training or certification to complete this procedure, or if you need
-                        the help of others to complete it.
-                    </p>
-                </section>
-            </main>
+            <n-question>What's wrong?</n-question>
+            <n-option id="no-parts">
+                <n-title>No parts</n-title>
+                <n-description>
+                    Choose <strong>No parts</strong> if you don't currently have the spare parts
+                    and consumables required for the procedure. You can come
+                    back with the parts later, or order them.
+                </n-description>
+            </n-option>
+            <n-option id="no-tools">
+                <n-title>No tools</n-title>
+                <n-description>
+                    Choose <strong>No tools</strong> if you don't have the required tools or other
+                    equipment (like lifting equipment) needed to finish the repairs. You can
+                    come back later, or ask for support.
+                </n-description>
+            </n-option>
+            <n-option id="no-time">
+                <n-title>No time</n-title>
+                <n-description>
+                    Choose <strong>No time</strong> if working hours are over, or if you have
+                    another appointment you must keep, and you will come back for this later.
+                </n-description>
+            </n-option>
+            <n-option id="no-skills">
+                <n-title>No skills</n-title>
+                <n-description>
+                    Choose <strong>No skills</strong> if you do not have the required
+                    training or certification to complete this procedure, or if you need
+                    the help of others to complete it.
+                </n-description>
+            </n-option>
+
+            <n-negative>Something else…</n-negative>
+            <n-positive>That's it</n-positive>
         </n-card>
     </body>
 </html>
