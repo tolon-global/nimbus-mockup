@@ -135,8 +135,8 @@ body {
   margin-top: -5vh;
 
 }
-.history li.n-positive strong { background-color: #38a; }
-.history li.n-negative strong { background-color: #842; }
+.history li.n-positive1 strong { background-color: #38a; }
+.history li.n-negative1 strong { background-color: #842; }
 .history li strong {
     display: inline-block;
     padding: 0 .4em;
