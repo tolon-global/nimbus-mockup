@@ -4,6 +4,7 @@
       <div class="swiper-wrapper">
         <div class="swiper-slide">
           <section class="history swiper-no-swiping" style="overflow: auto;">
+            <ion-scroll delegate-handle="scrollerHist" on-scroll="checkScrollHist()" direction="y" style="width: 100%; height: 100%">
             <ol id="xzc">
               <li><em>Machine type? <strong>TWE60</strong></em></li>
               <li><em>Alarm type? <strong>Emergency Stop</strong></em></li>
@@ -40,6 +41,7 @@
               </li>
             </ol>
             <h1>History</h1>
+            </ion-scroll>
           </section>
         </div>
         <div class="swiper-slide">
@@ -104,6 +106,7 @@
                 <button class="prev">left</button>
                 <button class="next">right</button>
               </div>
+              <ion-scroll delegate-handle="scrollerDetail" on-scroll="checkScrollDetail()" direction="y" style="width: 100%; height: 100%">
               <ol class="swiper-no-swiping">
                 <li>Open the top cover of the machine</li>
                 <li>Unscrew the ESB cable terminals from the ESB contact socket</li>
@@ -115,7 +118,18 @@
                 <li>Plug the contact of the ESB into its socket</li>
                 <li>Screw the ESB cable terminals into the ESB contact socket</li>
                 <li>Close the top cover of the machine</li>
+                <li>Open the top cover of the machine</li>
+                <li>Unscrew the ESB cable terminals from the ESB contact socket</li>
+                <li class="n-current">Remove the contact of the ESB from its back by using a screwdriver</li>
+                <li>Unbolt the plastic nut from the back of the ESB</li>
+                <li>Pull the ESB from the front of the CP</li>
+                <li>Put a new ESB into the empty ESB slot</li>
+                <li>Bolt the plastic nut onto its bolt at the back of the ESB</li>
+                <li>Plug the contact of the ESB into its socket</li>
+                <li>Screw the ESB cable terminals into the ESB contact socket</li>
+                <li>Close the top cover of the machine</li>
               </ol>
+                </ion-scroll>
             </section>
           </main>
         </div>

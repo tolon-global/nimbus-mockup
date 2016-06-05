@@ -169,7 +169,16 @@ angular.module('starter', ['ionic'])
     };
 
   })
-  .controller('mainCtrl', function($scope, $rootScope) {
+  .controller('mainCtrl', function($scope, $ionicScrollDelegate) {
+    $scope.checkScrollHist = function () {
+      var currentTop = $ionicScrollDelegate.$getByHandle('scrollerHist').getScrollPosition().top;
+      var maxTop = $ionicScrollDelegate.$getByHandle('scrollerHist').getScrollView().__maxScrollTop;
+      if(currentTop>maxTop){
+        $(".history").removeClass('swiper-no-swiping');
+      }
+      console.log(currentTop + "    " + maxTop);
+    };
+
     var arr = ['.cll', '.cll1','.cll2']
     var arr1 = ['id0', 'id1','id2']
     var index=1;
@@ -178,14 +187,7 @@ angular.module('starter', ['ionic'])
     console.log($scope.db.cards[0][$scope.start]);
     $scope.val=$scope.db.cards[0][$scope.start];
     console.log($scope.val);
-    $(".history").scroll(function() {
-        console.log("scroltop"+$(".history").scrollTop());
-        console.log("history height"+$(".history").height());
-        console.log("swiper-slide"+$("#xzc").height());
-  if($(".history").scrollTop()== $(".history").height()-8) {
-      alert("bottom!");
-  }
-});
+
     for(var i=0;i<$scope.val.processes.length;i++){
       var z = $scope.db.cards[0][$scope.start].processes[i];
       $(arr[index]).html($(arr[index]).html() + "<section class='n-process'' id='"+arr1[index] + i + "'>"+ z+ "</section>");
@@ -211,6 +213,9 @@ angular.module('starter', ['ionic'])
       spaceBetween: 1,
       initialSlide:1
 
+    });
+    swiperV.on('SlideNextStart', function () {
+      $(".history").addClass('swiper-no-swiping');
     });
     swiperH.on('SlideNextStart', function () {
       index++;
