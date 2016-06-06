@@ -113,7 +113,7 @@ var db={
 var scrollPos=0;
 var historyOpen=0;
 var detailOpen=0;
-var HistList={};
+var HistList=[];
 angular.module('starter', ['ionic'])
 
 .run(function($ionicPlatform) {
@@ -224,14 +224,15 @@ angular.module('starter', ['ionic'])
         if(historyOpen==0&&detailOpen==0){
           if($( ".history" ).height()/window.innerHeight<0.99){
 
-            diff-->0 ? diff : 0;
+            diff-- >0 ? diff : 0;
             $(".history").removeClass('swiper-no-swiping');
             $ionicScrollDelegate.$getByHandle('scrollerHist').scrollBottom();
-            $(".history").css("margin-top",diff);
+            $(".history").css("margin-top",diff != 0 ? diff : -Math.round($( ".history" ).height()/10));
             $("#xzc").css("height",$( ".history" ).height()+diff);
             console.log($("#xzc").height());
             console.log($(".history" ).height());
           }else{
+            $(".history").css("height",window.innerHeight);
             $(".history").addClass('swiper-no-swiping');
           }
         }
@@ -252,7 +253,7 @@ angular.module('starter', ['ionic'])
         if($( ".history" ).height()/window.innerHeight<0.99){
           $(".history").removeClass('swiper-no-swiping');
           $ionicScrollDelegate.$getByHandle('scrollerHist').scrollBottom();
-          $(".history").css("margin-top",0);
+          $(".history").css("margin-top", -Math.round($( ".history" ).height()/10));
           $("#xzc").css("height",$( ".history" ).height());
           console.log($("#xzc").height());
           console.log($(".history" ).height());
@@ -271,8 +272,11 @@ angular.module('starter', ['ionic'])
         index=0;
       }
       console.log('slide change end');
+      HistList.push({"process":$scope.db.cards[0][$scope.start], "ans":$scope.val.positive.label,"class":"n-positive"});
+      console.log(HistList[HistList.length-1].ans);
+      $("#histList").html($("#histList").html() + "<li class:'"+HistList[HistList.length-1].class+"'><em>" + HistList[HistList.length-1].process.title +"<strong> "+HistList[HistList.length-1].ans +"</strong></em></li>");
       $(arr[index]).html("");
-
+      console.log(HistList);
       $scope.start=$scope.val.positive.target;
       for(var i=0;i<$scope.db.cards[0][$scope.start].processes.length;i++){
         var z = $scope.db.cards[0][$scope.start].processes[i];
@@ -294,7 +298,9 @@ angular.module('starter', ['ionic'])
       if(index==-1){
         index=3;
       }
-      console.log('slide change end');
+      HistList.push({"process":$scope.db.cards[0][$scope.start], "ans":$scope.val.positive.label,"class":"n-positive"});
+      console.log(HistList[HistList.length-1].ans);
+      $("#histList").html($("#histList").html() + "<li class:'"+HistList[HistList.length-1].class+"'><em>" + HistList[HistList.length-1].process.title +"<strong> "+HistList[HistList.length-1].ans +"</strong></em></li>");
       $(arr[index]).html("");
       $scope.start=$scope.val.negative.target;
       console.log($scope.val)

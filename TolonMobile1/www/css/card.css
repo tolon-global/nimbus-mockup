@@ -127,9 +127,10 @@ body {
 }
 
 .history {
-  z-index: 1000;
+  z-index: 0;
   background-color: #412A44;
   padding: 1em 0 0.5em;
+  min-height: 40vh;/* 90 dÄ± 60 yapÄ±ldÄ± 04.56*/
   max-height: 100vh;/* 90 dÄ± 60 yapÄ±ldÄ± 04.56*/
   margin-top: -5vh;
 
