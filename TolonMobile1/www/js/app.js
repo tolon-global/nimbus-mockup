@@ -110,8 +110,10 @@ var db={
     ]
   }
 };
+var scrollPos=0;
 var historyOpen=0;
 var detailOpen=0;
+var HistList={};
 angular.module('starter', ['ionic'])
 
 .run(function($ionicPlatform) {
@@ -174,7 +176,7 @@ angular.module('starter', ['ionic'])
       var currentTop = $ionicScrollDelegate.$getByHandle('scrollerHist').getScrollPosition().top;
       var maxTop = $ionicScrollDelegate.$getByHandle('scrollerHist').getScrollView().__maxScrollTop;
       if(currentTop>maxTop){
-        $(".history").removeClass('swiper-no-swiping');
+          $(".history").removeClass('swiper-no-swiping');
       }
       console.log(currentTop + "    " + maxTop);
     };
@@ -214,8 +216,24 @@ angular.module('starter', ['ionic'])
       initialSlide:1
 
     });
-    swiperV.on('SlideNextStart', function () {
-      $(".history").addClass('swiper-no-swiping');
+    swiperV.on('SlideNextEnd', function () {
+      if(historyOpen==0&&detailOpen==0){
+        detailOpen++;
+      }
+      if(historyOpen==1&&detailOpen==0){
+        historyOpen--;
+      }
+      console.log(detailOpen + "   " + historyOpen);
+    });
+    swiperV.on('SlidePrevEnd', function () {
+      if(historyOpen==0&&detailOpen==0){
+        $(".history").addClass('swiper-no-swiping');
+        $ionicScrollDelegate.$getByHandle('scrollerHist').scrollBottom();
+        historyOpen++;
+      }
+      if(historyOpen==0&&detailOpen==1){
+        detailOpen--;
+      }
     });
     swiperH.on('SlideNextStart', function () {
       index++;
@@ -224,6 +242,7 @@ angular.module('starter', ['ionic'])
       }
       console.log('slide change end');
       $(arr[index]).html("");
+
       $scope.start=$scope.val.positive.target;
       for(var i=0;i<$scope.db.cards[0][$scope.start].processes.length;i++){
         var z = $scope.db.cards[0][$scope.start].processes[i];
