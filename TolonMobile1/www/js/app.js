@@ -280,6 +280,10 @@ angular.module('starter', ['ionic'])
     });
 
     swiperH.on('SlideNextStart', function () {
+         if (historyOpen!=0) {
+               swiperV.slideNext();
+               swiperV.update();
+         }
       index++;
       if(index==3){
         index=0;
@@ -287,18 +291,26 @@ angular.module('starter', ['ionic'])
       HistList.push({"id":$scope.start, "ans":$scope.val.positive.label,"class":"n-positive"});
 
       $scope.HistList=HistList;
-      $(".HistoryItem").click(function(){
-            var text = $(this).attr('id');
-          console.log(text);
-      });
+
       var a="";
       $("#histList").html("");
       for (var i = 0; i < HistList.length; i++) {
-          a= a+ "<li>"+ HistList[i].id+"</li>";
+          a= a+ "<li class='HistoryItem'>"+ HistList[i].id+"</li>";
             console.log("A " +a);
       }
       $("#histList").html(a);
+      $(".HistoryItem").click(function(){
+            var text = $(this).html();
+          console.log(text);
 
+          $(arr[index]).html("");
+          for(var i=0;i<$scope.db.cards[0][$scope.start].processes.length;i++){
+            var z = $scope.db.cards[0][text].processes[i];
+
+              $(arr[index]).html($(arr[index]).html() + "<section class='n-process'' id='"+arr1[index] + i + "'>"+ z+ "</section>");
+          }
+          swiperV.slideNext();
+     });
        console.log("İçindekiii " +$("#histList").html());
       $scope.start=$scope.val.positive.target;
       for(var i=0;i<$scope.db.cards[0][$scope.start].processes.length;i++){
@@ -317,13 +329,35 @@ angular.module('starter', ['ionic'])
       $scope.val=$scope.db.cards[0][$scope.start];
     });
     swiperH.on('SlidePrevStart', function () {
+         if (historyOpen!=0) {
+               swiperV.slideNext();
+               swiperV.update();
+         }
       index--;
       if(index==-1){
         index=3;
       }
       HistList.push({"id":$scope.start, "ans":$scope.val.positive.label,"class":"n-positive"});
       console.log(HistList);
-      $("#histList").html($("#histList").html() + "<li class='"+HistList[HistList.length-1].class+"'><em>" + $scope.db.cards[0][HistList[HistList.length-1].id].title +"<strong> "+HistList[HistList.length-1].ans +"</strong></em></li>");
+      var a="";
+     $("#histList").html("");
+     for (var i = 0; i < HistList.length; i++) {
+         a= a+ "<li class='HistoryItem'>"+ HistList[i].id+"</li>";
+           console.log("A " +a);
+     }
+     $("#histList").html(a);
+     $(".HistoryItem").click(function(){
+           var text = $(this).html();
+         console.log(text);
+
+         $(arr[index]).html("");
+         for(var i=0;i<$scope.db.cards[0][$scope.start].processes.length;i++){
+           var z = $scope.db.cards[0][text].processes[i];
+
+            $(arr[index]).html($(arr[index]).html() + "<section class='n-process'' id='"+arr1[index] + i + "'>"+ z+ "</section>");
+         }
+         swiperV.slideNext();
+    });
       $(arr[index]).html("");
       $scope.start=$scope.val.negative.target;
       console.log($scope.val)
