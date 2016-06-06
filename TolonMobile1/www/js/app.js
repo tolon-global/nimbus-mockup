@@ -117,6 +117,7 @@ var detailOpen=0;
 var HistList=[];
 var histJump=[];
 
+
 angular.module('starter', ['ionic'])
 
 .run(function($ionicPlatform) {
@@ -136,6 +137,7 @@ angular.module('starter', ['ionic'])
     }
   });
 })
+
   .config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -177,6 +179,9 @@ angular.module('starter', ['ionic'])
   .controller('mainCtrl', function($scope, $ionicScrollDelegate) {
      $scope.histListCallBack=function(e1) {
       console.log("denememe");
+    };
+    $scope.deneme = function (){
+      console.log("denememegeldi la olum hgeldsfiidsai");
     };
     $scope.checkScrollHist = function () {
       var currentTop = $ionicScrollDelegate.$getByHandle('scrollerHist').getScrollPosition().top;
@@ -279,13 +284,22 @@ angular.module('starter', ['ionic'])
       if(index==3){
         index=0;
       }
-      console.log('slide change end');
       HistList.push({"id":$scope.start, "ans":$scope.val.positive.label,"class":"n-positive"});
+
       $scope.HistList=HistList;
-      console.log(HistList[HistList.length-1]);
-      $("#histList").html($("#histList").html() + "<li class=\""+HistList[HistList.length-1].class+"\" ng-click=\"histListCallBack('"+ HistList[HistList.length-1].id +"')\"><em>" + $scope.db.cards[0][HistList[HistList.length-1].id].title +"<strong> "+HistList[HistList.length-1].ans +"</strong></em></li>");
-      $(arr[index]).html("");
-      console.log(HistList);
+      $(".HistoryItem").click(function(){
+            var text = $(this).attr('id');
+          console.log(text);
+      });
+      var a="";
+      $("#histList").html("");
+      for (var i = 0; i < HistList.length; i++) {
+          a= a+ "<li>"+ HistList[i].id+"</li>";
+            console.log("A " +a);
+      }
+      $("#histList").html(a);
+
+       console.log("İçindekiii " +$("#histList").html());
       $scope.start=$scope.val.positive.target;
       for(var i=0;i<$scope.db.cards[0][$scope.start].processes.length;i++){
         var z = $scope.db.cards[0][$scope.start].processes[i];
@@ -309,7 +323,7 @@ angular.module('starter', ['ionic'])
       }
       HistList.push({"id":$scope.start, "ans":$scope.val.positive.label,"class":"n-positive"});
       console.log(HistList);
-      $("#histList").html($("#histList").html() + "<li class:'"+HistList[HistList.length-1].class+"'><em>" + $scope.db.cards[0][HistList[HistList.length-1].id].title +"<strong> "+HistList[HistList.length-1].ans +"</strong></em></li>");
+      $("#histList").html($("#histList").html() + "<li class='"+HistList[HistList.length-1].class+"'><em>" + $scope.db.cards[0][HistList[HistList.length-1].id].title +"<strong> "+HistList[HistList.length-1].ans +"</strong></em></li>");
       $(arr[index]).html("");
       $scope.start=$scope.val.negative.target;
       console.log($scope.val)
