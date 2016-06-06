@@ -216,13 +216,19 @@ angular.module('starter', ['ionic'])
       initialSlide:1
 
     });
+    var diff = window.innerHeight-$( ".history" ).height();
     swiperV.on('onTouchMove', function (e) {
+      diff = window.innerHeight-$( ".history" ).height();
+      console.log(e.swipeDirection);
       if(e.swipeDirection=="prev"){
         if(historyOpen==0&&detailOpen==0){
           if($( ".history" ).height()/window.innerHeight<0.99){
+
+            diff-->0 ? diff : 0;
             $(".history").removeClass('swiper-no-swiping');
             $ionicScrollDelegate.$getByHandle('scrollerHist').scrollBottom();
-            $("#xzc").css("height",$( ".history" ).height());
+            $(".history").css("margin-top",diff);
+            $("#xzc").css("height",$( ".history" ).height()+diff);
             console.log($("#xzc").height());
             console.log($(".history" ).height());
           }else{
@@ -246,6 +252,7 @@ angular.module('starter', ['ionic'])
         if($( ".history" ).height()/window.innerHeight<0.99){
           $(".history").removeClass('swiper-no-swiping');
           $ionicScrollDelegate.$getByHandle('scrollerHist').scrollBottom();
+          $(".history").css("margin-top",0);
           $("#xzc").css("height",$( ".history" ).height());
           console.log($("#xzc").height());
           console.log($(".history" ).height());
