@@ -175,7 +175,7 @@ angular.module('starter', ['ionic'])
     $scope.checkScrollHist = function () {
       var currentTop = $ionicScrollDelegate.$getByHandle('scrollerHist').getScrollPosition().top;
       var maxTop = $ionicScrollDelegate.$getByHandle('scrollerHist').getScrollView().__maxScrollTop;
-      if(currentTop>maxTop){
+      if(currentTop>=maxTop-9){
           $(".history").removeClass('swiper-no-swiping');
       }
       console.log(currentTop + "    " + maxTop);
@@ -216,19 +216,42 @@ angular.module('starter', ['ionic'])
       initialSlide:1
 
     });
-    swiperV.on('SlideNextEnd', function () {
+    swiperV.on('onTouchMove', function (e) {
+      if(e.swipeDirection=="prev"){
+        if(historyOpen==0&&detailOpen==0){
+          if($( ".history" ).height()/window.innerHeight<0.99){
+            $(".history").removeClass('swiper-no-swiping');
+            $ionicScrollDelegate.$getByHandle('scrollerHist').scrollBottom();
+            $("#xzc").css("height",$( ".history" ).height());
+            console.log($("#xzc").height());
+            console.log($(".history" ).height());
+          }else{
+            $(".history").addClass('swiper-no-swiping');
+          }
+        }
+      }
+    });
+    swiperV.on('SlideNextStart', function () {
       if(historyOpen==0&&detailOpen==0){
         detailOpen++;
       }
       if(historyOpen==1&&detailOpen==0){
+        $("#xzc").css("height",window.innerHeight);
         historyOpen--;
       }
       console.log(detailOpen + "   " + historyOpen);
     });
-    swiperV.on('SlidePrevEnd', function () {
+    swiperV.on('SlidePrevStart', function () {
       if(historyOpen==0&&detailOpen==0){
-        $(".history").addClass('swiper-no-swiping');
-        $ionicScrollDelegate.$getByHandle('scrollerHist').scrollBottom();
+        if($( ".history" ).height()/window.innerHeight<0.99){
+          $(".history").removeClass('swiper-no-swiping');
+          $ionicScrollDelegate.$getByHandle('scrollerHist').scrollBottom();
+          $("#xzc").css("height",$( ".history" ).height());
+          console.log($("#xzc").height());
+          console.log($(".history" ).height());
+        }else{
+          $(".history").addClass('swiper-no-swiping');
+        }
         historyOpen++;
       }
       if(historyOpen==0&&detailOpen==1){
