@@ -204,7 +204,7 @@ swiperV.on('SlideNextStart', function () {
 });
 
 $( ".swiper-no-swiping" ).scroll(function() {
-  console.log("gsdf");
+  console.log("gsdfasdsadsa");
 });
 
 swiperV.on('SlidePrevStart', function () {
