@@ -1,0 +1,421 @@
+{
+  "cards": {
+    "escape/general/root-cause": {
+      "class": "escape",
+      "title": "Problem",
+      "question": "What's wrong?",
+      "options": [
+        {
+          "title": "No parts",
+          "description": "Choose **No parts** if you don't currently have the spare parts\nand consumables required for the procedure. You can come back\nwith the parts later, or order them.",
+          "target": "escape/general/no-parts"
+        },
+        {
+          "title": "No tools",
+          "description": "Choose **No tools** if you don't have the required tools or other\nequipment (like lifting equipment) needed to finish the repairs.\nYou can come back later, or ask for support.",
+          "target": "escape/general/no-tools"
+        },
+        {
+          "title": "No time",
+          "description": "Choose **No time** if working hours are over, or if you have\nanother appointment you must keep, and you will come back for this later.",
+          "target": "escape/general/no-time"
+        },
+        {
+          "title": "No skills",
+          "description": "Choose **No skills** if you do not have the required training or\ncertification to complete this procedure, or if you need the\nhelp of others to complete it.",
+          "target": "escape/general/no-skills"
+        }
+      ],
+      "positive": {
+        "label": "That's it"
+      },
+      "negative": {
+        "label": "Something else",
+        "target": "escape/general/something-else"
+      }
+    },
+    "we60/emergency-stop-alarm/check-alarm": {
+      "title": "Check alarm",
+      "processes": [
+        {
+          "title": "Check the 'Emergency Stop' alarm status",
+          "steps": [
+            "Check the screen for the alert box"
+          ],
+          "source": "we60/emergency-stop-alarm/check-emergency-stop-alarm"
+        }
+      ],
+      "question": "Has the alarm message been removed?",
+      "positive": {
+        "label": "Yes, clear",
+        "target": "we60/emergency-stop-alarm/problem-solved"
+      },
+      "negative": {
+        "label": "No, still there",
+        "target": "we60/emergency-stop-alarm/escalate"
+      }
+    },
+    "we60/emergency-stop-alarm/button-pressed": {
+      "title": "Check button pressed state",
+      "processes": [
+           {
+             "title": "Denemedir. İlk sayfa yapılmamış.",
+             "steps": [
+               "Twist the Emergency Stop Button clockwise ⟳ to release it",
+               "The button should be pushed up by its springs"
+             ]
+           }
+      ],
+      "question": "Is the button in the pressed state?",
+      "positive": {
+        "label": "Yes, pressed",
+        "target": "we60/emergency-stop-alarm/release-esb"
+      },
+      "negative": {
+        "target": "we60/emergency-stop-alarm/replace-esb",
+        "label": "No"
+      }
+    },
+    "we60/emergency-stop-alarm/release-esb": {
+      "title": "Release ESB",
+      "processes": [
+        {
+          "title": "Release the ESB",
+          "steps": [
+            "Twist the Emergency Stop Button clockwise ⟳ to release it",
+            "The button should be pushed up by its springs"
+          ]
+        }
+      ],
+      "question": "Has the button been released?",
+      "positive": {
+        "label": "Yes, released",
+        "target": "we60/release-esb/check-alarm"
+      },
+      "negative": {
+        "label": "No, depressed",
+        "target": "we60/emergency-stop-alarm/replace-esb"
+      }
+    },
+    "we60/emergency-stop-alarm/problem-solved": {
+      "title": "Problem Solved",
+      "processes": [
+        {
+          "title": "Problem Solved",
+          "steps": [
+            "Problem Solved"
+          ]
+        }
+      ],
+      "question": " ",
+      "positive": {
+        "label": "Report",
+        "target": "we60/emergency-stop-alarm/problem-solved"
+      },
+      "negative": {
+        "label": "Exit",
+        "target": "we60/emergency-stop-alarm/problem-solved"
+      }
+    },
+    "we60/release-esb/check-alarm": {
+      "title": "Problem Solved",
+      "processes": [
+        {
+          "title": "Check alarmmmm",
+          "steps": [
+            "Problem Solved"
+          ]
+        }
+      ],
+      "question": " ",
+      "positive": {
+        "label": "Report",
+        "target": "we60/emergency-stop-alarm/problem-solved"
+      },
+      "negative": {
+        "label": "Exit",
+        "target": "we60/emergency-stop-alarm/problem-solved"
+      }
+    },
+    "we60/emergency-stop-alarm/release-esb-check-alarm": {
+      "title": "Check alarm",
+      "processes": [
+        {
+          "title": "Check the 'Emergency Stop' alarm status",
+          "steps": [
+            "Check the screen for the alert box"
+          ],
+          "source": "we60/emergency-stop-alarm/check-emergency-stop-alarm"
+        }
+      ],
+      "question": "Has the alarm message been removed?",
+      "positive": {
+        "label": "Yes, clear",
+        "target": "we60/emergency-stop-alarm/problem-solved"
+      },
+      "negative": {
+        "label": "No",
+        "target": "we60/emergency-stop-alarm/check-contact"
+      },
+      "template": "check-alarm"
+    },
+    "we60/emergency-stop-alarm/replace-esb": {
+      "title": "Replace ESB",
+      "processes": [
+        {
+          "title": "Open the left front panel",
+          "steps": {
+            "0": "Check the screen for the alert box",
+            "00:01.12": "Unscrew the two fixing screws on the left edge",
+            "00:03.00": "Release the latch",
+            "00:04.20": "Swing the panel left"
+          },
+          "source": "we60/general/left-panel-open",
+          "video": "ht_9009",
+          "tags": {
+            "done": {
+              "left-panel": "open"
+            },
+            "escape": {
+              "left-panel": "open"
+            },
+            "skip": {
+              "left-panel": "open"
+            }
+          }
+        },
+        {
+          "title": "Replace the ESB",
+          "steps": [
+            "Unscrew the ESB cable terminals from the ESB contact socket",
+            "Remove the contact of the ESB from its back by using a screwdriver",
+            "Unbolt the plastic nut from the back of the ESB",
+            "Pull the ESB from the front of the CP",
+            "Put a new ESB into the empty ESB slot",
+            "Bolt the plastic nut onto its bolt at the back of the ESB",
+            "Plug the contact of the ESB into its socket",
+            "Screw the ESB cable terminals into the ESB contact socket"
+          ]
+        },
+        {
+          "title": "Close the left front panel",
+          "steps": [
+            "Close the panel",
+            "Fix the latch",
+            "Screw back the two fixing screws on the left edge"
+          ],
+          "tags": {
+            "done": {
+              "left-panel": null
+            },
+            "only": {
+              "left-panel": "open"
+            }
+          },
+          "source": "we60/general/left-panel-close"
+        },
+        {
+          "title": "Check the 'Emergency Stop' alarm status",
+          "steps": [
+            "Check the screen for the alert box"
+          ],
+          "source": "we60/emergency-stop-alarm/check-emergency-stop-alarm"
+        }
+      ],
+      "question": "Has the alarm message been removed?",
+      "positive": {
+        "label": "Yes, clear",
+        "target": "we60/emergency-stop-alarm/problem-solved"
+      },
+      "negative": {
+        "label": "No",
+        "target": "we60/emergency-stop-alarm/check-contact"
+      },
+      "template": "release-esb-check-alarm"
+    },
+    "we60/emergency-stop-alarm/check-contact": {
+      "title": "Check ESB contact",
+      "processes": [
+        {
+          "title": "Turn the power off",
+          "steps": ["Twist the power switch 90° anti-clockwise ⤿"],
+          "tags": {
+            "skip": {
+              "power": false
+            },
+            "done": {
+              "power": false
+            }
+          },
+          "source": "we60/general/power-off"
+        },
+        {
+          "title": "Open the left front panel",
+          "video": "ht_9009",
+          "steps": {
+            "00:01.12": "Unscrew the two fixing screws on the left edge",
+            "00:03.00": "Release the latch",
+            "00:04.20": "Swing the panel left"
+          },
+          "tags": {
+            "done": {
+              "left-panel": "open"
+            },
+            "escape": {
+              "left-panel": "open"
+            },
+            "skip": {
+              "left-panel": "open"
+            }
+          },
+          "source": "we60/general/left-panel-open"
+        },
+        {
+          "title": "Check the contacts on the ESB",
+          "steps": [
+            "Check the conductivity of the contact sockets with short-circuit test\nby inserting the multimeter leads into the contact sockets or the contact\nscrews and testing for both positions of the contact switch. The contact\nshould be in short-circuit when the switch is in open position (unpressed)\nand the contrary in closed position (pressed)"
+          ]
+        }
+      ],
+      "question": "Is the contact functioning?",
+      "negative": {
+        "label": "No",
+        "target": "we60/emergency-stop-alarm/replace-esb-contact"
+      },
+      "positive": {
+        "label": "Yes",
+        "target": "we60/emergency-stop-alarm/check-unbridged-power-output"
+      }
+    },
+    "we60/emergency-stop-alarm/replace-esb-contact": {
+      "title": "Replace ESB contact",
+      "processes": [
+        {
+          "title": "Open the left front panel",
+          "steps": {
+            "0": "Check the screen for the alert box",
+            "00:01.12": "Unscrew the two fixing screws on the left edge",
+            "00:03.00": "Release the latch",
+            "00:04.20": "Swing the panel left"
+          },
+          "source": "we60/general/left-panel-open",
+          "video": "ht_9009",
+          "tags": {
+            "done": {
+              "left-panel": "open"
+            },
+            "escape": {
+              "left-panel": "open"
+            },
+            "skip": {
+              "left-panel": "open"
+            }
+          }
+        },
+        {
+          "title": "Replace the contact on the ESB",
+          "steps": [
+            "Unscrew the ESB cable terminals from the ESB contact socket",
+            "Remove the contact of the ESB from its back by using a screwdriver",
+            "Plug the new ESB contact into its socket",
+            "Screw the ESB cable terminals into the ESB contact socket"
+          ]
+        },
+        {
+          "title": "Check the 'Emergency Stop' alarm status",
+          "steps": [
+            "Check the screen for the alert box"
+          ],
+          "source": "we60/emergency-stop-alarm/check-emergency-stop-alarm"
+        }
+      ],
+      "question": "Has the alarm message been removed?",
+      "positive": {
+        "label": "Yes, clear",
+        "target": "we60/emergency-stop-alarm/problem-solved"
+      },
+      "negative": {
+        "label": "No, still there",
+        "target": "we60/emergency-stop-alarm/escalate"
+      },
+      "template": "check-alarm"
+    }
+  },
+  "processes": {
+    "we60/emergency-stop-alarm/check-emergency-stop-alarm": {
+      "title": "Check the 'Emergency Stop' alarm status",
+      "steps": [
+        "Check the screen for the alert box"
+      ],
+      "source": "we60/emergency-stop-alarm/check-emergency-stop-alarm"
+    },
+    "we60/general/left-panel-open": {
+      "title": "Open the left front panel",
+      "video": "ht_9009",
+      "steps": {
+        "00:01.12": "Unscrew the two fixing screws on the left edge",
+        "00:03.00": "Release the latch",
+        "00:04.20": "Swing the panel left"
+      },
+      "tags": {
+        "done": {
+          "left-panel": "open"
+        },
+        "escape": {
+          "left-panel": "open"
+        },
+        "skip": {
+          "left-panel": "open"
+        }
+      },
+      "source": "we60/general/left-panel-open"
+    },
+    "we60/general/left-panel-close": {
+      "title": "Close the left front panel",
+      "steps": [
+        "Close the panel",
+        "Fix the latch",
+        "Screw back the two fixing screws on the left edge"
+      ],
+      "tags": {
+        "done": {
+          "left-panel": null
+        },
+        "only": {
+          "left-panel": "open"
+        }
+      },
+      "source": "we60/general/left-panel-close"
+    },
+    "we60/general/power-on": {
+      "title": "Turn the power on",
+      "steps": [
+        {
+          "image": "i1285"
+        },
+        "Twist the power switch 90° clockwise ⤾"
+      ],
+      "tags": {
+        "done": {
+          "power": true
+        },
+        "skip": {
+          "power": true
+        }
+      }
+    },
+    "we60/general/power-off": {
+      "title": "Turn the power off",
+      "steps": "Twist the power switch 90° anti-clockwise ⤿",
+      "tags": {
+        "skip": {
+          "power": false
+        },
+        "done": {
+          "power": false
+        }
+      },
+      "source": "we60/general/power-off"
+    }
+  }
+}
