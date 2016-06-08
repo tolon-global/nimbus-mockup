@@ -167,26 +167,38 @@ $urlRouterProvider.otherwise('/');
 
      }
 
-swiperV.on('onTouchMove', function (e) {
+swiperV.on('onTouchStart', function (e) {
+     if (detailOpen!=0) {
+          console.log("sadsad"+($(window).height()*0.3));
+          if($(".detailScroll").scrollTop()<6 && $(".detailScroll").height > ($(window).height()*0.3)){
+            $(".detailScroll").removeClass('swiper-no-swiping');
 
+          }
+          else {
+               console.log("geldi");
+            $(".detailScroll").addClass('swiper-no-swiping');
+
+          }
+     }
 });
 
-    $scope.checkScrollDetail = function () {
+$scope.checkScrollDetail = function () {
 
-      var currentTop = $ionicScrollDelegate.$getByHandle('scrollerDetail').getScrollPosition().top;
-      var maxTop = $ionicScrollDelegate.$getByHandle('scrollerDetail').getScrollView().__maxScrollTop;
+ var currentTop = $ionicScrollDelegate.$getByHandle('scrollerDetail').getScrollPosition().top;
+ var maxTop = $ionicScrollDelegate.$getByHandle('scrollerDetail').getScrollView().__maxScrollTop;
 
-      if (currentTop == 0) {
-        alert('top of scroll!');
-      }
+ if (currentTop == 0) {
+   alert('top of scroll!');
+ }
 
-      if (currentTop >= maxTop) {
-        // hit the bottom
-        alert('bottom of scroll!');
-      }
-    };
+ if (currentTop >= maxTop) {
+   // hit the bottom
+   alert('bottom of scroll!');
+ }
+};
 
 swiperV.on('SlideNextStart', function () {
+
     var videoCount=0;
     var detailListElement="";
     if(historyOpen==0&&detailOpen==0){detailOpen++;}else if(historyOpen==1&&detailOpen==0){historyOpen--; }
@@ -199,31 +211,33 @@ swiperV.on('SlideNextStart', function () {
              if (data.cards[id].processes[i].video!=null) {
                videoCount++;
              }
-
+             $(".detailScroll").scrollTop(1);
         }
-        $(".swiper-no-swiping").html(detailListElement);
+        $(".detailScroll").html(detailListElement);
+
         if (videoCount!=0) {
              $(".videoContent").css("visibility","visible");
-             $(".swiper-no-swiping").css("height","50vh");
-             $(".swiper-no-swiping").css("margin-top","5vh");
+             $(".detailScroll").css("height","50vh");
+             $(".detailScroll").css("margin-top","5vh");
         }
         else {
             $(".videoContent").css("visibility","hidden");
-            $(".swiper-no-swiping").css("height","89vh");
-            $(".swiper-no-swiping").css("margin-top","-30vh");
+            $(".detailScroll").css("height","89vh");
+            $(".detailScroll").css("margin-top","-30vh");
         }
    });
 
 
 
 });
+document.addEventListener('touchstart', function() {
+     console.log($(".detailScroll").scrollTop());
+     console.log("sadzxaaaaaaaaaaaaa");
+     if($(".detailScroll").scrollTop() ==0){
+       $(".detailScroll").removeClass('swiper-no-swiping');
+     }
+}, false);
 
-$( ".deneme" ).scroll(function(e) {
-  console.log(e.target.scrollTop);
-  if(e.target.scrollTop==0){
-    $(this).removeClass('swiper-no-swiping');
-  }
-});
 
 swiperV.on('SlidePrevStart', function () {
      if(historyOpen==0&&detailOpen==0){historyOpen++;}else if(historyOpen==0&&detailOpen==1){ detailOpen--; }
