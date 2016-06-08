@@ -11,7 +11,7 @@
 .n-card input[type=radio]:checked + label::after,
 .n-card.escape header section:first-child::before,
 .n-card main li.current::before,
-.video-controls button,
+.video-controls div,
 .n-card header .n-process::after,
 .history h1::before,
 nav .n-positive::after,

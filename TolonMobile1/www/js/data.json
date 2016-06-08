@@ -1,441 +1,706 @@
 {
-  "cards": {
-    "escape/general/root-cause": {
-      "class": "escape",
-      "title": "Problem",
-      "question": "What's wrong?",
-      "options": [
-        {
-          "title": "No parts",
-          "description": "Choose **No parts** if you don't currently have the spare parts\nand consumables required for the procedure. You can come back\nwith the parts later, or order them.",
-          "target": "escape/general/no-parts"
-        },
-        {
-          "title": "No tools",
-          "description": "Choose **No tools** if you don't have the required tools or other\nequipment (like lifting equipment) needed to finish the repairs.\nYou can come back later, or ask for support.",
-          "target": "escape/general/no-tools"
-        },
-        {
-          "title": "No time",
-          "description": "Choose **No time** if working hours are over, or if you have\nanother appointment you must keep, and you will come back for this later.",
-          "target": "escape/general/no-time"
-        },
-        {
-          "title": "No skills",
-          "description": "Choose **No skills** if you do not have the required training or\ncertification to complete this procedure, or if you need the\nhelp of others to complete it.",
-          "target": "escape/general/no-skills"
-        }
-      ],
-      "positive": {
-        "label": "That's it"
+  "escape/general/root-cause": {
+    "class": "escape",
+    "title": "Problem",
+    "question": "What's wrong?",
+    "options": [
+      {
+        "title": "No parts",
+        "description": "Choose **No parts** if you don't currently have the spare parts\nand consumables required for the procedure. You can come back\nwith the parts later, or order them.",
+        "target": "escape/general/no-parts"
       },
-      "negative": {
-        "label": "Something else",
-        "target": "escape/general/something-else"
+      {
+        "title": "No tools",
+        "description": "Choose **No tools** if you don't have the required tools or other\nequipment (like lifting equipment) needed to finish the repairs.\nYou can come back later, or ask for support.",
+        "target": "escape/general/no-tools"
+      },
+      {
+        "title": "No time",
+        "description": "Choose **No time** if working hours are over, or if you have\nanother appointment you must keep, and you will come back for this later.",
+        "target": "escape/general/no-time"
+      },
+      {
+        "title": "No skills",
+        "description": "Choose **No skills** if you do not have the required training or\ncertification to complete this procedure, or if you need the\nhelp of others to complete it.",
+        "target": "escape/general/no-skills"
       }
+    ],
+    "positive": {
+      "label": "That's it"
     },
-    "we60/emergency-stop-alarm/check-alarm": {
-      "title": "Check alarm",
-      "processes": [
-        {
-          "title": "Check the 'Emergency Stop' alarm status",
-          "steps": [
-            "Check the screen for the alert box"
-          ],
-          "source": "we60/emergency-stop-alarm/check-emergency-stop-alarm"
-        }
-      ],
-      "question": "Has the alarm message been removed?",
-      "positive": {
-        "label": "Yes, clear",
-        "target": "we60/emergency-stop-alarm/problem-solved"
-      },
-      "negative": {
-        "label": "No, still there",
-        "target": "we60/emergency-stop-alarm/escalate"
-      }
-    },
-    "we60/emergency-stop-alarm/button-pressed": {
-      "title": "Check button pressed state",
-      "processes": [
-           {
-             "title": "Denemedir. İlk sayfa yapılmamış.",
-             "steps": [
-               "Twist the Emergency Stop Button clockwise ⟳ to release it",
-               "The button should be pushed up by its springs",
-               "Twist the Emergency Stop Button clockwise ⟳ to release it",
-               "The button should be pushed up by its springs",
-               "Twist the Emergency Stop Button clockwise ⟳ to release it",
-               "The button should be pushed up by its springs",
-               "Twist the Emergency Stop Button clockwise ⟳ to release it",
-               "The button should be pushed up by its springs",
-               "Twist the Emergency Stop Button clockwise ⟳ to release it",
-               "The button should be pushed up by its springs",
-               "Twist the Emergency Stop Button clockwise ⟳ to release it",
-               "The button should be pushed up by its springs",
-               "Twist the Emergency Stop Button clockwise ⟳ to release it",
-               "The button should be pushed up by its springs",
-               "Twist the Emergency Stop Button clockwise ⟳ to release it",
-               "The button should be pushed up by its springs",
-               "Twist the Emergency Stop Button clockwise ⟳ to release it",
-               "The button should be pushed up by its springs",
-               "Twist the Emergency Stop Button clockwise ⟳ to release it",
-               "The button should be pushed up by its springs",
-               "Twist the Emergency Stop Button clockwise ⟳ to release it",
-               "The button should be pushed up by its springs"
-             ]
-           }
-      ],
-      "question": "Is the button in the pressed state?",
-      "positive": {
-        "label": "Yes, pressed",
-        "target": "we60/emergency-stop-alarm/release-esb"
-      },
-      "negative": {
-        "target": "we60/emergency-stop-alarm/replace-esb",
-        "label": "No"
-      }
-    },
-    "we60/emergency-stop-alarm/release-esb": {
-      "title": "Release ESB",
-      "processes": [
-        {
-          "title": "Release the ESB",
-          "steps": [
-            "Twist the Emergency Stop Button clockwise ⟳ to release it",
-            "The button should be pushed up by its springs"
-          ]
-        }
-      ],
-      "question": "Has the button been released?",
-      "positive": {
-        "label": "Yes, released",
-        "target": "we60/release-esb/check-alarm"
-      },
-      "negative": {
-        "label": "No, depressed",
-        "target": "we60/emergency-stop-alarm/replace-esb"
-      }
-    },
-    "we60/emergency-stop-alarm/problem-solved": {
-      "title": "Problem Solved",
-      "processes": [
-        {
-          "title": "Problem Solved",
-          "steps": [
-            "Problem Solved"
-          ]
-        }
-      ],
-      "question": " ",
-      "positive": {
-        "label": "Report",
-        "target": "we60/emergency-stop-alarm/problem-solved"
-      },
-      "negative": {
-        "label": "Exit",
-        "target": "we60/emergency-stop-alarm/problem-solved"
-      }
-    },
-    "we60/release-esb/check-alarm": {
-      "title": "Problem Solved",
-      "processes": [
-        {
-          "title": "Check alarmmmm",
-          "steps": [
-            "Problem Solved"
-          ]
-        }
-      ],
-      "question": " ",
-      "positive": {
-        "label": "Report",
-        "target": "we60/emergency-stop-alarm/problem-solved"
-      },
-      "negative": {
-        "label": "Exit",
-        "target": "we60/emergency-stop-alarm/problem-solved"
-      }
-    },
-    "we60/emergency-stop-alarm/release-esb-check-alarm": {
-      "title": "Check alarm",
-      "processes": [
-        {
-          "title": "Check the 'Emergency Stop' alarm status",
-          "steps": [
-            "Check the screen for the alert box"
-          ],
-          "source": "we60/emergency-stop-alarm/check-emergency-stop-alarm"
-        }
-      ],
-      "question": "Has the alarm message been removed?",
-      "positive": {
-        "label": "Yes, clear",
-        "target": "we60/emergency-stop-alarm/problem-solved"
-      },
-      "negative": {
-        "label": "No",
-        "target": "we60/emergency-stop-alarm/check-contact"
-      },
-      "template": "check-alarm"
-    },
-    "we60/emergency-stop-alarm/replace-esb": {
-      "title": "Replace ESB",
-      "processes": [
-        {
-          "title": "Open the left front panel",
-          "steps": {
-            "0": "Check the screen for the alert box",
-            "00:01.12": "Unscrew the two fixing screws on the left edge",
-            "00:03.00": "Release the latch",
-            "00:04.20": "Swing the panel left"
-          },
-          "source": "we60/general/left-panel-open",
-          "video": "ht_9009",
-          "tags": {
-            "done": {
-              "left-panel": "open"
-            },
-            "escape": {
-              "left-panel": "open"
-            },
-            "skip": {
-              "left-panel": "open"
-            }
-          }
-        },
-        {
-          "title": "Replace the ESB",
-          "steps": [
-            "Unscrew the ESB cable terminals from the ESB contact socket",
-            "Remove the contact of the ESB from its back by using a screwdriver",
-            "Unbolt the plastic nut from the back of the ESB",
-            "Pull the ESB from the front of the CP",
-            "Put a new ESB into the empty ESB slot",
-            "Bolt the plastic nut onto its bolt at the back of the ESB",
-            "Plug the contact of the ESB into its socket",
-            "Screw the ESB cable terminals into the ESB contact socket"
-          ]
-        },
-        {
-          "title": "Close the left front panel",
-          "steps": [
-            "Close the panel",
-            "Fix the latch",
-            "Screw back the two fixing screws on the left edge"
-          ],
-          "tags": {
-            "done": {
-              "left-panel": null
-            },
-            "only": {
-              "left-panel": "open"
-            }
-          },
-          "source": "we60/general/left-panel-close"
-        },
-        {
-          "title": "Check the 'Emergency Stop' alarm status",
-          "steps": [
-            "Check the screen for the alert box"
-          ],
-          "source": "we60/emergency-stop-alarm/check-emergency-stop-alarm"
-        }
-      ],
-      "question": "Has the alarm message been removed?",
-      "positive": {
-        "label": "Yes, clear",
-        "target": "we60/emergency-stop-alarm/problem-solved"
-      },
-      "negative": {
-        "label": "No",
-        "target": "we60/emergency-stop-alarm/check-contact"
-      },
-      "template": "release-esb-check-alarm"
-    },
-    "we60/emergency-stop-alarm/check-contact": {
-      "title": "Check ESB contact",
-      "processes": [
-        {
-          "title": "Turn the power off",
-          "steps": ["Twist the power switch 90° anti-clockwise ⤿"],
-          "tags": {
-            "skip": {
-              "power": false
-            },
-            "done": {
-              "power": false
-            }
-          },
-          "source": "we60/general/power-off"
-        },
-        {
-          "title": "Open the left front panel",
-          "video": "ht_9009",
-          "steps": {
-            "00:01.12": "Unscrew the two fixing screws on the left edge",
-            "00:03.00": "Release the latch",
-            "00:04.20": "Swing the panel left"
-          },
-          "tags": {
-            "done": {
-              "left-panel": "open"
-            },
-            "escape": {
-              "left-panel": "open"
-            },
-            "skip": {
-              "left-panel": "open"
-            }
-          },
-          "source": "we60/general/left-panel-open"
-        },
-        {
-          "title": "Check the contacts on the ESB",
-          "steps": [
-            "Check the conductivity of the contact sockets with short-circuit test\nby inserting the multimeter leads into the contact sockets or the contact\nscrews and testing for both positions of the contact switch. The contact\nshould be in short-circuit when the switch is in open position (unpressed)\nand the contrary in closed position (pressed)"
-          ]
-        }
-      ],
-      "question": "Is the contact functioning?",
-      "negative": {
-        "label": "No",
-        "target": "we60/emergency-stop-alarm/replace-esb-contact"
-      },
-      "positive": {
-        "label": "Yes",
-        "target": "we60/emergency-stop-alarm/check-unbridged-power-output"
-      }
-    },
-    "we60/emergency-stop-alarm/replace-esb-contact": {
-      "title": "Replace ESB contact",
-      "processes": [
-        {
-          "title": "Open the left front panel",
-          "steps": {
-            "0": "Check the screen for the alert box",
-            "00:01.12": "Unscrew the two fixing screws on the left edge",
-            "00:03.00": "Release the latch",
-            "00:04.20": "Swing the panel left"
-          },
-          "source": "we60/general/left-panel-open",
-          "video": "ht_9009",
-          "tags": {
-            "done": {
-              "left-panel": "open"
-            },
-            "escape": {
-              "left-panel": "open"
-            },
-            "skip": {
-              "left-panel": "open"
-            }
-          }
-        },
-        {
-          "title": "Replace the contact on the ESB",
-          "steps": [
-            "Unscrew the ESB cable terminals from the ESB contact socket",
-            "Remove the contact of the ESB from its back by using a screwdriver",
-            "Plug the new ESB contact into its socket",
-            "Screw the ESB cable terminals into the ESB contact socket"
-          ]
-        },
-        {
-          "title": "Check the 'Emergency Stop' alarm status",
-          "steps": [
-            "Check the screen for the alert box"
-          ],
-          "source": "we60/emergency-stop-alarm/check-emergency-stop-alarm"
-        }
-      ],
-      "question": "Has the alarm message been removed?",
-      "positive": {
-        "label": "Yes, clear",
-        "target": "we60/emergency-stop-alarm/problem-solved"
-      },
-      "negative": {
-        "label": "No, still there",
-        "target": "we60/emergency-stop-alarm/escalate"
-      },
-      "template": "check-alarm"
+    "negative": {
+      "label": "Something else",
+      "target": "escape/general/something-else"
     }
   },
-  "processes": {
-    "we60/emergency-stop-alarm/check-emergency-stop-alarm": {
-      "title": "Check the 'Emergency Stop' alarm status",
-      "steps": [
-        "Check the screen for the alert box"
-      ],
-      "source": "we60/emergency-stop-alarm/check-emergency-stop-alarm"
+  "we110/steam/heater-fail/check-steam-pressure": {
+    "title": "Check Steam Pressure",
+    "processes": [
+      {
+        "title": "Check the steam pressure",
+        "steps": [          "Twist the Emergency Stop Button clockwise ⟳ to release it",
+                  "The button should be pushed up by its springs",
+                  "Twist the Emergency Stop Button clockwise ⟳ to release it",
+                  "The button should be pushed up by its springs",
+                  "Twist the Emergency Stop Button clockwise ⟳ to release it",
+                  "The button should be pushed up by its springs",
+                  "Twist the Emergency Stop Button clockwise ⟳ to release it",
+                  "The button should be pushed up by its springs",
+                  "Twist the Emergency Stop Button clockwise ⟳ to release it",
+                  "The button should be pushed up by its springs",
+                  "Twist the Emergency Stop Button clockwise ⟳ to release it",
+                  "The button should be pushed up by its springs",
+                  "Twist the Emergency Stop Button clockwise ⟳ to release it",
+                  "The button should be pushed up by its springs",
+                  "Twist the Emergency Stop Button clockwise ⟳ to release it",
+                  "The button should be pushed up by its springs",
+                  "Twist the Emergency Stop Button clockwise ⟳ to release it",
+                  "The button should be pushed up by its springs",
+                  "Twist the Emergency Stop Button clockwise ⟳ to release it",
+                  "The button should be pushed up by its springs",
+                  "Twist the Emergency Stop Button clockwise ⟳ to release it",
+                  "The button should be pushed up by its springs"]
+      }
+    ],
+    "question": "Is it sufficient?",
+    "positive": {
+      "target": "we110/steam/heater-fail/check-steam-vane",
+      "label": "Yes"
     },
-    "we60/general/left-panel-open": {
-      "title": "Open the left front panel",
-      "video": "ht_9009",
-      "steps": {
-        "00:01.12": "Unscrew the two fixing screws on the left edge",
-        "00:03.00": "Release the latch",
-        "00:04.20": "Swing the panel left"
+    "negative": {
+      "target": "we110/steam/heater-fail/adjust-steam-pressure",
+      "label": "No"
+    }
+  },
+  "we110/steam/heater-fail/adjust-steam-pressure": {
+    "title": "Adjust Steam Pressure",
+    "processes": [
+      {
+        "title": "Adjust the steam pressure geldi",
+         "video": "ht_0025",
+        "steps": ["sadsad"]
       },
-      "tags": {
-        "done": {
-          "left-panel": "open"
-        },
-        "escape": {
-          "left-panel": "open"
-        },
-        "skip": {
-          "left-panel": "open"
-        }
-      },
-      "source": "we60/general/left-panel-open"
+      "we110/steam/general/run-a-program"
+    ],
+    "question": "Is the problem solved?",
+    "positive": {
+      "target": "we110/steam/heater-fail/problem-solved",
+      "label": "Yes"
     },
-    "we60/general/left-panel-close": {
-      "title": "Close the left front panel",
-      "steps": [
-        "Close the panel",
-        "Fix the latch",
-        "Screw back the two fixing screws on the left edge"
-      ],
-      "tags": {
-        "done": {
-          "left-panel": null
-        },
-        "only": {
-          "left-panel": "open"
-        }
-      },
-      "source": "we60/general/left-panel-close"
+    "negative": {
+      "target": "we110/steam/heater-fail/check-steam-vane",
+      "label": "No"
+    }
+  },
+  "we110/steam/heater-fail/check-steam-vane": {
+    "title": "Check Steam Vane",
+    "processes": [
+      {
+        "title": "Check the steam vane",
+        "steps": []
+      }
+    ],
+    "question": "Is it open?",
+    "positive": {
+      "target": "we110/steam/heater-fail/check-strainer-clogging",
+      "label": "Yes"
     },
-    "we60/general/power-on": {
-      "title": "Turn the power on",
-      "steps": [
-        {
-          "image": "i1285"
-        },
-        "Twist the power switch 90° clockwise ⤾"
-      ],
-      "tags": {
-        "done": {
-          "power": true
-        },
-        "skip": {
-          "power": true
+    "negative": {
+      "target": "we110/steam/heater-fail/open-steam-vane",
+      "label": "No"
+    }
+  },
+  "we110/steam/heater-fail/open-steam-vane": {
+    "title": "Open Steam Vane",
+    "processes": [
+      {
+        "title": "Open the steam vane",
+        "steps": []
+      },
+      "we110/steam/general/run-a-program"
+    ],
+    "question": "Is the problem solved?",
+    "positive": {
+      "target": "we110/steam/heater-fail/problem-solved",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "we110/steam/heater-fail/check-strainer-clogging",
+      "label": "No"
+    }
+  },
+  "we110/steam/heater-fail/check-strainer-clogging": {
+    "title": "Check Strainer Clogging",
+    "processes": [
+      {
+        "title": "Check the strainer for clogging",
+        "steps": []
+      }
+    ],
+    "question": "Is the strainer clogged?",
+    "positive": {
+      "target": "we110/steam/heater-fail/check-steam-heating-do",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "we110/steam/heater-fail/clear-strainer",
+      "label": "No"
+    }
+  },
+  "we110/steam/heater-fail/clear-strainer": {
+    "title": "Clear Strainer",
+    "processes": [
+      {
+        "title": "Clear the strainer",
+        "steps": []
+      },
+      "we110/steam/general/run-a-program"
+    ],
+    "question": "Is the problem solved?",
+    "positive": {
+      "target": "we110/steam/heater-fail/problem-solved",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "we110/steam/heater-fail/check-steam-heating-do",
+      "label": "No"
+    }
+  },
+  "we110/steam/heater-fail/check-steam-heating-do": {
+    "title": "Check Steam Heating DO",
+    "processes": [
+      {
+        "title": "Check the Steam Heating DO on the Diagnostic",
+        "video": "ht_0025",
+        "steps":{
+          "00:00.00": "Enter the \"Main\" menu by selecting and pressing the \"Menu\" button"
+     }
+
+      }
+    ],
+    "question": "Is the DO functioning?",
+    "positive": {
+      "target": "we110/steam/heater-fail/check-cable-steam-valve-cp",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "we110/steam/heater-fail/steam-heating-do-available",
+      "label": "No"
+    }
+  },
+  "we110/steam/heater-fail/steam-heating-do-available": {
+    "title": "Steam Heating DO available",
+    "processes": [
+      {
+        "title": "Check the Steam Heating DO availability",
+        "video": "ht_0138",
+        "steps":
+          {
+            "00:00.00": "Enter the \"Main\" menu by selecting and pressing the \"Menu\" button",
+            "00:07.00": "Enter the \"Service\" menu by selecting and pressing the \"Service\" button",
+            "00:11.00": "Enter the \"I/O Link\" screen by selecting and pressing the \"I/O Link\" button",
+            "00:16.00": "Select the Steam Valve DO",
+            "00:38.00": "Press the \"OK\" button to enter the edit mode",
+            "00:40.00": "Change the current DO to one of the available DOs by pressing the up-down direction buttons"
+          }
+      }
+    ],
+    "question": "Are there any unused available DOs?",
+    "positive": {
+      "target": "we110/steam/heater-fail/change-steam-heating-do",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "we110/steam/heater-fail/send-cp-to-service",
+      "label": "No"
+    }
+  },
+  "we110/steam/heater-fail/change-steam-heating-do": {
+    "title": "Change Steam Heating DO",
+    "processes": [
+      {
+        "title": "Change the DO assignment for the Steam Heating",
+        "steps": [
+          "Press the \"OK\" button to assign the target DO",
+          "Press the \"Exit\" button to exit. At this stage the software will ask you if you want to save the changes. To save your changes select the \"Yes\" button by pressing the left-right direction buttons and press the \"OK\" button to confirm the selection",
+          "The software will return to the \"Service\" menu",
+          "Detach the S13 socket plug from the back of the Control Panel",
+          "Remove the 7. socket terminal from the S13 socket plug by pushing down the fins of the socket terminal with the terminal removal tool",
+          "Attach the S13 socket plug into the S13 socket",
+          "Raise up the fins of the socket terminal with the terminal removal tool",
+          "Detach the S19 socket plug from the back of the Control Panel",
+          "Insert the socket terminal into the 6. socket of the S19 socket plug which corresponds to the DO which has been assigned in the DO assignment step in this video (Step no 1). Warning: You have to select the corresponding socket and socket plug if you choose another DO for this procedure. You can find a list of the DOs and their corresponding sockets on the back of the Control Panel",
+          "Attach the S19 socket plug into the S19 socket",
+          "Enter the \"Diagnostic\" screen by selecting and pressing the \"Diagnostic\" button",
+          "Select the \"Steam Valve\" DO on the \"Digital Outputs\" frame",
+          "Press the \"OK\" button to activate the \"Steam Valve\" DO",
+          "Check the voltage value by inserting one lead of the multimeter into any socket between the 12. and the 22. sockets on the S11 socket group and inserting the other lead of the multimeter into the 6. socket on the S19 socket group"
+        ]
+      }
+    ],
+    "question": "Does ±24V DC exist on the DO?",
+    "positive": {
+      "target": "we110/steam/general/run-a-program",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "we110/steam/heater-fail/steam-heating-do-available",
+      "label": "No"
+    }
+  },
+  "we110/steam/heater-fail/run-a-program": {
+    "title": "Run A Program",
+    "processes": [
+      "we110/steam/general/run-a-program"
+    ],
+    "positive": {
+      "target": "we110/steam/heater-fail/problem-solved",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "we110/steam/heater-fail/check-cable-steam-valve-cp",
+      "label": "No"
+    }
+  },
+  "we110/steam/heater-fail/check-cable-steam-valve-cp": {
+    "title": "Check Cable Steam Valve CP",
+    "processes": [
+      {
+        "title": "Check the cable between the steam control valve and the CP",
+        "video": "ht_0029",
+        "steps": {
+          "00:00.00": "Unscrew the control valve socket holder screw from the steam control valve coil by using a screwdriver",
+          "00:10.00": "Detach the steam valve coil socket from the steam control valve coil",
+          "00:17.00": "Detach the terminal block of the socket from its housing by using the screwdriver as a lever",
+          "00:22.00": "Check the voltage between the terminals of the terminal block by using a voltmeter"
         }
       }
+    ],
+    "question": "Is the cable functional?",
+    "positive": {
+      "target": "we110/steam/heater-fail/check-steam-valve-coil",
+      "label": "Yes"
     },
-    "we60/general/power-off": {
-      "title": "Turn the power off",
-      "steps": "Twist the power switch 90° anti-clockwise ⤿",
-      "tags": {
-        "skip": {
-          "power": false
-        },
-        "done": {
-          "power": false
+    "negative": {
+      "target": "we110/steam/heater-fail/replace-steam-valve-cp-cable",
+      "label": "No"
+    }
+  },
+  "we110/steam/heater-fail/replace-steam-valve-cp-cable": {
+    "title": "Replace/Repair Steam Valve-CP Cable",
+    "processes": [
+      {
+        "title": "Replace/Repair the cable between the Steam Control Valve and the CP",
+        "steps": [
+          "Burada tanımlanan sıra ile arka kapak açma, üst kapaklar (üstte üç ayrı parça kapak var) açma, ön kapak açma yapılır.",
+          "Kablo yolu üzerindeki klipsler açılır.",
+          "Pano içi makaron çıkartılır.",
+          "Kontrol paneli arkasındaki buhar, sıcak su, soğuk su, tahliye, devrilme (yukarı-aşağı) DO kabloları ve ortak uç (eksi) -24V DC kablosu soketlerinden çıkartılırlar.",
+          "Yukarıdaki maddede değinilen uçların cihaz arkasındaki karşı uçları da valf soketlerinden çıkartılırlar.",
+          "Yeni kablo valf uçları soketlerine takılır.",
+          "Kontrol paneli arkasındaki buhar, sıcak su, soğuk su, tahliye, devrilme (yukarı-aşağı) DO kabloları ve ortak uç (eksi) -24V DC kablosu soketlerine takılır.",
+          "Pano içi makaron kablolara sarılır.",
+          "Kablo yolu üzerindeki kablolar klipslenir."
+        ]
+      },
+      "we110/steam/general/check-do-on-diagnostic"
+    ],
+    "question": "Is the problem solved?",
+    "positive": {
+      "target": "we110/steam/heater-fail/problem-solved",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "we110/steam/heater-fail/check-steam-valve-coil",
+      "label": "No"
+    }
+  },
+  "we110/steam/heater-fail/check-steam-valve-coil": {
+    "title": "Check Steam Control Valve Coil",
+    "processes": [
+      {
+        "title": "Check the coil of the steam control valve",
+        "steps": [
+          "If the Steam Heating DO has been deactivated by the automatic logout process then re-activate it",
+          "Check the resistance value between the terminals of the steam control valve coil terminals by using a multimeter",
+          "Attach the terminal block of the socket into its housing",
+          "Insert the socket holder screw into its screw hole",
+          "Attach the steam valve coil socket onto the steam control valve coil",
+          "Screw the coil socket onto the coil via its holder screw by using a screwdriver"
+        ]
+      }
+    ],
+    "question": "Is the coil functioning?",
+    "positive": {
+      "target": "we110/steam/heater-fail/check-hose-pneumatic-valve-base",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "we110/steam/heater-fail/replace-steam-valve-coil",
+      "label": "No"
+    }
+  },
+  "we110/steam/heater-fail/replace-steam-valve-coil": {
+    "title": "Replace Steam Control Valve Coil",
+    "processes": [
+      {
+        "title": "Replace the coil of the Steam Control Valve",
+        "video": "ht_0028",
+        "steps": {
+          "00:00.00": "Unbolt the plastic nut which fastens the coil onto the coil armature on the back of the valve",
+          "00:11.00": "Remove the coil from the steam control valve by pulling it downwards from the front side of the coil along the armature (back of the machine)",
+          "00:24.00": "Install the new coil onto the steam control valve by pushing it upwards from the front side until the coil reaches the base of the armature (back of the machine)",
+          "00:39.00": "Bolt the plastic nut which fastens the coil onto the armature whilst pushing the coil upwards",
+          "00:52.00": "Attach the steam valve coil socket onto the new coil",
+          "00:57.00": "Screw the coil socket onto the coil via its holder screw by using a screwdriver"
         }
       },
-      "source": "we60/general/power-off"
+      "we110/steam/general/run-a-program"
+    ],
+    "question": "Is the problem solved?",
+    "positive": {
+      "target": "we110/steam/heater-fail/problem-solved",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "we110/steam/heater-fail/check-hose-pneumatic-valve-base",
+      "label": "No"
     }
+  },
+  "we110/steam/heater-fail/check-hose-pneumatic-valve-base": {
+    "title": "Check Hose Between Steam Valve and CP",
+    "processes": [
+      {
+        "title": "Check the reliability of the hose between the Steam Piston Valve and the Steam Control Valve",
+        "steps": [
+          "Check the reliability of the hose between the Steam Piston Valve and the\nSteam Control Valve by detaching the hose from the steam output fitting\nof the Steam Control Valve and observing the air flow"
+        ]
+      }
+    ],
+    "question": "Is the hose valid?",
+    "positive": {
+      "target": "we110/steam/heater-fail/check-pneumatic-steam-valve",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "we110/steam/heater-fail/replace-hose-pneumatic-valve-vane",
+      "label": "No"
+    }
+  },
+  "we110/steam/heater-fail/replace-hose-pneumatic-valve-vane": {
+    "title": "Replace Hose Between Pneumatic Valve and Vane",
+    "processes": [
+      {
+        "title": "Replace the hose between the pneumatic steam valve and the steam vane with actuator",
+        "steps": [
+          "Check the reliability of the hose between the Steam Piston Valve and the Steam Control Valve by detaching the hose from the steam output fitting of the Steam Control Valve and observing the air flow"
+        ]
+      },
+      "we110/steam/general/run-a-program"
+    ],
+    "question": "Is the problem solved?",
+    "positive": {
+      "target": "we110/steam/heater-fail/problem-solved",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "we110/steam/heater-fail/send-cp-to-service",
+      "label": "No"
+    }
+  },
+  "we60/emergency-stop-alarm/check-alarm": {
+    "title": "Check alarm",
+    "processes": [
+      {
+        "title": "Check the 'Emergency Stop' alarm status",
+        "steps": [
+          "Check the screen for the alert box"
+        ],
+        "source": "we60/emergency-stop-alarm/check-emergency-stop-alarm"
+      }
+    ],
+    "question": "Has the alarm message been removed?",
+    "positive": {
+      "label": "Yes, clear",
+      "target": "we60/emergency-stop-alarm/problem-solved"
+    },
+    "negative": {
+      "label": "No, still there",
+      "target": "we60/emergency-stop-alarm/escalate"
+    }
+  },
+  "we60/emergency-stop-alarm/button-pressed": {
+    "title": "Check button pressed state",
+    "processes": [
+      {
+        "title": "Check the Emergency Stop Button mechanically",
+        "steps": [
+          "Press the ESB to check if the button can be pressed"
+        ],
+        "source": "we60/emergency-stop-alarm/check-esb-mechanically"
+      }
+    ],
+    "question": "Is the button in the pressed state?",
+    "positive": {
+      "label": "Yes, pressed",
+      "target": "we60/emergency-stop-alarm/release-esb"
+    },
+    "negative": {
+      "target": "we60/emergency-stop-alarm/replace-esb",
+      "label": "No"
+    }
+  },
+  "we60/emergency-stop-alarm/release-esb": {
+    "title": "Release ESB",
+    "processes": [
+      {
+        "title": "Release the ESB",
+        "steps": [
+          "Twist the Emergency Stop Button clockwise ⟳ to release it",
+          "The button should be pushed up by its springs"
+        ]
+      }
+    ],
+    "question": "Has the button been released?",
+    "positive": {
+      "label": "Yes, released",
+      "target": "we60/release-esb/check-alarm"
+    },
+    "negative": {
+      "label": "No, depressed",
+      "target": "we60/emergency-stop-alarm/replace-esb"
+    }
+  },
+  "we60/emergency-stop-alarm/release-esb-check-alarm": {
+    "title": "Check alarm",
+    "processes": [
+      {
+        "title": "Check the 'Emergency Stop' alarm status",
+        "steps": [
+          "Check the screen for the alert box"
+        ],
+        "source": "we60/emergency-stop-alarm/check-emergency-stop-alarm"
+      }
+    ],
+    "question": "Has the alarm message been removed?",
+    "positive": {
+      "label": "Yes, clear",
+      "target": "we60/emergency-stop-alarm/problem-solved"
+    },
+    "negative": {
+      "label": "No",
+      "target": "we60/emergency-stop-alarm/check-contact"
+    },
+    "template": "check-alarm"
+  },
+  "we60/emergency-stop-alarm/replace-esb": {
+    "title": "Replace ESB",
+    "processes": [
+      {
+        "title": "Open the left front panel",
+        "steps": {
+          "0": "Check the screen for the alert box",
+          "00:01.12": "Unscrew the two fixing screws on the left edge",
+          "00:03.00": "Release the latch",
+          "00:04.20": "Swing the panel left"
+        },
+        "source": "we60/general/left-panel-open",
+        "video": "ht_9009",
+        "tags": {
+          "done": {
+            "left-panel": "open"
+          },
+          "escape": {
+            "left-panel": "open"
+          },
+          "skip": {
+            "left-panel": "open"
+          }
+        },
+        "tools": [
+          "n1-philips-screwdriver"
+        ]
+      },
+      {
+        "title": "Replace the ESB",
+        "steps": [
+          "Unscrew the ESB cable terminals from the ESB contact socket",
+          "Remove the contact of the ESB from its back by using a screwdriver",
+          "Unbolt the plastic nut from the back of the ESB",
+          "Pull the ESB from the front of the CP",
+          "Put a new ESB into the empty ESB slot",
+          "Bolt the plastic nut onto its bolt at the back of the ESB",
+          "Plug the contact of the ESB into its socket",
+          "Screw the ESB cable terminals into the ESB contact socket"
+        ],
+        "tools": [
+          "Standard voltage tester"
+        ],
+        "parts": [
+          "Eaton 22mm Emergency Stop button"
+        ]
+      },
+      {
+        "title": "Close the left front panel",
+        "steps": [
+          "Close the panel",
+          "Fix the latch",
+          "Screw back the two fixing screws on the left edge"
+        ],
+        "tags": {
+          "done": {
+            "left-panel": null
+          },
+          "only": {
+            "left-panel": "open"
+          }
+        },
+        "tools": [
+          "#1 Philips screwdriver"
+        ],
+        "source": "we60/general/left-panel-close"
+      },
+      {
+        "title": "Check the 'Emergency Stop' alarm status",
+        "steps": [
+          "Check the screen for the alert box"
+        ],
+        "source": "we60/emergency-stop-alarm/check-emergency-stop-alarm"
+      }
+    ],
+    "question": "Has the alarm message been removed?",
+    "positive": {
+      "label": "Yes, clear",
+      "target": "we60/emergency-stop-alarm/problem-solved"
+    },
+    "negative": {
+      "label": "No",
+      "target": "we60/emergency-stop-alarm/check-contact"
+    },
+    "template": "release-esb-check-alarm"
+  },
+  "we60/emergency-stop-alarm/check-contact": {
+    "title": "Check ESB contact",
+    "processes": [
+      {
+        "title": "Turn the power off",
+        "steps": [
+          "Twist the power switch 90° anti-clockwise ⤿"
+        ],
+        "tags": {
+          "skip": {
+            "power": false
+          },
+          "done": {
+            "power": false
+          }
+        },
+        "source": "we60/general/power-off"
+      },
+      {
+        "title": "Open the left front panel",
+        "video": "ht_9009",
+        "steps": {
+          "00:01.12": "Unscrew the two fixing screws on the left edge",
+          "00:03.00": "Release the latch",
+          "00:04.20": "Swing the panel left"
+        },
+        "tags": {
+          "done": {
+            "left-panel": "open"
+          },
+          "escape": {
+            "left-panel": "open"
+          },
+          "skip": {
+            "left-panel": "open"
+          }
+        },
+        "tools": [
+          "#1 Philips screwdriver"
+        ],
+        "source": "we60/general/left-panel-open"
+      },
+      {
+        "title": "Check the contacts on the ESB",
+        "steps": [
+          "Check the conductivity of the contact sockets with short-circuit test\nby inserting the multimeter leads into the contact sockets or the contact\nscrews and testing for both positions of the contact switch. The contact\nshould be in short-circuit when the switch is in open position (unpressed)\nand the contrary in closed position (pressed)"
+        ],
+        "tools": [
+          "Standard multimeter"
+        ]
+      }
+    ],
+    "question": "Is the contact functioning?",
+    "negative": {
+      "label": "No",
+      "target": "we60/emergency-stop-alarm/replace-esb-contact"
+    },
+    "positive": {
+      "label": "Yes",
+      "target": "we60/emergency-stop-alarm/check-unbridged-power-output"
+    }
+  },
+  "we60/emergency-stop-alarm/replace-esb-contact": {
+    "title": "Replace ESB contact",
+    "processes": [
+      {
+        "title": "Open the left front panel",
+        "steps": {
+          "0": "Check the screen for the alert box",
+          "00:01.12": "Unscrew the two fixing screws on the left edge",
+          "00:03.00": "Release the latch",
+          "00:04.20": "Swing the panel left"
+        },
+        "source": "we60/general/left-panel-open",
+        "video": "ht_9009",
+        "tags": {
+          "done": {
+            "left-panel": "open"
+          },
+          "escape": {
+            "left-panel": "open"
+          },
+          "skip": {
+            "left-panel": "open"
+          }
+        },
+        "tools": [
+          "#1 Philips screwdriver"
+        ]
+      },
+      {
+        "title": "Replace the contact on the ESB",
+        "steps": [
+          "Unscrew the ESB cable terminals from the ESB contact socket",
+          "Remove the contact of the ESB from its back by using a screwdriver",
+          "Plug the new ESB contact into its socket",
+          "Screw the ESB cable terminals into the ESB contact socket"
+        ],
+        "tools": [
+          "Standard voltage tester"
+        ],
+        "parts": [
+          "Eaton 22mm Emergency Stop contact block"
+        ]
+      },
+      {
+        "title": "Check the 'Emergency Stop' alarm status",
+        "steps": [
+          "Check the screen for the alert box"
+        ],
+        "source": "we60/emergency-stop-alarm/check-emergency-stop-alarm"
+      }
+    ],
+    "question": "Has the alarm message been removed?",
+    "positive": {
+      "label": "Yes, clear",
+      "target": "we60/emergency-stop-alarm/problem-solved"
+    },
+    "negative": {
+      "label": "No, still there",
+      "target": "we60/emergency-stop-alarm/escalate"
+    },
+    "template": "check-alarm"
   }
 }

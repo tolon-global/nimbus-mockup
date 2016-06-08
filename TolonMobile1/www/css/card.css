@@ -103,12 +103,13 @@ body {
     font-weight: 100;
 }
 
-.n-card main video {
+#n-VideoElement {
     background-color: rgba(0,0,0,.3);
     background-image: url('video.svg');
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
+    height: 30vh;
 }
 
 #detail ol {
@@ -131,7 +132,7 @@ body {
   background-color: #412A44;
   padding: 1em 0 0.5em;
   max-height: 100vh;/* 90 dÄ± 60 yapÄ±ldÄ± 04.56*/
-  margin-top: 0;
+  margin-top: 0vh;
 
 }
 .history li.n-positive strong { background-color: #38a; }
@@ -188,8 +189,9 @@ body {
     width: 100%;
     background-color: hsla(360, 0%, 0%, 0.2);
     align-items: center;
+    margin-top: -5px;
 }
-.video-controls button {
+.video-controls div {
     font-size: 2em;
     color: inherit;
     flex-grow: 0;
