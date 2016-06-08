@@ -92,3 +92,6 @@
 .icon-tools:before {
     content: "\e910";
 }
+.icon-qrcode:before {
+    content: "\e911";
+}
