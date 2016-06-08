@@ -171,6 +171,21 @@ swiperV.on('onTouchMove', function (e) {
 
 });
 
+    $scope.checkScrollDetail = function () {
+
+      var currentTop = $ionicScrollDelegate.$getByHandle('scrollerDetail').getScrollPosition().top;
+      var maxTop = $ionicScrollDelegate.$getByHandle('scrollerDetail').getScrollView().__maxScrollTop;
+
+      if (currentTop == 0) {
+        alert('top of scroll!');
+      }
+
+      if (currentTop >= maxTop) {
+        // hit the bottom
+        alert('bottom of scroll!');
+      }
+    };
+
 swiperV.on('SlideNextStart', function () {
     var videoCount=0;
     var detailListElement="";
@@ -203,8 +218,11 @@ swiperV.on('SlideNextStart', function () {
 
 });
 
-$( ".swiper-no-swiping" ).scroll(function() {
-  console.log("gsdfasdsadsa");
+$( ".deneme" ).scroll(function(e) {
+  console.log(e.target.scrollTop);
+  if(e.target.scrollTop==0){
+    $(this).removeClass('swiper-no-swiping');
+  }
 });
 
 swiperV.on('SlidePrevStart', function () {
