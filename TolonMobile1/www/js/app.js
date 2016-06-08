@@ -34,6 +34,8 @@ $urlRouterProvider.otherwise('/');
 .controller('mainCtrl', function($scope, $ionicScrollDelegate) {
      var historyOpen=0;
      var detailOpen=0;
+    var HistList=[];
+    var dir =0;
      var swiperH = new Swiper('.swiper-container-h', {
        spaceBetween: 0,
        loop:false,
@@ -50,6 +52,7 @@ $urlRouterProvider.otherwise('/');
      });
 
      var start="we60/emergency-stop-alarm/button-pressed";
+
      $.getJSON( "js/data.json", function(data) {
           appendSwiperH(
           start,
@@ -135,14 +138,31 @@ $urlRouterProvider.otherwise('/');
 
      }
 
-     function getCard()
+     function getCard(dir)
      {
           var negativeid=$(".swiper-slide .swiper-slide-active .n-negative").attr('id');
           var positiveid=$(".swiper-slide .swiper-slide-active .n-positive").attr('id');
-
           $.getJSON( "js/data.json", function(data) {
                console.log("negative "+negativeid);
                console.log("positive "+positiveid);
+            console.log(start);
+            if(dir==0){
+              var title = data.cards[start].title;
+              var txt=data.cards[start].negative.label;
+              var clas="n-negative";
+              start=data.cards[start].negative.target;
+
+            }else{
+              var title = data.cards[start].title;
+              var txt=data.cards[start].positive.label;
+              var clas="n-positive";
+              start=data.cards[start].positive.target;
+
+            }
+            HistList.push({"title":title, "ans":txt, "class":clas});
+            $("#histList").html($("#histList").html() + "<li class='"+HistList[HistList.length-1].class+"'><em>" + HistList[HistList.length-1].title +"<strong> "+HistList[HistList.length-1].ans +"</strong></em></li>");
+            $(".history").css('margin-top', $(window).height()- $(".history").height()-$(window).height()*0.05);
+            console.log(HistList);
                     prependSwiperH(
                     negativeid,
                     data.cards[negativeid].processes,
@@ -162,9 +182,9 @@ $urlRouterProvider.otherwise('/');
                     data.cards[positiveid].positive.target,
                     data.cards[positiveid].negative.target);
                     swiperH.update();
+
                     console.log(swiperH.activeIndex);
                });
-
      }
 
 swiperV.on('onTouchStart', function (e) {
@@ -227,6 +247,10 @@ swiperV.on('SlideNextStart', function () {
         }
    });
 
+  $(".history").css('margin-top', 0);
+  $("#xzc").css('height',$(window).height());
+  $(".history").css('margin-top', $(window).height()- $(".history").height()-$(window).height()*0.05);
+
 
 
 });
@@ -238,24 +262,60 @@ document.addEventListener('touchstart', function() {
      }
 }, false);
 
+swiperV.on("onTouchMove",function(e){
+  console.log($(".history").height()+$(window).height()*0.05);
+  if(e.touches.diff>($(".history").height()+$(window).height()*0.05)){
+    console.log("girdieeeeedediedied")
+    //swiperV.slidePrev(true,0)
+    //$(".history").css('margin-top',-$(window).height()*0);
+    //$("#xzc").css('height',$(".history").height());
 
+    $(".history").css('margin-top', $(window).height()- $(".history").height()-$(window).height()*0.05-(e.touches.diff-($(".history").height()+$(window).height()*0.05)));
+    $("#xzc").css("height",$(window).height()-(e.touches.diff-($(".history").height()+$(window).height()*0.05)+1));
+  }
+
+
+});
+
+swiperV.on("onTouchEnd",function(e){
+  console.log($(".history").height()+$(window).height()*0.05);
+  if(e.touches.diff>($(".history").height()+$(window).height()*0.05)){
+    console.log("girdieeeeedediedied")
+    swiperV.slidePrev(true,0)
+    $(".history").css('margin-top',0);
+    $("#xzc").css('height',$(".history").height());
+  }
+});
 swiperV.on('SlidePrevStart', function () {
-     if(historyOpen==0&&detailOpen==0){historyOpen++;}else if(historyOpen==0&&detailOpen==1){ detailOpen--; }
+     if(historyOpen==0&&detailOpen==0){
+       historyOpen++;
+       $(".history").css('margin-top',0);
+       $("#xzc").css('height',$(".history").height());
+     }else if(historyOpen==0&&detailOpen==1){
+       detailOpen--;
+     }
 });
 
 swiperH.on('SlideNextEnd', function () {
+  dir=1;
      if (historyOpen!=0) {
-     swiperV.slideNext();
-     swiperV.update();
+     swiperV.slideNext(true,0);
+       historyOpen=0;
      }
      swiperH.removeSlide([0, 1]);
      console.log(swiperH.activeIndex);
-     getCard();
+     getCard(dir);
+
 });
 
 swiperH.on('SlidePrevEnd', function () {
+  dir=0;
+  if (historyOpen!=0) {
+    swiperV.slideTo(1,0);
+    historyOpen=0;
+  }
      swiperH.removeSlide([1, 2]);
-     getCard();
+     getCard(dir);
 });
 
 })
