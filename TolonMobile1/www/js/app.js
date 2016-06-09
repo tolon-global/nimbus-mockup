@@ -402,16 +402,19 @@ myvid.addEventListener("timeupdate", function() {
 var previtem="";
 $(document).on("click",".sequence",function()
 {
-
-      $(".sequence").removeClass('currentSequence');
-      $(this).addClass('currentSequence');
-      var id1= $(this).attr('id');
+     myvid.currentTime = 5;
+     myvid.src="";
+     myvid.pause();
+     $(".sequence").removeClass('currentSequence');
+     $(this).addClass('currentSequence');
+     var id1= $(this).attr('id');
      myvid.src= String(id1);
-       document.getElementById('n-VideoElement').load();
-      document.getElementById('n-VideoElement').play();
-      ilk=true;
-      play++;
-      play1++;
+     document.getElementById('n-VideoElement').play();
+     $(".playpause").removeClass('icon-play');
+     $(".playpause").addClass('icon-pause');
+     ilk=true;
+     play++;
+     play1++;
 });
 
 })

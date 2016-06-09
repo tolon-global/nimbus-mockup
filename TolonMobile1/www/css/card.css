@@ -66,7 +66,7 @@ body {
 }
 
 .n-card nav .n-positive {
-    background-color: #38a;
+    background-color: #2B6C73;
     order: 2;
     padding-right: 2.2em;
 }
@@ -76,7 +76,7 @@ body {
 }
 
 .n-card nav .n-negative {
-    background-color: #842;
+     background-color: #6B3B58;
     order: 1;
     padding-left: 2.2em;
 }
@@ -143,6 +143,7 @@ body {
     display: inline-block;
     padding: 0 .4em;
     border-radius: .25em;
+        margin-left: 0.6em;
 }
 .history li {
     padding: .5ex;
