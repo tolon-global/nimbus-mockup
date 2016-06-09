@@ -248,7 +248,7 @@ swiperV.on('SlideNextStart', function () {
                         break;
                    case Object:
                          for (var step in steps) {
-                              detailListElement = detailListElement + "<li class='sequence current' id='video/"+data[id].processes[i].video+".mp4#t="+step+"'>"+ steps[step] +"</li>";
+                              detailListElement = detailListElement + "<li class='sequence' id='video/"+data[id].processes[i].video+".mp4#t="+step+"'>"+ steps[step] +"</li>";
                          }
                         break;
                    default:
@@ -404,10 +404,12 @@ $('.n-negative').click(function() {
 $( "#sequence" ).click(function() {
     console.log("sadsad");
 });
-
+var previtem="";
 $(document).on("click",".sequence",function()
 {
-     $scope.object.src=(this).id;
+      $(".sequence").removeClass('current');
+      $(this).addClass('current');
+      $scope.object.src=(this).id;
       $scope.$apply();
       myvid.play();
       ilk=true;
