@@ -108,8 +108,6 @@ $urlRouterProvider.otherwise('/');
           data[data[start].positive.target].negative.label,
           data[data[start].positive.target].positive.target,
           data[data[start].positive.target].negative.target);
-          console.log("Negative "+ data[start].negative.target);
-          console.log("Positive " + data[start].positive.target);
      });
 
      function appendSwiperH(id,processes,processlength,question,positive,negative,positive_target,negative_target)
@@ -187,8 +185,6 @@ $urlRouterProvider.otherwise('/');
                HistList.push({"title":title, "ans":txt, "class":clas});
                $("#histList").html($("#histList").html() + "<li class='"+HistList[HistList.length-1].class+"'><em>" + HistList[HistList.length-1].title +"<strong> "+HistList[HistList.length-1].ans +"</strong></em></li>");
 
-               console.log("negative "+negativeid);
-               console.log("positive "+positiveid);
                     prependSwiperH(
                     negativeid,
                     data[negativeid].processes,
@@ -208,20 +204,17 @@ $urlRouterProvider.otherwise('/');
                     data[positiveid].positive.target,
                     data[positiveid].negative.target);
                     swiperH.update();
-                    console.log(swiperH.activeIndex);
                });
 
      }
 
 swiperV.on('onTouchStart', function (e) {
      if (detailOpen!=0) {
-          console.log("sadsad"+($(window).height()*0.3));
           if($(".detailScroll").scrollTop()<6 && $(".detailScroll").height > ($(window).height()*0.3)){
             $(".detailScroll").removeClass('swiper-no-swiping');
 
           }
           else {
-               console.log("geldi");
             $(".detailScroll").addClass('swiper-no-swiping');
 
           }
@@ -261,7 +254,7 @@ swiperV.on('SlideNextStart', function () {
                         break;
                    case Object:
                          for (var step in steps) {
-                              detailListElement = detailListElement + "<li id='"+step+"'>"+ steps[step] +"</li>";
+                              detailListElement = detailListElement + "<li class='sequence current' id='video/"+data[id].processes[i].video+".mp4#t="+step+"'>"+ steps[step] +"</li>";
                          }
                         break;
                    default:
@@ -269,9 +262,12 @@ swiperV.on('SlideNextStart', function () {
               }
              if (data[id].processes[i].video!=null) {
                videoCount++;
-               myvids.push("video/1.mp4");
+               myvid.src="video/"+data[id].processes[0].video+".mp4";
+                 $(".seekBarDetail").val(0);
+                 $(".playpause").addClass('icon-play');
+                 $(".playpause").removeClass('icon-pause');
+               myvids.push("video/"+data[id].processes[i].video+".mp4");
              }
-             console.log("bu"+myvids[0]);
              $(".detailScroll").scrollTop(1);
         }
         $(".detailScroll").html(detailListElement);
@@ -306,6 +302,8 @@ swiperV.on('SlidePrevStart', function () {
      }else if(historyOpen==0&&detailOpen==1){
       detailOpen--;
      }
+     myvid.pause();
+     myvid.src=null;
 });
 
 swiperH.on('SlideNextEnd', function () {
@@ -315,7 +313,6 @@ swiperH.on('SlideNextEnd', function () {
           historyOpen=0;
         }
         swiperH.removeSlide([0, 1]);
-        console.log(swiperH.activeIndex);
         getCard(dir);
 });
 
@@ -399,6 +396,8 @@ $('.icon-right').click(function() {
           myvid.play();
      }
 });
+
+
 myvid.addEventListener("timeupdate", function() {
   var value1 = (100 / myvid.duration) * myvid.currentTime;
   $(".seekBarDetail").val(value1);
@@ -409,5 +408,15 @@ myvid.addEventListener("timeupdate", function() {
     $(document).on("click", ".n-positive", function(){
       swiperH.slideNext();
     });
+
+$(document).on("click",".sequence",function()
+{
+     $scope.object.src=(this).id;
+      $scope.$apply();
+      myvid.play();
+      ilk=true;
+      play++;
+});
+
 
 })
