@@ -395,12 +395,14 @@ myvid.addEventListener("timeupdate", function() {
   var value1 = (100 / myvid.duration) * myvid.currentTime;
   $(".seekBarDetail").val(value1);
 });
-$('.n-positive').click(function() {
-swiperH.slideNext();
-});
-$('.n-negative').click(function() {
-     swiperH.slidePrev();
-});
+    $(document).on("click",".n-positive",function()
+    {
+      swiperH.slideNext();
+    });
+    $(document).on("click",".n-negative",function()
+    {
+      swiperH.slidePrev();
+    });
 $( "#sequence" ).click(function() {
     console.log("sadsad");
 });
