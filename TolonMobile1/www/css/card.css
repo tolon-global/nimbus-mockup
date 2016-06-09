@@ -121,8 +121,8 @@ body {
    overflow: auto;
 }
 
-.current { color: white; }
-.current::before {
+.currentSequence { color: white; }
+.currentSequence::before {
     content: "\e90c";
     float: right;
     margin-left: .5em;

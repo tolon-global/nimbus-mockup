@@ -407,9 +407,11 @@ myvid.addEventListener("timeupdate", function() {
 var previtem="";
 $(document).on("click",".sequence",function()
 {
-      $(".sequence").removeClass('current');
-      $(this).addClass('current');
-      $scope.object.src=(this).id;
+
+      $(".sequence").removeClass('currentSequence');
+      $(this).addClass('currentSequence');
+      var id=$(".currentSequence").attr('id');
+     $scope.object.src= id;
       $scope.$apply();
        document.getElementById('n-VideoElement').load();
       document.getElementById('n-VideoElement').play();
