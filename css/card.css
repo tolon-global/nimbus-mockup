@@ -62,7 +62,7 @@ body {
 }
 
 .card nav .positive {
-    background-color: #38a;
+    background-color: #2B6C73;
     order: 2;
     padding-right: 2.2em;
 }
@@ -72,7 +72,7 @@ body {
 }
 
 .card nav .negative {
-    background-color: #842;
+    background-color: #6B3B58;
     order: 1;
     padding-left: 2.2em;
 }
@@ -127,8 +127,8 @@ body {
     padding: 1em 0 0.5em;
     max-height: 90vh;
 }
-.history li.positive strong { background-color: #38a; }
-.history li.negative strong { background-color: #842; }
+.history li.positive strong { background-color: #2B6C73; }
+.history li.negative strong { background-color: #6B3B58; }
 .history li strong {
     display: inline-block;
     padding: 0 .4em;
