@@ -231,6 +231,28 @@ body {
     margin-right: .5em;
 }
 
+.card button.qr {
+    background-color: #38a;
+    border: none;
+    width: 100vw;
+    color: white;
+    margin: .5em -0.5em;
+    padding: 0;
+    box-sizing: content-box;
+    font-family: inherit !important;
+    font-size: inherit;
+    height: 3em;
+}
+
+.card button.qr::before {
+    font: 2em 'nimbus-icons';
+    content: "\e911";
+    vertical-align: middle;
+    display: inline-block;
+    margin-right: .2em;
+    opacity: .6;
+}
+
 .card.escape { background-color: #442227;}
 .card.escape header section:first-child::before {
     content: "\e901 ";
