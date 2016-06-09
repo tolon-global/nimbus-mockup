@@ -41,16 +41,18 @@ $urlRouterProvider.otherwise('/');
 
       var currentTop = $ionicScrollDelegate.$getByHandle('scrollerHist').getScrollPosition().top;
       var maxTop = $ionicScrollDelegate.$getByHandle('scrollerHist').getScrollView().__maxScrollTop;
-
+      console.log(currentTop + "          ....          " + maxTop + "          ");
+      console.log($('#histList').scroll()[0].scrollHeight);
       if(currentTop == 0)
       {
-        alert('top of scroll!');
+        console.log('top of scroll!');
       }
 
-      if (currentTop >= maxTop)
+      if ($('#histList').scroll()[0].scrollHeight-currentTop <= $(window).height()-Math.round($(window).height()*0.094))
       {
         // hit the bottom
-        alert('bottom of scroll!');
+        $(".history").removeClass('swiper-no-swiping');
+        console.log('bottom of scroll!');
       }
     };
     $scope.object={'src': ''};
@@ -178,8 +180,11 @@ $urlRouterProvider.otherwise('/');
                }
                HistList.push({"title":title, "ans":txt, "class":clas});
                $("#histList").html($("#histList").html() + "<li class='"+HistList[HistList.length-1].class+"'><em>" + HistList[HistList.length-1].title +"<strong> "+HistList[HistList.length-1].ans +"</strong></em></li>");
+            $("#histList").html($("#histList").html() + "<li class='"+HistList[HistList.length-1].class+"'><em>" + HistList[HistList.length-1].title +"<strong> "+HistList[HistList.length-1].ans +"</strong></em></li>");
+            $("#histList").html($("#histList").html() + "<li class='"+HistList[HistList.length-1].class+"'><em>" + HistList[HistList.length-1].title +"<strong> "+HistList[HistList.length-1].ans +"</strong></em></li>");
+            $("#histList").html($("#histList").html() + "<li class='"+HistList[HistList.length-1].class+"'><em>" + HistList[HistList.length-1].title +"<strong> "+HistList[HistList.length-1].ans +"</strong></em></li>");
 
-                    prependSwiperH(
+            prependSwiperH(
                     negativeid,
                     data[negativeid].processes,
                     data[negativeid].processes.length,
@@ -215,20 +220,6 @@ swiperV.on('onTouchStart', function (e) {
      }
 });
 
-$scope.checkScrollDetail = function () {
-
- var currentTop = $ionicScrollDelegate.$getByHandle('scrollerDetail').getScrollPosition().top;
- var maxTop = $ionicScrollDelegate.$getByHandle('scrollerDetail').getScrollView().__maxScrollTop;
-
- if (currentTop == 0) {
-   alert('top of scroll!');
- }
-
- if (currentTop >= maxTop) {
-   // hit the bottom
-   alert('bottom of scroll!');
- }
-};
     var vidList=[];
 swiperV.on('SlideNextStart', function () {
 
@@ -256,6 +247,7 @@ swiperV.on('SlideNextStart', function () {
                          }
                         break;
                    default:
+                      break;
 
               }
              if (data[id].processes[i].video!=null) {
@@ -295,6 +287,13 @@ swiperV.on("onTouchEnd",function(e){
 
 swiperV.on('SlidePrevStart', function () {
      if(historyOpen==0&&detailOpen==0){
+       console.log($('#histList').scroll()[0].scrollHeight);
+       if($('#histList').scroll()[0].scrollHeight>$(window).height()){
+         $('.history').addClass('swiper-no-swiping');
+       }else{
+         $('.history').removeClass('swiper-no-swiping');
+       }
+
       historyOpen++;
      }else if(historyOpen==0&&detailOpen==1){
       detailOpen--;
