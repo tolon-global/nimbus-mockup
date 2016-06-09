@@ -212,15 +212,15 @@ body {
 
 .n-card input[type=radio] + label,
 .n-card input {
-    border: none;
-    background: hsla(0,0%,0%,.3);
-    color: white;
-    font: inherit;
-    padding: .5em 1ex;
-    width: 100vw;
-    margin: 1ex -0.5em 1em -0.5em;
-    align-self: stretch;
-    outline: none;
+  border: none;
+  background: hsla(0,0%,0%,.3);
+  color: white;
+  font: inherit;
+  padding: .5em 1ex;
+  width: 94vw;
+  margin: 2ex 1.5em 0.5em -0.3em!important;
+  align-self: stretch;
+  outline: none;
 }
 
 .n-card input::-webkit-input-placeholder {

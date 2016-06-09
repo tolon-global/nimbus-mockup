@@ -36,7 +36,7 @@ $urlRouterProvider.otherwise('/');
    };
  })
 
-.controller('mainCtrl', function($scope, $ionicScrollDelegate) {
+.controller('mainCtrl', function($scope, $ionicScrollDelegate, $cordovaBarcodeScanner) {
     $scope.checkScrollHist = function () {
 
       var currentTop = $ionicScrollDelegate.$getByHandle('scrollerHist').getScrollPosition().top;
@@ -76,34 +76,62 @@ $urlRouterProvider.otherwise('/');
      });
 
      var start="we110/steam/heater-fail/check-steam-heating-do";
+      var strt=false;
      $.getJSON( "js/data.json", function(data) {
-          appendSwiperH(
-          start,
-          data[start].processes,
-          data[start].processes.length,
-          data[start].question,
-          data[start].positive.label,
-          data[start].negative.label,
-          data[start].positive.target,
-          data[start].negative.target);
-          prependSwiperH(
-          data[start].negative.target,
-          data[data[start].negative.target].processes,
-          data[data[start].negative.target].processes.length,
-          data[data[start].negative.target].question,
-          data[data[start].negative.target].positive.label,
-          data[data[start].negative.target].negative.label,
-          data[data[start].negative.target].positive.target,
-          data[data[start].negative.target].negative.target);
-          appendSwiperH(
-          data[start].positive.target,
-          data[data[start].positive.target].processes,
-          data[data[start].positive.target].processes.length,
-          data[data[start].positive.target].question,
-          data[data[start].positive.target].positive.label,
-          data[data[start].positive.target].negative.label,
-          data[data[start].positive.target].positive.target,
-          data[data[start].positive.target].negative.target);
+       if (strt==false){
+
+         swiperH.appendSlide("<div class='swiper-slide' id=''>"+
+         "<section class='n-card'>"+
+         "<header>"+
+         "<section class='n-process'>"+
+         "Enter the serial number"+
+         "<input style='width: 82vw' type='number' name='some_name' value='' placeholder='Serial number'>"+
+           "<button style='width: 48%' id='QrButton'> Qr Code </button> <button style='width: 48%' id='DrButton'> Direct </button>"+
+         "</section> "+
+         " </header>"+
+         "<nav>"+
+         "<section class='n-positive' id=''>"+"Done </section>"+
+         "<section class='n-negative' id=''>"+"I can't</section>"+
+         "</nav>"+
+         "</section>"+
+         "</div>");
+         detailListElement = "<section>"+
+         "<h2>Enter the serial number</h2>"+
+         "<ol>"+
+         "<li>The serial number can be found at the backplate</li>"+
+         "</ol>"+
+         "</section>";
+         $("#detail").html(detailListElement);
+
+       }else {
+         appendSwiperH(
+           start,
+           data[start].processes,
+           data[start].processes.length,
+           data[start].question,
+           data[start].positive.label,
+           data[start].negative.label,
+           data[start].positive.target,
+           data[start].negative.target);
+         prependSwiperH(
+           data[start].negative.target,
+           data[data[start].negative.target].processes,
+           data[data[start].negative.target].processes.length,
+           data[data[start].negative.target].question,
+           data[data[start].negative.target].positive.label,
+           data[data[start].negative.target].negative.label,
+           data[data[start].negative.target].positive.target,
+           data[data[start].negative.target].negative.target);
+         appendSwiperH(
+           data[start].positive.target,
+           data[data[start].positive.target].processes,
+           data[data[start].positive.target].processes.length,
+           data[data[start].positive.target].question,
+           data[data[start].positive.target].positive.label,
+           data[data[start].positive.target].negative.label,
+           data[data[start].positive.target].positive.target,
+           data[data[start].positive.target].negative.target);
+       }
      });
 
      function appendSwiperH(id,processes,processlength,question,positive,negative,positive_target,negative_target)
@@ -418,5 +446,8 @@ $(document).on("click",".sequence",function()
      play++;
      play1++;
 });
-
+    $(document).on("click","#QrButton",function()
+    {
+      console.log("Deneme");
+    });
 })
