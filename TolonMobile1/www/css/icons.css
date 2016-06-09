@@ -80,3 +80,18 @@ nav .n-negative::before,
 .icon-video:before {
     content: "\e906";
 }
+.icon-subtitles:before {
+    content: "\e90d";
+}
+.icon-fullscreen:before {
+    content: "\e90e";
+}
+.icon-parts:before {
+    content: "\e90f";
+}
+.icon-tools:before {
+    content: "\e910";
+}
+.icon-qrcode:before {
+    content: "\e911";
+}
