@@ -324,8 +324,7 @@ var ilk=false;
 $('.playpause').click(function() {
   if (play==0) {
        if (!ilk) {
-            $scope.object.src=myvids[0];
-             $scope.$apply();
+            myvid.src=myvids[0];
             document.getElementById('n-VideoElement').load();
             ilk=true;
        }
@@ -346,8 +345,7 @@ var play1=0;
 $('#n-VideoElement').click(function() {
   if (play1==0) {
        if (!ilk) {
-          $scope.object.src=myvids[0];
-           $scope.$apply();
+          myvid.src=myvids[0];
            document.getElementById('n-VideoElement').load();
            ilk=true;
       }
@@ -369,23 +367,20 @@ var myvids = [];
 var activeVideo = 0;
 myvid.addEventListener('ended', function(e) {
     activeVideo = (++activeVideo) % myvids.length;
-   $scope.object.src=myvids[activeVideo];
-   $scope.$apply();
+   myvid.src=myvids[activeVideo];
     myvid.play();
 });
 
 $('.icon-left').click(function() {
      if (activeVideo-1>0) {
-             $scope.object.src=myvids[activeVideo-1];
-              $scope.$apply();
+             myvid.src=myvids[activeVideo-1];
           myvid.play();
      }
 });
 
 $('.icon-right').click(function() {
      if (activeVideo+1<myvids.length) {
-             $scope.object.src=myvids[activeVideo+1];
-              $scope.$apply();
+             myvid.src=myvids[activeVideo+1];
           myvid.play();
      }
 });
@@ -410,13 +405,13 @@ $(document).on("click",".sequence",function()
 
       $(".sequence").removeClass('currentSequence');
       $(this).addClass('currentSequence');
-      var id=$(".currentSequence").attr('id');
-     $scope.object.src= id;
-      $scope.$apply();
+      var id1= $(this).attr('id');
+     myvid.src= String(id1);
        document.getElementById('n-VideoElement').load();
       document.getElementById('n-VideoElement').play();
       ilk=true;
       play++;
+      play1++;
 });
 
 })

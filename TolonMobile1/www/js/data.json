@@ -211,7 +211,7 @@
       "label": "Yes"
     },
     "negative": {
-      "target": "we110/steam/heater-fail/send-cp-to-service",
+      "target": "we110/steam/heater-fail/change-steam-heating-do",
       "label": "No"
     }
   },
