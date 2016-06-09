@@ -229,10 +229,12 @@ $scope.checkScrollDetail = function () {
    alert('bottom of scroll!');
  }
 };
-
+    var vidList=[];
 swiperV.on('SlideNextStart', function () {
 
     var videoCount=0;
+    var vidCount=0;
+
     var detailListElement="";
     if(historyOpen==0&&detailOpen==0){detailOpen++;}else if(historyOpen==1&&detailOpen==0){historyOpen--; }
     var id=$(".swiper-slide .swiper-slide-active").attr('id');
@@ -248,7 +250,9 @@ swiperV.on('SlideNextStart', function () {
                         break;
                    case Object:
                          for (var step in steps) {
-                              detailListElement = detailListElement + "<li class='sequence' id='video/"+data[id].processes[i].video+".mp4#t="+step+"'>"+ steps[step] +"</li>";
+                              detailListElement = detailListElement + "<li class='sequence' id='"+vidCount+"'>"+ steps[step] +"</li>";
+                              vidList.push({"id":vidCount,"src":"video/"+data[id].processes[i].video+".mp4", "time":step});
+                              vidCount++;
                          }
                         break;
                    default:
@@ -402,14 +406,13 @@ myvid.addEventListener("timeupdate", function() {
 var previtem="";
 $(document).on("click",".sequence",function()
 {
-     myvid.currentTime = 5;
-     myvid.src="";
-     myvid.pause();
+  var id1= $(this).attr('id');
+  myvid.src=vidList[id1].src;
      $(".sequence").removeClass('currentSequence');
      $(this).addClass('currentSequence');
-     var id1= $(this).attr('id');
-     myvid.src= String(id1);
-     document.getElementById('n-VideoElement').play();
+     myvid.play();
+  console.log(vidList[id1].time)
+    myvid.currentTime=10.4;
      $(".playpause").removeClass('icon-play');
      $(".playpause").addClass('icon-pause');
      ilk=true;
