@@ -254,7 +254,7 @@ swiperV.on('SlideNextStart', function () {
                         break;
                    case Object:
                          for (var step in steps) {
-                              detailListElement = detailListElement + "<li class='sequence' id='video/"+data[id].processes[i].video+".mp4#t="+step+"'>"+ steps[step] +"</li>";
+                              detailListElement = detailListElement + "<li class='sequence current' id='video/"+data[id].processes[i].video+".mp4#t="+step+"'>"+ steps[step] +"</li>";
                          }
                         break;
                    default:
@@ -403,6 +403,13 @@ myvid.addEventListener("timeupdate", function() {
   $(".seekBarDetail").val(value1);
 });
 <<<<<<< HEAD
+    $(document).on("click", ".n-negative", function(){
+      swiperH.slidePrev();
+    });
+    $(document).on("click", ".n-positive", function(){
+      swiperH.slideNext();
+    });
+=======
 $('.n-positive').click(function() {
 swiperH.slideNext();
 });
@@ -412,26 +419,15 @@ $('.n-negative').click(function() {
 $( "#sequence" ).click(function() {
     console.log("sadsad");
 });
-var previtem="";
-=======
-    $(document).on("click", ".n-negative", function(){
-      swiperH.slidePrev();
-    });
-    $(document).on("click", ".n-positive", function(){
-      swiperH.slideNext();
-    });
 
->>>>>>> c803d2be1aa107766a872af04e299c9bddc45234
 $(document).on("click",".sequence",function()
 {
-      $(".sequence").removeClass('current');
-      $(this).addClass('current');
-      $scope.object.src=(this).id;
+     $scope.object.src=(this).id;
       $scope.$apply();
       myvid.play();
       ilk=true;
       play++;
 });
-
+>>>>>>> 24ad01bff330d41b3ca4867a7d1cc25f1f4ccda1
 
 })
