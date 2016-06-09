@@ -285,7 +285,6 @@ swiperV.on('SlideNextStart', function () {
 
 });
 document.addEventListener('touchstart', function() {
-     console.log($(".detailScroll").scrollTop());
      if($(".detailScroll").scrollTop() ==0){
        $(".detailScroll").removeClass('swiper-no-swiping');
      }
@@ -397,5 +396,11 @@ myvid.addEventListener("timeupdate", function() {
   var value1 = (100 / myvid.duration) * myvid.currentTime;
   $(".seekBarDetail").val(value1);
 });
-
+$('.n-positive').click(function() {
+     console.log("sadsazxcviş12i,3ş,12ş3i,ş12,i");
+swiperH.slideNext();
+});
+$('.n-negative').click(function() {
+     swiperH.slidePrev();
+});
 })
