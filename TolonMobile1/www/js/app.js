@@ -37,6 +37,12 @@ $urlRouterProvider.otherwise('/');
  })
 
 .controller('mainCtrl', function($scope, $ionicScrollDelegate) {
+
+    $scope.posClick = function () {
+      console.log("sadsazxcvi");
+      swiperH.slideNext();
+    };
+
     $scope.checkScrollHist = function () {
 
       var currentTop = $ionicScrollDelegate.$getByHandle('scrollerHist').getScrollPosition().top;
@@ -125,7 +131,7 @@ $urlRouterProvider.otherwise('/');
                               "<section class='n-question'>"+question+"</section> "+
                               " </header>"+
                               "<nav>"+
-                              "<section class='n-positive' id='"+positive_target+"'>"+positive+"</section>"+
+                              "<section class='n-positive serhat' onClick='posClick()' id='"+positive_target+"'>"+positive+"</section>"+
                               "<section class='n-negative' id='"+negative_target+"'>"+negative+"</section>"+
                               "</nav>"+
                               "</section>"+
@@ -151,7 +157,7 @@ $urlRouterProvider.otherwise('/');
                               "<section class='n-question'>"+question+"</section> "+
                               " </header>"+
                               "<nav>"+
-                              "<section class='n-positive' id='"+positive_target+"'>"+positive+"</section>"+
+                              "<section class='n-positive serhat' id='"+positive_target+"'>"+positive+"</section>"+
                               "<section class='n-negative' id='"+negative_target+"'>"+negative+"</section>"+
                               "</nav>"+
                               "</section>"+
@@ -284,6 +290,7 @@ swiperV.on('SlideNextStart', function () {
 
 
 });
+
 document.addEventListener('touchstart', function() {
      if($(".detailScroll").scrollTop() ==0){
        $(".detailScroll").removeClass('swiper-no-swiping');
@@ -396,11 +403,11 @@ myvid.addEventListener("timeupdate", function() {
   var value1 = (100 / myvid.duration) * myvid.currentTime;
   $(".seekBarDetail").val(value1);
 });
-$('.n-positive').click(function() {
-     console.log("sadsazxcviş12i,3ş,12ş3i,ş12,i");
-swiperH.slideNext();
-});
-$('.n-negative').click(function() {
-     swiperH.slidePrev();
-});
+    $(document).on("click", ".n-negative", function(){
+      swiperH.slidePrev();
+    });
+    $(document).on("click", ".n-positive", function(){
+      swiperH.slideNext();
+    });
+
 })
