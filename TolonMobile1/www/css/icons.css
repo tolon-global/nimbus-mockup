@@ -41,44 +41,44 @@ nav .n-negative::before,
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-nimbus:before {
-    content: "\e902";
-}
-.icon-escape:before {
+icon-nimbus:before {
     content: "\e900";
 }
-.icon-guide:before {
+.icon-escape:before {
     content: "\e901";
 }
+.icon-guide:before {
+    content: "\e902";
+}
 .icon-service:before {
-    content: "\e905";
-}
-.icon-history:before {
-    content: "\e907";
-}
-.icon-check:before {
-    content: "\e908";
-}
-.icon-cross:before {
-    content: "\e909";
-}
-.icon-menu:before {
-    content: "\e90a";
-}
-.icon-left:before {
-    content: "\e90b";
-}
-.icon-right:before {
-    content: "\e90c";
-}
-.icon-pause:before {
     content: "\e903";
 }
-.icon-play:before {
+.icon-history:before {
     content: "\e904";
 }
-.icon-video:before {
+.icon-check:before {
+    content: "\e905";
+}
+.icon-cross:before {
     content: "\e906";
+}
+.icon-menu:before {
+    content: "\e907";
+}
+.icon-left:before {
+    content: "\e908";
+}
+.icon-right:before {
+    content: "\e909";
+}
+.icon-pause:before {
+    content: "\e90a";
+}
+.icon-play:before {
+    content: "\e90b";
+}
+.icon-video:before {
+    content: "\e90c";
 }
 .icon-subtitles:before {
     content: "\e90d";

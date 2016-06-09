@@ -295,8 +295,8 @@ swiperV.on('SlidePrevStart', function () {
      }else if(historyOpen==0&&detailOpen==1){
       detailOpen--;
      }
+     myvid.src="";
      myvid.pause();
-     myvid.src=null;
 });
 
 swiperH.on('SlideNextEnd', function () {
@@ -403,9 +403,7 @@ myvid.addEventListener("timeupdate", function() {
     {
       swiperH.slidePrev();
     });
-$( "#sequence" ).click(function() {
-    console.log("sadsad");
-});
+
 var previtem="";
 $(document).on("click",".sequence",function()
 {
@@ -413,7 +411,8 @@ $(document).on("click",".sequence",function()
       $(this).addClass('current');
       $scope.object.src=(this).id;
       $scope.$apply();
-      myvid.play();
+       document.getElementById('n-VideoElement').load();
+      document.getElementById('n-VideoElement').play();
       ilk=true;
       play++;
 });

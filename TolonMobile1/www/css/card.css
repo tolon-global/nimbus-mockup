@@ -45,7 +45,7 @@ body {
 
 .n-card header .n-process::after {
     opacity: .5;
-    content: "\e900";
+     content: "\e901";
     position: absolute;
     font-size: 2em;
     right: 0; top: 0;
@@ -71,7 +71,7 @@ body {
     padding-right: 2.2em;
 }
 .n-card nav .n-positive::after {
-    content: "\e90c";
+    content: "\e909";
     right: 0;
 }
 
@@ -81,7 +81,7 @@ body {
     padding-left: 2.2em;
 }
 .n-card nav .n-negative::before {
-    content: "\e90b";
+    content: "\e908";
     left: 0;
 }
 
@@ -123,7 +123,7 @@ body {
 
 .current { color: white; }
 .current::before {
-    content: "\e906";
+    content: "\e90c";
     float: right;
     margin-left: .5em;
     font-size: 2em;
@@ -178,7 +178,7 @@ body {
     font-weight: 100;
 }
 .history h1::before {
-    content: "\e907";
+     content: "\e904";
     margin-right: .5ex;
     font-size: 1.6em;
     vertical-align: middle;
@@ -236,7 +236,7 @@ body {
 }
 
 .n-card input[type=radio]:checked + label::after {
-    content: "\e908";
+    content: "\e905";
     font-size: 1.5em;
     vertical-align: middle;
     float: right;
@@ -245,7 +245,7 @@ body {
 
 .n-card.escape { background-color: #442227;}
 .n-card.escape header section:first-child::before {
-    content: "\e900 ";
+   content: "\e901 ";
     font-size: 2em;
     vertical-align: middle;
 }
