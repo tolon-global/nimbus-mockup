@@ -37,12 +37,6 @@ $urlRouterProvider.otherwise('/');
  })
 
 .controller('mainCtrl', function($scope, $ionicScrollDelegate) {
-
-    $scope.posClick = function () {
-      console.log("sadsazxcvi");
-      swiperH.slideNext();
-    };
-
     $scope.checkScrollHist = function () {
 
       var currentTop = $ionicScrollDelegate.$getByHandle('scrollerHist').getScrollPosition().top;
@@ -129,7 +123,7 @@ $urlRouterProvider.otherwise('/');
                               "<section class='n-question'>"+question+"</section> "+
                               " </header>"+
                               "<nav>"+
-                              "<section class='n-positive serhat' onClick='posClick()' id='"+positive_target+"'>"+positive+"</section>"+
+                              "<section class='n-positive' id='"+positive_target+"'>"+positive+"</section>"+
                               "<section class='n-negative' id='"+negative_target+"'>"+negative+"</section>"+
                               "</nav>"+
                               "</section>"+
@@ -155,7 +149,7 @@ $urlRouterProvider.otherwise('/');
                               "<section class='n-question'>"+question+"</section> "+
                               " </header>"+
                               "<nav>"+
-                              "<section class='n-positive serhat' id='"+positive_target+"'>"+positive+"</section>"+
+                              "<section class='n-positive' id='"+positive_target+"'>"+positive+"</section>"+
                               "<section class='n-negative' id='"+negative_target+"'>"+negative+"</section>"+
                               "</nav>"+
                               "</section>"+
@@ -286,7 +280,6 @@ swiperV.on('SlideNextStart', function () {
 
 
 });
-
 document.addEventListener('touchstart', function() {
      if($(".detailScroll").scrollTop() ==0){
        $(".detailScroll").removeClass('swiper-no-swiping');
@@ -402,7 +395,6 @@ myvid.addEventListener("timeupdate", function() {
   var value1 = (100 / myvid.duration) * myvid.currentTime;
   $(".seekBarDetail").val(value1);
 });
-<<<<<<< HEAD
 $('.n-positive').click(function() {
 swiperH.slideNext();
 });
@@ -413,15 +405,6 @@ $( "#sequence" ).click(function() {
     console.log("sadsad");
 });
 var previtem="";
-=======
-    $(document).on("click", ".n-negative", function(){
-      swiperH.slidePrev();
-    });
-    $(document).on("click", ".n-positive", function(){
-      swiperH.slideNext();
-    });
-
->>>>>>> c803d2be1aa107766a872af04e299c9bddc45234
 $(document).on("click",".sequence",function()
 {
       $(".sequence").removeClass('current');
@@ -432,6 +415,5 @@ $(document).on("click",".sequence",function()
       ilk=true;
       play++;
 });
-
 
 })
