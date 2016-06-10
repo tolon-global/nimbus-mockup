@@ -136,6 +136,10 @@ body {
 }
 .history li {
     padding: .5ex;
+    min-height: 2em;
+    vertical-align: middle;
+    padding-top: .3em;
+    box-sizing: border-box;
 }
 .history li:nth-of-type(2n+1) {
     background-color: rgba(249, 249, 242, .1)
