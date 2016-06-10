@@ -241,7 +241,7 @@ $urlRouterProvider.otherwise('/');
         }
 
 
-        console.log("once"+start);
+        console.log(HistList);
         if(dir==0){
           start=negativeid;
         }else{
@@ -508,41 +508,52 @@ $(document).on("click",".n-negative",function()
  swiperH.slidePrev();
 });
 
-var escapeCard="service/identify-machine";
-$(document).on("click",".nimbusexit",function()
-{
-     var neg="";var pos=""; var negtar="";var postar="";var opt=""; var ques=""; var detail="";
-     $.getJSON( "js/data.json", function(data) {
+    var escapeCard="escape/general/root-cause";
+    $(document).on("click",".nimbusexit",function()
+    {
+      var neg="";var pos=""; var negtar="";var postar="";var opt=""; var ques=""; var detail="";
+      $.getJSON( "js/data.json", function(data) {
 
-          neg= data[escapeCard].negative.label;
-          pos= data[escapeCard].positive.label;
-          negtar= data[escapeCard].negative.target;
-          postar= data[escapeCard].positive.target;
-          ques=data[escapeCard].question;
-          for (var i = 0; i < data[escapeCard].options.length; i++) {
-               opt=opt+"<input type='radio' name='whats-wrong' value='"+data[escapeCard].options[i].target+"' id='"+data[escapeCard].options[i].title+"'><label for='"+data[escapeCard].options[i].title+"'>"+data[escapeCard].options[i].title+"</label>";
-               detail=detail + "<section><h2>"+data[escapeCard].options[i].title+"</h2><p>"+data[escapeCard].options[i].description+"</p></section>";
-          }
+        neg= data[escapeCard].negative.label;
+        pos= data[escapeCard].positive.label;
+        negtar= data[escapeCard].negative.target;
+        postar= data[escapeCard].positive.target;
+        ques=data[escapeCard].question;
+        for (var i = 0; i < data[escapeCard].options.length; i++) {
+          opt=opt+"<input type='radio' name='whats-wrong' value='"+data[escapeCard].options[i].target+"' id='"+data[escapeCard].options[i].title+"'><label for='"+data[escapeCard].options[i].title+"'>"+data[escapeCard].options[i].title+"</label>";
+          detail=detail + "<section><h2>"+data[escapeCard].options[i].title+"</h2><p>"+data[escapeCard].options[i].description+"</p></section>";
+        }
 
-          swiperH.removeSlide([0, 1,2]);
-           swiperH.appendSlide("<div class='swiper-slide' id='"+"id"+"'>"+
-                               "<section class= 'n-escape n-card' >"+
-                               "<header class='n-esc'>"+
-                               "<section class='question'>"+ques+opt+
-                               "</section>"+
-                               " </header>"+
-                               "<nav>"+
-                               "<section class='n-positive' id='"+postar+"'>"+pos+"</section>"+
-                               "<section class='n-negative' id='"+negtar+"'>"+neg+"</section>"+
-                               "</nav>"+
-                               "</section>"+
-                               "</div>");
-          console.log("<main>"+detail+"</main>");
-           $("#DetailCard").css("background-color","#442227");
-           $("#detail").html("<main>"+detail+"</main>");
-     })
-});
-
+        swiperH.removeSlide([0, 1,2]);
+        swiperH.appendSlide("<div class='swiper-slide' id='"+"id"+"'>"+
+        "<section class= 'n-escape n-card' >"+
+        "<header class='n-esc'>"+
+        "<section class='question'>"+ques+opt+
+        "</section>"+
+        " </header>"+
+        "<nav>"+
+        "<section class='n-positive exitPositive' id='"+postar+"'>"+pos+"</section>"+
+        "<section class='n-negative exitNegative' id='"+negtar+"'>"+neg+"</section>"+
+        "</nav>"+
+        "</section>"+
+        "</div>");
+        console.log("<main>"+detail+"</main>");
+        $("#DetailCard").css("background-color","#442227 ");
+        $("#detail").html("<main>"+detail+"</main>");
+      })
+    });
+    $(document).on("click",".exitPositive",function()
+    {
+      dir=1;
+      swiperH.removeSlide([0, 1]);
+      getCard(dir);
+    });
+    $(document).on("click",".exitNegative",function()
+    {
+      dir=0;
+      swiperH.removeSlide([1, 2]);
+      getCard(dir);
+    });
 var previtem="";
 $(document).on("click",".sequence",function()
 {
