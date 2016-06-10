@@ -54,8 +54,9 @@ $stateProvider
 $urlRouterProvider.otherwise('/');
 
 })
-.controller('OpenCtrl', function($scope, $state, $cordovaBarcodeScanner, $cordovaToast) {
+.controller('OpenCtrl', function($scope, $state, $cordovaBarcodeScanner, $cordovaToast,$ionicHistory) {
    $scope.Servis = function() {
+
      $state.go('main');
    };
     $scope.Login = function() {
@@ -89,7 +90,7 @@ $urlRouterProvider.otherwise('/');
  })
 
 
-.controller('mainCtrl', function($scope, $ionicScrollDelegate, $cordovaBarcodeScanner,$state) {
+.controller('mainCtrl', function($scope, $ionicScrollDelegate, $cordovaBarcodeScanner,$state, $ionicHistory) {
 
     $scope.checkScrollHist = function () {
 
@@ -179,7 +180,6 @@ $urlRouterProvider.otherwise('/');
          "</div>");
          detailListElement = "<section>"+
          "<h2 class='detailTitle' style='margin: 2em 1em 1em; font-size: .75em; font-weight: 100;'>Enter the serial number</h2>"+
-         "</section>"+
          "<div class='videoContent' style='visibility: collapse'>"+
          "<video id='n-VideoElement' preload='auto'  type='video/mp4'  webkitallowfullscreen mozallowfullscreen allowfullscreen  poster='css/video.svg'>"+
          "</video>"+
@@ -192,11 +192,12 @@ $urlRouterProvider.otherwise('/');
          "<div class='icon-fullscreen'></div>"+
          "</div>"+
          "</div>"+
-         "<scrollview class='detailScroll' id='detailDelegate'>"+
+         "<scrollview class='detailScroll swiper-no-swiping' id='detailDelegate' style='height: 40%' >"+
          "<ol>"+
          "<li>The serial number can be found at the backplate</li>"+
          "</ol>"+
-         "</scrollview>";
+         "</scrollview>"+
+         "</section>";
          $("#detail").html(detailListElement);
 
        }else {
@@ -776,7 +777,9 @@ $(document).on("click","#simdilik",function()
    });
 $(document).on("click","#final",function()
  {
+      $ionicHistory.clearHistory();
      $state.go('index');
+
  });
 $(document).on("click","#QrButton",function()
    {
