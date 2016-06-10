@@ -169,7 +169,7 @@ $urlRouterProvider.otherwise('/');
          "<section class='n-process'>"+
          "Enter the serial number"+
          "<input style='width: 91vw' type='number' name='some_name' value='' placeholder='Serial number'>"+
-         "</section><section><button class='qr' id='QrButton'>Get from QR code</button></section> "+
+         "</section><section><button class='qr' id='simdilik'>Get from QR code</button></section> "+
          " </header>"+
          "<nav>"+
          "<section class='n-positive'>"+"Done </section>"+
@@ -182,7 +182,9 @@ $urlRouterProvider.otherwise('/');
          "<ol>"+
          "<li>The serial number can be found at the backplate</li>"+
          "</ol>"+
-         "</section>";
+         "</section>"+
+         "<scrollview class='detailScroll' id='detailDelegate'>"+
+         "</scrollview>";
          $("#detail").html(detailListElement);
 
        }else {
