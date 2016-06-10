@@ -64,7 +64,7 @@ $urlRouterProvider.otherwise('/');
       $cordovaBarcodeScanner.scan().then(function(imageData) {
         var res1 = imageData.text;
         if(res1!=null){
-
+             alert(datLog[res1]);
           $cordovaToast
             .show("Password : "+datLog[res1], 'long', 'center')
             .then(function(success) {
@@ -128,6 +128,7 @@ $urlRouterProvider.otherwise('/');
    var start="";
       var strt=false;
     function getFirstCard(start){
+         swiperV.unlockSwipes();
       $.getJSON( "js/data.json", function(data) {
           appendSwiperH(
             start,
@@ -176,28 +177,7 @@ $urlRouterProvider.otherwise('/');
          "</nav>"+
          "</section>"+
          "</div>");
-         detailListElement = "<section>"+
-         "<h2 class='detailTitle' style='margin: 2em 1em 1em; font-size: .75em; font-weight: 100;'>Enter the serial number</h2>"+
-         "<div class='videoContent' style='visibility: hidden'>"+
-         "<video id='n-VideoElement' preload='auto'  type='video/mp4'  webkitallowfullscreen mozallowfullscreen allowfullscreen  poster='css/video.svg'>"+
-         "</video>"+
-         "<div class='video-controls'>"+
-         "<div class='playpause icon-play'></div>"+
-         "<progress class='seekBarDetail' value='' max='100'></progress>"+
-         "<div class='icon-subtitles'></div>"+
-         "<div class='icon-left'></div>"+
-         "<div class='icon-right'></div>"+
-         "<div class='icon-fullscreen'></div>"+
-         "</div>"+
-         "</div>"+
-         "<scrollview class='detailScroll swiper-no-swiping' id='detailDelegate' style='height: 40%' >"+
-         "<ol>"+
-         "<li>The serial number can be found at the backplate</li>"+
-         "</ol>"+
-         "</scrollview>"+
-         "</section>";
-         $("#detail").html(""); $(".detailScroll").html(""); $("#detail").html(detailListElement);
-
+         swiperV.lockSwipes();
        }else {
          appendSwiperH(
            start,
@@ -240,18 +220,32 @@ $urlRouterProvider.otherwise('/');
           if (negative==null) {
                negative="No";
           }
-          swiperH.appendSlide("<div class='swiper-slide' id='"+id+"'>"+
-                              "<section class='n-card' >"+
-                              "<header>"+
-                              processestitle+
-                              "<section class='n-question'>"+question+"</section> "+
-                              " </header>"+
-                              "<nav>"+
-                              "<section class='n-positive card-main1' id='"+positive_target+"'>"+positive+"</section>"+
-                              "<section class='n-negative card-main2' id='"+negative_target+"'>"+negative+"</section>"+
-                              "</nav>"+
-                              "</section>"+
-                              "</div>");
+          if (positive_target=="$final" || negative_target=="$final") {
+               swiperH.appendSlide("<div class='swiper-slide' id='"+id+"'>"+
+               "<section class= 'n-card' >"+
+               "<header>"+
+               "<section class='question'>"+question+"</section>"+
+               " </header>"+
+               "<nav><section class='final' id='final'>Main menu</section></nav>"+
+               "</section>"+
+               "</div>");
+          }
+          else
+          {
+               swiperH.appendSlide("<div class='swiper-slide' id='"+id+"'>"+
+                                  "<section class='n-card' >"+
+                                  "<header>"+
+                                  processestitle+
+                                  "<section class='n-question'>"+question+"</section> "+
+                                  " </header>"+
+                                  "<nav>"+
+                                  "<section class='n-positive card-main1' id='"+positive_target+"'>"+positive+"</section>"+
+                                  "<section class='n-negative card-main2' id='"+negative_target+"'>"+negative+"</section>"+
+                                  "</nav>"+
+                                  "</section>"+
+                                  "</div>");
+          }
+
      }
 
      function prependSwiperH(id,processes,processlength,question,positive,negative,positive_target,negative_target)
@@ -266,18 +260,32 @@ $urlRouterProvider.otherwise('/');
           if (negative==null) {
                negative="No";
           }
-          swiperH.prependSlide("<div class='swiper-slide' id='"+id+"'>"+
-                              "<section class='n-card' >"+
-                              "<header>"+
-                              processestitle+
-                              "<section class='n-question'>"+question+"</section> "+
-                              " </header>"+
-                              "<nav>"+
-                              "<section class='n-positive card-main1' id='"+positive_target+"'>"+positive+"</section>"+
-                              "<section class='n-negative card-main2' id='"+negative_target+"'>"+negative+"</section>"+
-                              "</nav>"+
-                              "</section>"+
-                              "</div>");
+          if (positive_target=="$final" || negative_target=="$final") {
+               swiperH.appendSlide("<div class='swiper-slide' id='"+id+"'>"+
+               "<section class= 'n-card' >"+
+               "<header>"+
+               "<section class='question'>"+question+"</section>"+
+               " </header>"+
+               "<nav><section class='final' id='final'>Main menu</section></nav>"+
+               "</section>"+
+               "</div>");
+          }
+          else
+          {
+               swiperH.prependSlide("<div class='swiper-slide' id='"+id+"'>"+
+                                   "<section class='n-card' >"+
+                                   "<header>"+
+                                   processestitle+
+                                   "<section class='n-question'>"+question+"</section> "+
+                                   " </header>"+
+                                   "<nav>"+
+                                   "<section class='n-positive card-main1' id='"+positive_target+"'>"+positive+"</section>"+
+                                   "<section class='n-negative card-main2' id='"+negative_target+"'>"+negative+"</section>"+
+                                   "</nav>"+
+                                   "</section>"+
+                                   "</div>");
+          }
+
 
      }
 
@@ -351,7 +359,7 @@ $urlRouterProvider.otherwise('/');
                     data[negativeid].negative.label,
                     data[negativeid].positive.target,
                     data[negativeid].negative.target);
-                    appendSwiperH(
+        appendSwiperH(
                     positiveid,
                     data[positiveid].processes,
                     data[positiveid].processes.length,
@@ -433,12 +441,17 @@ swiperV.on('SlideNextStart', function () {
                         break;
               }
              if (data[id].processes[i].video!=null) {
+                  console.log(data[id].processes[i].video);
                videoCount++;
                myvid.src="video/"+data[id].processes[0].video+".mp4";
                  $(".seekBarDetail").val(0);
                  $(".playpause").addClass('icon-play');
                  $(".playpause").removeClass('icon-pause');
                myvids.push("video/"+data[id].processes[i].video+".mp4");
+             }
+             else {
+                    console.log($(".detailScroll").html());
+                  console.log("e null bu");
              }
              $(".detailScroll").scrollTop(1);
 
@@ -555,6 +568,8 @@ $('.playpause').click(function() {
        if (!ilk) {
             myvid.src=myvids[0];
             document.getElementById('n-VideoElement').load();
+            $("track").attr('src',myvids[0].substring(0, myvids[0].length-4)+".vtt");
+            console.log($("track").attr('src'));
             ilk=true;
        }
       document.getElementById('n-VideoElement').play();
@@ -576,6 +591,8 @@ $('#n-VideoElement').click(function() {
        if (!ilk) {
           myvid.src=myvids[0];
            document.getElementById('n-VideoElement').load();
+           $("track").attr('src',myvids[0].substring(0, myvids[0].length-4)+".vtt");
+           console.log($("track").attr('src'));
            ilk=true;
       }
       document.getElementById('n-VideoElement').play();
@@ -595,22 +612,37 @@ var myvid = document.getElementById('n-VideoElement');
 var myvids = [];
 var activeVideo = 0;
 myvid.addEventListener('ended', function(e) {
-    activeVideo = (++activeVideo) % myvids.length;
-   myvid.src=myvids[activeVideo];
-    myvid.play();
+          $(".sequence").removeClass('currentSequence');
+    if (activeVideo<myvids.length) {
+         activeVideo = (++activeVideo) % myvids.length;
+         myvid.src=myvids[activeVideo];
+         $("track").attr('src',myvids[activeVideo].substring(0, myvids[activeVideo].length-4)+".vtt");
+         console.log($("track").attr('src'));
+         myvid.play();
+    }
 });
 
 $('.icon-left').click(function() {
+          $(".sequence").removeClass('currentSequence');
      if (activeVideo-1>0) {
              myvid.src=myvids[activeVideo-1];
+             $("track").attr('src',myvids[activeVideo-1].substring(0, myvids[activeVideo-1].length-4)+".vtt");
+             console.log($("track").attr('src'));
           myvid.play();
      }
 });
 
 $('.icon-right').click(function() {
+    $(".sequence").removeClass('currentSequence');
      if (activeVideo+1<myvids.length) {
-             myvid.src=myvids[activeVideo+1];
+        myvid.src=myvids[activeVideo+1];
+        $("track").attr('src',myvids[activeVideo+1].substring(0, myvids[activeVideo+1].length-4)+".vtt");
+        console.log($("track").attr('src'));
           myvid.play();
+     }
+     else {
+          myvid.src="";
+          myvid.pause();
      }
 });
 
@@ -724,8 +756,12 @@ $(document).on("click",".n-negative",function()
     var previtem="";
     $(document).on("click",".sequence",function()
     {
+          myvid.pause();
+          myvid.load();
       var id1= $(this).attr('id');
       myvid.src=vidList[id1].src;
+      $("track").attr('src',vidList[id1].substring(0, vidList[id1].length-4)+".vtt");
+      console.log($("track").attr('src'));
       $(".sequence").removeClass('currentSequence');
       $(this).addClass('currentSequence');
       myvid.play();
@@ -748,21 +784,7 @@ $(document).on("click",".n-negative",function()
       swiperH.removeSlide([1, 2]);
       getCard(dir);
     });
-var previtem="";
-$(document).on("click",".sequence",function()
-{
-  var id1= $(this).attr('id');
-  myvid.src=vidList[id1].src;
-     $(".sequence").removeClass('currentSequence');
-     $(this).addClass('currentSequence');
-     myvid.play();
-    myvid.currentTime=vidList[id1].time;
-     $(".playpause").removeClass('icon-play');
-     $(".playpause").addClass('icon-pause');
-     ilk=true;
-     play++;
-     play1++;
-});
+
 $(document).on("click","#simdilik",function()
    {
         start="we110/steam/heater-fail/check-steam-pressure";

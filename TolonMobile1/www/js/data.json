@@ -4,8 +4,12 @@
     "class": "deadend",
     "final": true,
     "processes": [],
-    "negative": {},
-    "positive": {}
+    "negative": {
+      "target": "$final"
+    },
+    "positive": {
+      "target": "$final"
+    }
   },
   "escape/general/root-cause": {
     "class": "escape",
@@ -74,8 +78,12 @@
     "description": "Your order has been received. You can continue this service call by\nentering the machine serial number again.",
     "final": true,
     "processes": [],
-    "negative": {},
-    "positive": {}
+    "negative": {
+      "target": "$final"
+    },
+    "positive": {
+      "target": "$final"
+    }
   },
   "escape/general/continue-later": {
     "class": "escape",
@@ -84,8 +92,12 @@
     "description": "Your progress is saved. You can continue this service call by\nentering the machine serial number again.",
     "final": true,
     "processes": [],
-    "negative": {},
-    "positive": {}
+    "negative": {
+      "target": "$final"
+    },
+    "positive": {
+      "target": "$final"
+    }
   },
   "escape/general/something-else": {
     "class": "escape",
@@ -219,8 +231,12 @@
     "call": "+90-232-363-0000",
     "description": "We are sorry that we couldn't find a solution immediately. Our staff\nis always happy to help and solve your problem. Just give us a call.",
     "processes": [],
-    "negative": {},
-    "positive": {}
+    "negative": {
+      "target": "$final"
+    },
+    "positive": {
+      "target": "$final"
+    }
   },
   "td/alarm/alarm-code": {
     "title": "Alarm code",
@@ -350,16 +366,24 @@
     "question": "That's good then :)",
     "final": true,
     "processes": [],
-    "negative": {},
-    "positive": {}
+    "negative": {
+      "target": "$final"
+    },
+    "positive": {
+      "target": "$final"
+    }
   },
   "td/alarm/non-alarm-problem": {
     "title": "Problem",
     "question": "Coming soon",
     "final": true,
     "processes": [],
-    "negative": {},
-    "positive": {}
+    "negative": {
+      "target": "$final"
+    },
+    "positive": {
+      "target": "$final"
+    }
   },
   "td/vacuum-alarm/check-vacuum-parameters": {
     "title": "Check Vacuum Parameters",
@@ -964,16 +988,24 @@
     "final": true,
     "question": "Thanks",
     "processes": [],
-    "negative": {},
-    "positive": {}
+    "negative": {
+      "target": "$final"
+    },
+    "positive": {
+      "target": "$final"
+    }
   },
   "td/vacuum-alarm/send-cp-to-service": {
     "title": "Send the CP to the service",
     "final": true,
     "question": "Thanks",
     "processes": [],
-    "negative": {},
-    "positive": {}
+    "negative": {
+      "target": "$final"
+    },
+    "positive": {
+      "target": "$final"
+    }
   },
   "we110/alarm/alarm-code": {
     "title": "Alarm code",
@@ -1406,8 +1438,12 @@
     "final": true,
     "question": "Looks like your problem is solved :)",
     "processes": [],
-    "negative": {},
-    "positive": {}
+    "negative": {
+      "target": "$final"
+    },
+    "positive": {
+      "target": "$final"
+    }
   },
   "we110/steam/heater-fail/send-cp-to-service": {
     "title": "CP to service",
@@ -1415,8 +1451,12 @@
     "question": "Send control panel to service",
     "description": "The control panel needs to be serviced in the factory. Please contact\nTolon at service@tolon.com for instructions.",
     "processes": [],
-    "negative": {},
-    "positive": {}
+    "negative": {
+      "target": "$final"
+    },
+    "positive": {
+      "target": "$final"
+    }
   },
   "we110/steam/heater-fail/run-a-program": {
     "title": "Run A Program",

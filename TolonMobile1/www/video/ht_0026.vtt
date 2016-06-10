@@ -1,0 +1,44 @@
+WEBVTT Nimbus Service Procedure ht_0026
+
+00:00.000 --> 00:07.000
+- Press the "OK" button to assign the target DO
+
+00:07.000 --> 00:10.000
+- Press the "Exit" button to exit. At this stage the software will ask you if you want to save the changes. To save your changes select the "Yes" button by pressing the left-right direction buttons and press the "OK" button to confirm the selection
+
+00:10.000 --> 00:16.000
+- The software will return to the "Service" menu
+
+00:16.000 --> 00:28.000
+- Detach the S13 socket plug from the back of the Control Panel
+
+00:28.000 --> 00:50.000
+- Remove the 7. socket terminal from the S13 socket plug by pushing down the fins of the socket terminal with the terminal removal tool
+
+00:50.000 --> 00:55.000
+- Attach the S13 socket plug into the S13 socket
+
+00:55.000 --> 01:11.000
+- Raise up the fins of the socket terminal with the terminal removal tool
+
+01:11.000 --> 01:16.000
+- Detach the S19 socket plug from the back of the Control Panel
+
+01:16.000 --> 01:23.000
+- Insert the socket terminal into the 6. socket of the S19 socket plug which corresponds to the DO which has been assigned in the DO assignment step in this video (Step no 1). Warning: You have to select the corresponding socket and socket plug if you choose another DO for this procedure. You can find a list of the DOs and their corresponding sockets on the back of the Control Panel
+
+01:23.000 --> 01:29.000
+- Attach the S19 socket plug into the S19 socket
+
+01:29.000 --> 01:35.000
+- Enter the "Diagnostic" screen by selecting and pressing the "Diagnostic" button
+
+01:35.000 --> 01:40.000
+- Select the "Steam Valve" DO on the "Digital Outputs" frame
+
+01:40.000 --> 01:44.000
+- Press the "OK" button to activate the "Steam Valve" DO
+
+01:44.000 --> 59:59.000
+- Check the voltage value by inserting one lead of the multimeter into any socket between the 12. and the 22. sockets on the S11 socket group and inserting the other lead of the multimeter into the 6. socket on the S19 socket group
+
