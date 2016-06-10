@@ -274,6 +274,8 @@ body {
     vertical-align: middle;
 }
 
+.card.deadend { background-color: black;}
+
 .card main p {
     margin: 0em .5em 1em;
 }
