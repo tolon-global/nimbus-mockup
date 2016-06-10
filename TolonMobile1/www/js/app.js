@@ -1,3 +1,27 @@
+var datLog={
+  "61f4ce71-b464-43ae-8819-7dc6a1b5d109": "946717",
+  "242a9171-edc3-4989-a9f5-e13475843013": "025498",
+  "bef0075f-c854-40d2-95c5-9d3151cad6cf": "662325",
+  "296efb70-9d47-4a65-be7c-15b08c221f5e": "262474",
+  "6bc0067d-1e5e-410a-b80e-16103fbe2a8d": "121032",
+  "b46c7892-ce89-4148-87df-1fe22e9c8741": "942738",
+  "069d627f-7be6-4170-ba81-dffa4102cf54": "720582",
+  "8d2505bb-e9f6-44a5-af28-80620dc771b5": "038618",
+  "f4e2b897-ca6d-4d11-ae20-bb1a64e1fb12": "105745",
+  "e28af417-72fc-45f3-ba7a-ce11dbcdd604": "927583",
+  "b2ffbe53-5ea2-46f0-a209-29f3dfce27e9": "916520",
+  "1faf127c-9daf-468f-91b4-20508a5a317f": "365020",
+  "e3b712a3-3fc3-4939-a3d9-7f8b31e14e48": "734473",
+  "f03d6b6a-6b29-4006-9d6b-afd3bc5284ab": "892416",
+  "208bd7a1-321f-4512-a740-6dfc5da6506f": "972427",
+  "d0a70729-62c2-44ab-9c2e-9726d57ae46b": "129562",
+  "daf46e0f-b5b4-479d-88bf-0376b16ef3af": "630098",
+  "d7130478-f551-48f6-811b-2d4853ef671f": "703296",
+  "b985296b-2331-4c44-b602-b6dca35b629b": "823239",
+  "a84ec274-e1c9-4bdf-a2e9-acb72ec26706": "573514"
+}
+
+
 angular.module('starter', ['ionic','ngCordova'])
 
 .run(function($ionicPlatform) {
@@ -30,11 +54,40 @@ $stateProvider
 $urlRouterProvider.otherwise('/');
 
 })
-.controller('OpenCtrl', function($scope, $state) {
+.controller('OpenCtrl', function($scope, $state, $cordovaBarcodeScanner, $cordovaToast) {
    $scope.Servis = function() {
      $state.go('main');
    };
+    $scope.Login = function() {
+
+      $cordovaBarcodeScanner.scan().then(function(imageData) {
+        console.log("Barcode Format -> " + imageData.format);
+        console.log("Cancelled -> " + imageData.cancelled);
+        var res1 = imageData.text;
+        if(res1!=null){
+
+          $cordovaToast
+            .show("Password : "+datLog[res1], 'long', 'center')
+            .then(function(success) {
+              // success
+            }, function (error) {
+              // error
+            });
+        }else{
+          $cordovaToast
+            .show('Please Try Again', 'long', 'center')
+            .then(function(success) {
+              // success
+            }, function (error) {
+              // error
+            });
+        };
+      }, function(error) {
+        console.log("An error happened -> " + error);
+      });
+    };
  })
+
 
 .controller('mainCtrl', function($scope, $ionicScrollDelegate, $cordovaBarcodeScanner) {
     $scope.checkScrollHist = function () {
@@ -72,8 +125,39 @@ $urlRouterProvider.otherwise('/');
        initialSlide:1
      });
 
-   var start="we110/steam/heater-fail/check-steam-heating-do";
-      var strt=true;
+   var start="";
+      var strt=false;
+    function getFirstCard(start){
+      $.getJSON( "js/data.json", function(data) {
+          appendSwiperH(
+            start,
+            data[start].processes,
+            data[start].processes.length,
+            data[start].question,
+            data[start].positive.label,
+            data[start].negative.label,
+            data[start].positive.target,
+            data[start].negative.target);
+          prependSwiperH(
+            data[start].negative.target,
+            data[data[start].negative.target].processes,
+            data[data[start].negative.target].processes.length,
+            data[data[start].negative.target].question,
+            data[data[start].negative.target].positive.label,
+            data[data[start].negative.target].negative.label,
+            data[data[start].negative.target].positive.target,
+            data[data[start].negative.target].negative.target);
+          appendSwiperH(
+            data[start].positive.target,
+            data[data[start].positive.target].processes,
+            data[data[start].positive.target].processes.length,
+            data[data[start].positive.target].question,
+            data[data[start].positive.target].positive.label,
+            data[data[start].positive.target].negative.label,
+            data[data[start].positive.target].positive.target,
+            data[data[start].positive.target].negative.target);
+      });
+    }
      $.getJSON( "js/data.json", function(data) {
        if (strt==false){
 
@@ -83,7 +167,7 @@ $urlRouterProvider.otherwise('/');
          "<section class='n-process'>"+
          "Enter the serial number"+
          "<input style='width: 82vw' type='number' name='some_name' value='' placeholder='Serial number'>"+
-         "</section><section><button class='qr'>Get from QR code</button></section> "+
+         "</section><section><button class='qr' id='QrButton'>Get from QR code</button></section> "+
          " </header>"+
          "<nav>"+
          "<section class='n-positive' id=''>"+"Done </section>"+
@@ -292,12 +376,12 @@ $scope.checkScrollDetail = function () {
  var maxTop = $ionicScrollDelegate.$getByHandle('scrollerDetail').getScrollView().__maxScrollTop;
 
  if (currentTop == 0) {
-   alert('top of scroll!');
+   //alert('top of scroll!');
  }
 
  if (currentTop >= maxTop) {
    // hit the bottom
-   alert('bottom of scroll!');
+   //alert('bottom of scroll!');
  }
 };
     var vidList=[];
@@ -508,12 +592,12 @@ $(document).on("click",".n-negative",function()
  swiperH.slidePrev();
 });
 
-var escapeCard="escape/general/root-cause";
+    var escapeCard="escape/general/root-cause";
 
-var exit=0;
-$(document).on("click",".nimbusexit",function()
-{
-     exit=1;
+    var exit=0;
+    $(document).on("click",".nimbusexit",function()
+    {
+      exit=1;
       var neg="";var pos=""; var negtar="";var postar="";var opt=""; var ques=""; var detail="";
       $.getJSON( "js/data.json", function(data) {
 
@@ -554,47 +638,74 @@ $(document).on("click",".nimbusexit",function()
 
       })
 
-});
-$(document).on("click",".exitOpt",function()
+    });
+    $(document).on("click",".exitOpt",function()
     {
-       var neg="";var pos=""; var negtar="";var postar="";var opt=""; var ques=""; var detail="";
+      var neg="";var pos=""; var negtar="";var postar="";var opt=""; var ques=""; var detail="";
       $.getJSON( "js/data.json", function(data) {
 
-         neg= data[escapeCard].negative.label;
-         pos= data[escapeCard].positive.label;
-         negtar= data[escapeCard].negative.target;
-         postar= data[escapeCard].positive.target;
-         ques=data[escapeCard].question;
-         for (var i = 0; i < data[escapeCard].options.length; i++) {
-           opt=opt+"<input type='radio' class='exitOpt' name='whats-wrong' value='"+data[escapeCard].options[i].target+"' id='"+data[escapeCard].options[i].title+"'><label for='"+data[escapeCard].options[i].title+"'>"+data[escapeCard].options[i].title+"</label>";
-           detail=detail + "<section><h2>"+data[escapeCard].options[i].title+"</h2><p>"+data[escapeCard].options[i].description+"</p></section>";
-         }
-         swiperH.appendSlide("<div class='swiper-slide' id='"+"id"+"'>"+
-         "<section class= 'n-escape n-card' >"+
-         "<header class='n-esc'>"+
-         "<section class='question'>"+ques+opt+
-         "</section>"+
-         " </header>"+
-         "<nav>"+
-         "<section class='n-positive exitPositive' id='"+postar+"'>"+pos+"</section>"+
-         "<section class='n-negative exitNegative' id='"+negtar+"'>"+neg+"</section>"+
-         "</nav>"+
-         "</section>"+
-         "</div>");
-         console.log("<main>"+detail+"</main>");
-         $("#DetailCard").css("background-color","#442227 ");
-         $("#detail").html("<main>"+detail+"</main>");
+        neg= data[escapeCard].negative.label;
+        pos= data[escapeCard].positive.label;
+        negtar= data[escapeCard].negative.target;
+        postar= data[escapeCard].positive.target;
+        ques=data[escapeCard].question;
+        for (var i = 0; i < data[escapeCard].options.length; i++) {
+          opt=opt+"<input type='radio' class='exitOpt' name='whats-wrong' value='"+data[escapeCard].options[i].target+"' id='"+data[escapeCard].options[i].title+"'><label for='"+data[escapeCard].options[i].title+"'>"+data[escapeCard].options[i].title+"</label>";
+          detail=detail + "<section><h2>"+data[escapeCard].options[i].title+"</h2><p>"+data[escapeCard].options[i].description+"</p></section>";
+        }
+        swiperH.appendSlide("<div class='swiper-slide' id='"+"id"+"'>"+
+        "<section class= 'n-escape n-card' >"+
+        "<header class='n-esc'>"+
+        "<section class='question'>"+ques+opt+
+        "</section>"+
+        " </header>"+
+        "<nav>"+
+        "<section class='n-positive exitPositive' id='"+postar+"'>"+pos+"</section>"+
+        "<section class='n-negative exitNegative' id='"+negtar+"'>"+neg+"</section>"+
+        "</nav>"+
+        "</section>"+
+        "</div>");
+        console.log("<main>"+detail+"</main>");
+        $("#DetailCard").css("background-color","#442227 ");
+        $("#detail").html("<main>"+detail+"</main>");
       })
     });
 
-$(document).on("click",".exitPositive",function()
-{
-swiperH.slideNext();
-});
-$(document).on("click",".exitNegative",function()
-{
-swiperH.slidePrev();
-});
+    $(document).on("click",".exitPositive",function()
+    {
+      swiperH.slideNext();
+    });
+    $(document).on("click",".exitNegative",function()
+    {
+      swiperH.slidePrev();
+    });
+    var previtem="";
+    $(document).on("click",".sequence",function()
+    {
+      var id1= $(this).attr('id');
+      myvid.src=vidList[id1].src;
+      $(".sequence").removeClass('currentSequence');
+      $(this).addClass('currentSequence');
+      myvid.play();
+      myvid.currentTime=vidList[id1].time;
+      $(".playpause").removeClass('icon-play');
+      $(".playpause").addClass('icon-pause');
+      ilk=true;
+      play++;
+      play1++;
+    });
+    $(document).on("click",".exitPositive",function()
+    {
+      dir=1;
+      swiperH.removeSlide([0, 1]);
+      getCard(dir);
+    });
+    $(document).on("click",".exitNegative",function()
+    {
+      dir=0;
+      swiperH.removeSlide([1, 2]);
+      getCard(dir);
+    });
 var previtem="";
 $(document).on("click",".sequence",function()
 {
@@ -615,9 +726,11 @@ $(document).on("click","#QrButton",function()
      $cordovaBarcodeScanner.scan().then(function(imageData) {
        console.log("Barcode Format -> " + imageData.format);
        console.log("Cancelled -> " + imageData.cancelled);
-       res1 = imageData.text;
-       if(res1=="WE110"){
-         //$state.go('main');
+       var res1 = JSON.parse(imageData.text);
+       if(res1!=null){
+         start=res1["start"];
+         swiperH.removeSlide([0]);
+         getFirstCard(start);
        }else{
          alert("QrCode is not Valid Please Try Again!");
        }

@@ -227,18 +227,6 @@ body {
     align-self: stretch;
     outline: none;
 }
-.n-card textarea {
-    border: none;
-    background: hsla(0,0%,0%,.3);
-    color: white;
-    font: inherit;
-    padding: .5em 1ex;
-    width: 94vw;
-    margin: 1ex -0.5em 0.5em -0.3em!important;
-    align-self: stretch;
-    outline: none;
-        height: 60vh;
-}
 
 .n-card input::-webkit-input-placeholder {
   color: #405A68;
@@ -302,3 +290,16 @@ strong {
      margin-right: .2em;
      opacity: .6;
  }
+
+.n-card textarea {
+  border: none;
+  background: hsla(0,0%,0%,.3);
+  color: white;
+  font: inherit;
+  padding: .5em 1ex;
+  width: 94vw;
+  margin: 1ex -0.5em 0.5em -0.3em!important;
+  align-self: stretch;
+  outline: none;
+  height: 60vh;
+}
