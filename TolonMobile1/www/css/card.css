@@ -269,6 +269,16 @@ strong {
     color: white;
     font-weight: inherit;
 }
+.n-card nav .final {
+    background-color: #2B6C73;
+}
+.n-card nav .final::before {
+    content: "\e907 ";
+    font-size: 2.4em;
+    vertical-align: middle;
+    mix-blend-mode: overlay;
+}
+
 .n-card button.qr {
      background-color: #38a;
      border: none;

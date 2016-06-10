@@ -89,7 +89,8 @@ $urlRouterProvider.otherwise('/');
  })
 
 
-.controller('mainCtrl', function($scope, $ionicScrollDelegate, $cordovaBarcodeScanner) {
+.controller('mainCtrl', function($scope, $ionicScrollDelegate, $cordovaBarcodeScanner,$state) {
+
     $scope.checkScrollHist = function () {
 
       var currentTop = $ionicScrollDelegate.$getByHandle('scrollerHist').getScrollPosition().top;
@@ -158,19 +159,20 @@ $urlRouterProvider.otherwise('/');
             data[data[start].positive.target].negative.target);
       });
     }
+    var baslangic=0;
      $.getJSON( "js/data.json", function(data) {
        if (strt==false){
-
+          baslangic++;
          swiperH.appendSlide("<div class='swiper-slide' id=''>"+
          "<section class='n-card'>"+
          "<header>"+
          "<section class='n-process'>"+
          "Enter the serial number"+
-         "<input style='width: 82vw' type='number' name='some_name' value='' placeholder='Serial number'>"+
+         "<input style='width: 91vw' type='number' name='some_name' value='' placeholder='Serial number'>"+
          "</section><section><button class='qr' id='QrButton'>Get from QR code</button></section> "+
          " </header>"+
          "<nav>"+
-         "<section class='n-positive' id=''>"+"Done </section>"+
+         "<section class='n-positive'>"+"Done </section>"+
          "<section class='n-negative' id=''>"+"I can't</section>"+
          "</nav>"+
          "</section>"+
@@ -489,6 +491,7 @@ swiperH.on('SlideNextEnd', function () {
         }
         swiperH.removeSlide([0, 1]);
         getCard(dir);
+
 });
 
 swiperH.on('SlidePrevEnd', function () {
@@ -499,8 +502,41 @@ swiperH.on('SlidePrevEnd', function () {
   }
      swiperH.removeSlide([1, 2]);
      getCard(dir);
+     if (exit==1) {
+          swiperH.appendSlide("<div class='swiper-slide' id='"+"id"+"'>"+
+         "<section class= 'n-card n-escape' >"+
+         "<header class='n-esc'>"+
+         "<section class='question'>Your progress is saved. You can continue this service call by entering the machine serial number again.</section>"+
+         " </header>"+
+         "<nav><section class='final' id='final'>Main menu</section></nav>"+
+         "</section>"+
+         "</div>");
+         swiperH.prependSlide("<div class='swiper-slide' id='"+"id"+"'>"+
+         "<section class= 'n-card n-escape' >"+
+         "<header class='n-esc'>"+
+         "<section class='question'>Your progress is saved. You can continue this service call by entering the machine serial number again.</section>"+
+         " </header>"+
+         "<nav><section class='final' id='final'>Main menu</section></nav>"+
+         "</section>"+
+         "</div>");
+         exit=2;
+     }
 });
 
+swiperH.on('SlideNextStart', function () {
+  if (exit==2) {
+
+       swiperH.appendSlide("<div class='swiper-slide' id='"+"id"+"'>"+
+    "<section class= 'n-card n-escape' >"+
+    "<header class='n-esc'>"+
+    "<section class='question'>Your progress is saved. You can continue this service call by entering the machine serial number again.</section>"+
+    " </header>"+
+    "<nav><section class='final' id='final'>Main menu</section></nav>"+
+    "</section>"+
+    "</div>");
+    swiperH.lockSwipes();
+  }
+});
 var play=0;
 var ilk=false;
 $('.playpause').click(function() {
@@ -630,8 +666,8 @@ $(document).on("click",".n-negative",function()
         "<section class='question'>Please describe the problem <textarea name='some_name' value='' placeholder='' col='20'></textarea> </section>"+
         " </header>"+
         "<nav>"+
-        "<section class='n-positive exitPositive' id='"+postar+"'>"+pos+"</section>"+
-        "<section class='n-negative exitNegative' id='"+negtar+"'>"+neg+"</section>"+
+        "<section class='n-positive exitPositive' id='"+postar+"'>Done</section>"+
+        "<section class='n-negative exitNegative' id='"+negtar+"'>I can't</section>"+
         "</nav>"+
         "</section>"+
         "</div>");
@@ -654,15 +690,11 @@ $(document).on("click",".n-negative",function()
           detail=detail + "<section><h2>"+data[escapeCard].options[i].title+"</h2><p>"+data[escapeCard].options[i].description+"</p></section>";
         }
         swiperH.appendSlide("<div class='swiper-slide' id='"+"id"+"'>"+
-        "<section class= 'n-escape n-card' >"+
+        "<section class= 'n-card n-escape' >"+
         "<header class='n-esc'>"+
-        "<section class='question'>"+ques+opt+
-        "</section>"+
+        "<section class='question'>Your progress is saved. You can continue this service call by entering the machine serial number again.</section>"+
         " </header>"+
-        "<nav>"+
-        "<section class='n-positive exitPositive' id='"+postar+"'>"+pos+"</section>"+
-        "<section class='n-negative exitNegative' id='"+negtar+"'>"+neg+"</section>"+
-        "</nav>"+
+        "<nav><section class='final' id='final'>Main menu</section></nav>"+
         "</section>"+
         "</div>");
         console.log("<main>"+detail+"</main>");
@@ -721,6 +753,17 @@ $(document).on("click",".sequence",function()
      play++;
      play1++;
 });
+$(document).on("click","#simdilik",function()
+   {
+
+        start="we60/emergency-stop-alarm/button-pressed";
+        swiperH.removeSlide([0]);
+        getFirstCard(start);
+   });
+$(document).on("click","#final",function()
+ {
+     $state.go('index');
+ });
 $(document).on("click","#QrButton",function()
    {
      $cordovaBarcodeScanner.scan().then(function(imageData) {

@@ -7,7 +7,7 @@
     font-weight: normal;
     font-style: normal;
 }
-.n-card button.qr,
+
 .n-card input[type=radio]:checked + label::after,
 .n-card.n-escape header section:first-child::before,
 .currentSequence::before,
@@ -16,6 +16,7 @@
 .history h1::before,
 nav .n-positive::after,
 nav .n-negative::before,
+.n-card nav .final::before,
 [class^="icon-"]::before, [class*=" icon-"]::before,
 [class^="icon-"]::after, [class*=" icon-"]::after {
     /* use !important to prevent issues with browser extensions that change fonts */
