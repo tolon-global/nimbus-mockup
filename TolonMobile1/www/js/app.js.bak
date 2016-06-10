@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic','ngCordova'])
+angular.module('starter', ['ionic'])
 
 .run(function($ionicPlatform) {
 $ionicPlatform.ready(function() {
@@ -74,7 +74,7 @@ $urlRouterProvider.otherwise('/');
      });
 
    var start="we110/steam/heater-fail/check-steam-heating-do";
-      var strt=true;
+      var strt=false;
      $.getJSON( "js/data.json", function(data) {
        if (strt==false){
 
@@ -84,7 +84,8 @@ $urlRouterProvider.otherwise('/');
          "<section class='n-process'>"+
          "Enter the serial number"+
          "<input style='width: 82vw' type='number' name='some_name' value='' placeholder='Serial number'>"+
-         "</section><section><button class='qr'>Get from QR code</button></section> "+
+           "<button style='width: 48%' id='QrButton'> Qr Code </button> <button style='width: 48%' id='DrButton'> Direct </button>"+
+         "</section> "+
          " </header>"+
          "<nav>"+
          "<section class='n-positive' id=''>"+"Done </section>"+
@@ -204,6 +205,9 @@ $urlRouterProvider.otherwise('/');
                }
                HistList.push({"title":title, "ans":txt, "class":clas});
                $("#histList").html($("#histList").html() + "<li class='"+HistList[HistList.length-1].class+"'><em>" + HistList[HistList.length-1].title +"<strong> "+HistList[HistList.length-1].ans +"</strong></em></li>");
+$("#histList").html($("#histList").html() + "<li class='"+HistList[HistList.length-1].class+"'><em>" + HistList[HistList.length-1].title +"<strong> "+HistList[HistList.length-1].ans +"</strong></em></li>");
+            $("#histList").html($("#histList").html() + "<li class='"+HistList[HistList.length-1].class+"'><em>" + HistList[HistList.length-1].title +"<strong> "+HistList[HistList.length-1].ans +"</strong></em></li>");
+            $("#histList").html($("#histList").html() + "<li class='"+HistList[HistList.length-1].class+"'><em>" + HistList[HistList.length-1].title +"<strong> "+HistList[HistList.length-1].ans +"</strong></em></li>");
 
                     prependSwiperH(
                     negativeid,
@@ -241,20 +245,6 @@ swiperV.on('onTouchStart', function (e) {
      }
 });
 
-$scope.checkScrollDetail = function () {
-
- var currentTop = $ionicScrollDelegate.$getByHandle('scrollerDetail').getScrollPosition().top;
- var maxTop = $ionicScrollDelegate.$getByHandle('scrollerDetail').getScrollView().__maxScrollTop;
-
- if (currentTop == 0) {
-   alert('top of scroll!');
- }
-
- if (currentTop >= maxTop) {
-   // hit the bottom
-   alert('bottom of scroll!');
- }
-};
     var vidList=[];
 swiperV.on('SlideNextStart', function () {
 
@@ -266,7 +256,7 @@ swiperV.on('SlideNextStart', function () {
     var id=$(".swiper-slide .swiper-slide-active").attr('id');
     $.getJSON( "js/data.json", function(data) {
          for (var i = 0; i < data[id].processes.length; i++) {
-              var steps = data[id].processes[i].steps;
+              var steps = data[id].processes[i].steps
 
               switch (steps.constructor) {
                    case Array:
@@ -282,6 +272,7 @@ swiperV.on('SlideNextStart', function () {
                          }
                         break;
                    default:
+						break;
 
               }
              if (data[id].processes[i].video!=null) {
@@ -294,7 +285,6 @@ swiperV.on('SlideNextStart', function () {
              }
              $(".detailScroll").scrollTop(1);
         }
-           $(".detailTitle").html(data[id].title);
         $(".detailScroll").html(detailListElement);
 
         if (videoCount!=0) {
@@ -321,13 +311,15 @@ swiperV.on("onTouchEnd",function(e){
 });
 
 swiperV.on('SlidePrevStart', function () {
-     if(historyOpen==0&&detailOpen==0){
+      if(historyOpen==0&&detailOpen==0){
+       console.log($('#histList').scroll()[0].scrollHeight);
+       if($('#histList').scroll()[0].scrollHeight>$(window).height()){
+         $('.history').addClass('swiper-no-swiping');
+       }else{
+         $('.history').removeClass('swiper-no-swiping');
+       }
+
       historyOpen++;
-     if($('#histList').scroll()[0].scrollHeight>$(window).height()){
-             $('.history').addClass('swiper-no-swiping');
-           }else{
-             $('.history').removeClass('swiper-no-swiping');
-           }
      }else if(historyOpen==0&&detailOpen==1){
       detailOpen--;
      }
@@ -436,7 +428,7 @@ $(document).on("click",".n-negative",function()
  swiperH.slidePrev();
 });
 
-var escapeCard="service/identify-machine";
+var escapeCard="escape/general/root-cause";
 $(document).on("click",".nimbusexit",function()
 {
      var neg="";var pos=""; var negtar="";var postar="";var opt=""; var ques=""; var detail="";
@@ -486,19 +478,5 @@ $(document).on("click",".sequence",function()
      play++;
      play1++;
 });
-$(document).on("click","#QrButton",function()
-   {
-     $cordovaBarcodeScanner.scan().then(function(imageData) {
-       console.log("Barcode Format -> " + imageData.format);
-       console.log("Cancelled -> " + imageData.cancelled);
-       res1 = imageData.text;
-       if(res1=="WE110"){
-         //$state.go('main');
-       }else{
-         alert("QrCode is not Valid Please Try Again!");
-       }
-     }, function(error) {
-       console.log("An error happened -> " + error);
-     });
-   });
+
 })

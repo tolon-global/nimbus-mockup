@@ -7,12 +7,12 @@
     font-weight: normal;
     font-style: normal;
 }
-
+.n-card button.qr,
 .n-card input[type=radio]:checked + label::after,
-.n-card.escape header section:first-child::before,
+.n-card.n-escape header section:first-child::before,
 .currentSequence::before,
 .video-controls div,
-.n-card header .n-process::after,
+.nimbusexit::after,
 .history h1::before,
 nav .n-positive::after,
 nav .n-negative::before,
@@ -41,7 +41,7 @@ nav .n-negative::before,
     -moz-osx-font-smoothing: grayscale;
 }
 
-icon-nimbus:before {
+.icon-nimbus:before {
     content: "\e900";
 }
 .icon-escape:before {

@@ -43,7 +43,7 @@ body {
     padding-right: 2em;
 }
 
-.nimbusexit::after {
+.n-card header .n-process::after {
     opacity: .5;
      content: "\e901";
     position: absolute;
@@ -104,11 +104,6 @@ body {
     font-size: .75em;
     font-weight: 100;
 }
-#detail main section h2 {
-    margin: 2em 1em 1em;
-    font-size: .75em;
-    font-weight: 100;
-}
 
 #n-VideoElement {
     background-color: rgba(0,0,0,.3);
@@ -142,8 +137,8 @@ body {
   margin-top: 0vh;
 
 }
-.history li.n-positive strong { background-color: #2B6C73; }
-.history li.n-negative strong { background-color: #6B3B58; }
+.history li.n-positive strong { background-color: #38a; }
+.history li.n-negative strong { background-color: #842; }
 .history li strong {
     display: inline-block;
     padding: 0 .4em;
@@ -217,15 +212,15 @@ body {
 
 .n-card input[type=radio] + label,
 .n-card input {
-    border: none;
-    background: hsla(0,0%,0%,.3);
-    color: white;
-    font: inherit;
-    padding: .5em 1ex;
-    width: 94vw;
-    margin: 1ex -0.5em 0.5em -0.3em!important;
-    align-self: stretch;
-    outline: none;
+  border: none;
+  background: hsla(0,0%,0%,.3);
+  color: white;
+  font: inherit;
+  padding: .5em 1ex;
+  width: 94vw;
+  margin: 2ex 1.5em 0.5em -0.3em!important;
+  align-self: stretch;
+  outline: none;
 }
 
 .n-card input::-webkit-input-placeholder {
@@ -249,44 +244,18 @@ body {
     margin-right: .5em;
 }
 
-.n-escape { background-color: #442227;}
-.n-escape header section:first-child::before {
+.n-card.escape { background-color: #442227;}
+.n-card.escape header section:first-child::before {
    content: "\e901 ";
     font-size: 2em;
     vertical-align: middle;
 }
-.n-esc{
-     margin-left:-20px;
 
-}
 .n-card main p {
     margin: 0em .5em 1em;
 }
-#detail main p {
-    margin: 0em .5em 1em;
-}
+
 strong {
     color: white;
     font-weight: inherit;
 }
-.n-card button.qr {
-     background-color: #38a;
-     border: none;
-     width: 100vw;
-     color: white;
-     margin: .5em -0.5em;
-     padding: 0;
-     box-sizing: content-box;
-     font-family: inherit !important;
-     font-size: inherit;
-     height: 3em;
- }
-
- .n-card button.qr::before {
-     font: 2em nimbus-icons;
-     content: "\e911";
-     vertical-align: middle;
-     display: inline-block;
-     margin-right: .2em;
-     opacity: .6;
- }

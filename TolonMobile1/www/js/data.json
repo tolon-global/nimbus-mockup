@@ -33,33 +33,144 @@
       "target": "escape/general/something-else"
     }
   },
+  "service/serial-number": {
+    "title": "Serial",
+    "question": "Please enter the serial number",
+    "input": {
+      "tag": "serial",
+      "type": "numeric",
+      "placeholder": "Serial number",
+      "description": "The serial number can be found at the back of the machine",
+      "validate": "(T|J)(WE|TD)[0-9]+"
+    },
+    "qrcode": {
+      "label": "Get from QR code",
+      "description": "Read the QR code on the alert message or go to the Service > Machine info menu"
+    },
+    "positive": {
+      "label": "Done",
+      "autoselect": {
+        "serial": true
+      },
+      "target": "service/identify-machine"
+    },
+    "negative": {
+      "label": "I can't",
+      "target": "service/identify-machine"
+    }
+  },
+  "service/identify-machine": {
+    "title": "Machine",
+    "question": "Which model is your machine?",
+    "options": [
+      {
+        "title": "TWE10 or TWE15",
+        "target": "we-s/alarm/alarm-code"
+      },
+      {
+        "title": "TWE20 or TWE40",
+        "target": "we-m/alarm/alarm-code"
+      },
+      {
+        "title": "TWE60",
+        "target": "we60/alarm/alarm-code"
+      },
+      {
+        "title": "TWE110",
+        "target": "we110/alarm/alarm-code"
+      }
+    ],
+    "description": "Choose the model of your machine from the list provided.\nThe machine identifier can be seen behind the machine on\nthe top right corner of the nameplate.",
+    "positive": {
+      "label": "Select"
+    },
+    "negative": {
+      "label": "Not in list",
+      "target": "service/request-help"
+    }
+  },
+  "service/request-help": {
+    "title": "Request help",
+    "final": true,
+    "question": "Please call +90-232-363-0000 for help",
+    "call": "+90-232-363-0000",
+    "description": "We are sorry that we couldn't find a solution immediately. Our staff\nis always happy to help and solve your problem. Just give us a call."
+  },
+  "we110/alarm/alarm-code": {
+    "title": "Alarm code",
+    "question": "What is the alarm code?",
+    "options": [
+      {
+        "title": "04 Heater fail",
+        "target": "we110/heater-fail/heating-type",
+        "tag": {
+          "alarm": 4
+        }
+      },
+      {
+        "title": "05 Emergency stop alarm",
+        "target": "we110/we110/emergency-stop-alarm",
+        "tag": {
+          "alarm": 5
+        }
+      },
+      {
+        "title": "06 AC Drive communication error",
+        "target": "we110/we110/ac-drive-communication-error",
+        "tag": {
+          "alarm": 6
+        }
+      },
+      {
+        "title": "09 Water intake fail",
+        "target": "we110/we110/water-intake-fail",
+        "tag": {
+          "alarm": 9
+        }
+      },
+      {
+        "title": "17 Drain failure",
+        "target": "we110/we110/drain-failure",
+        "tag": {
+          "alarm": 17
+        }
+      }
+    ],
+    "qrcode": {
+      "label": "Get from QR code"
+    },
+    "description": "Check the screen for the alarm code, Or use the QR code reader on the screen.\nIf you dismissed the alarm popup, you can get it again by going to the \"Alarm statistics\" page\non the machine."
+  },
+  "we110/heater-fail/heating-type": {
+    "question": "Is this a steam-heated machine",
+    "description": "Is there a steam valve going in?",
+    "positive": {
+      "label": "Yes, steam",
+      "target": "we110/steam/heater-fail/check-steam-pressure",
+      "autoselect": {
+        "heating": "steam"
+      },
+      "set": {
+        "heating": "steam"
+      }
+    },
+    "negative": {
+      "label": "No, electric",
+      "target": "we110/heater-fail/check-power-coupling",
+      "autoselect": {
+        "heating": "electric"
+      },
+      "set": {
+        "heating": "electric"
+      }
+    }
+  },
   "we110/steam/heater-fail/check-steam-pressure": {
     "title": "Check Steam Pressure",
     "processes": [
       {
         "title": "Check the steam pressure",
-        "steps": [          "Twist the Emergency Stop Button clockwise ⟳ to release it",
-                  "The button should be pushed up by its springs",
-                  "Twist the Emergency Stop Button clockwise ⟳ to release it",
-                  "The button should be pushed up by its springs",
-                  "Twist the Emergency Stop Button clockwise ⟳ to release it",
-                  "The button should be pushed up by its springs",
-                  "Twist the Emergency Stop Button clockwise ⟳ to release it",
-                  "The button should be pushed up by its springs",
-                  "Twist the Emergency Stop Button clockwise ⟳ to release it",
-                  "The button should be pushed up by its springs",
-                  "Twist the Emergency Stop Button clockwise ⟳ to release it",
-                  "The button should be pushed up by its springs",
-                  "Twist the Emergency Stop Button clockwise ⟳ to release it",
-                  "The button should be pushed up by its springs",
-                  "Twist the Emergency Stop Button clockwise ⟳ to release it",
-                  "The button should be pushed up by its springs",
-                  "Twist the Emergency Stop Button clockwise ⟳ to release it",
-                  "The button should be pushed up by its springs",
-                  "Twist the Emergency Stop Button clockwise ⟳ to release it",
-                  "The button should be pushed up by its springs",
-                  "Twist the Emergency Stop Button clockwise ⟳ to release it",
-                  "The button should be pushed up by its springs"]
+        "steps": []
       }
     ],
     "question": "Is it sufficient?",
@@ -76,9 +187,8 @@
     "title": "Adjust Steam Pressure",
     "processes": [
       {
-        "title": "Adjust the steam pressure geldi",
-         "video": "ht_0025",
-        "steps": ["sadsad"]
+        "title": "Adjust the steam pressure",
+        "steps": []
       },
       "we110/steam/general/run-a-program"
     ],
@@ -172,10 +282,14 @@
       {
         "title": "Check the Steam Heating DO on the Diagnostic",
         "video": "ht_0025",
-        "steps":{
-          "00:00.00": "Enter the \"Main\" menu by selecting and pressing the \"Menu\" button"
-     }
-
+        "steps": {
+          "00:00.00": "Enter the \"Main\" menu by selecting and pressing the \"Menu\" button",
+          "00:05.00": "Enter the \"Service\" menu by selecting and pressing the \"Service\" button",
+          "00:09.00": "Enter the \"Diagnostics\" screen by selecting and pressing the \"Diagnostics\" button (The \"Manual Control\" button on versions prior to 1.0)",
+          "00:15.00": "Select the \"Steam Valve\" DO on the \"Digital Outputs\" frame",
+          "00:19.00": "Press the \"OK\" button to activate the \"Steam Valve\" DO",
+          "00:23.00": "Insert one lead of the multimeter to any socket between the 12. and the 22. sockets on the S11 socket group and insert the other lead of the multimeter to the 7. socket on the S13 socket group"
+        }
       }
     ],
     "question": "Is the DO functioning?",
@@ -194,7 +308,7 @@
       {
         "title": "Check the Steam Heating DO availability",
         "video": "ht_0138",
-        "steps":
+        "steps": [
           {
             "00:00.00": "Enter the \"Main\" menu by selecting and pressing the \"Menu\" button",
             "00:07.00": "Enter the \"Service\" menu by selecting and pressing the \"Service\" button",
@@ -203,6 +317,7 @@
             "00:38.00": "Press the \"OK\" button to enter the edit mode",
             "00:40.00": "Change the current DO to one of the available DOs by pressing the up-down direction buttons"
           }
+        ]
       }
     ],
     "question": "Are there any unused available DOs?",
@@ -211,7 +326,7 @@
       "label": "Yes"
     },
     "negative": {
-      "target": "we110/steam/heater-fail/change-steam-heating-do",
+      "target": "we110/steam/heater-fail/send-cp-to-service",
       "label": "No"
     }
   },
