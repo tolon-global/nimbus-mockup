@@ -9,21 +9,21 @@
      flex-direction: column;
 }
 
-header {
+.start header {
     flex-grow: 0;
     padding: 1rem;
 }
 .start section {
     flex-grow: 1;
-   padding-top: 25%;
+   padding-top: 10%;
 }
 
-h1, h4 {
+.start h1, h4 {
     margin: 0 1rem;
     font-weight: 300;
 }
 
-h1 {
+.start h1 {
     font-size: 2.75em;
     mix-blend-mode: overlay;
     color: white;

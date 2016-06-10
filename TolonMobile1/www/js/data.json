@@ -308,16 +308,16 @@
       {
         "title": "Check the Steam Heating DO availability",
         "video": "ht_0138",
-        "steps": [
+        "steps":
           {
-            "00:00.00": "Enter the \"Main\" menu by selecting and pressing the \"Menu\" button",
-            "00:07.00": "Enter the \"Service\" menu by selecting and pressing the \"Service\" button",
-            "00:11.00": "Enter the \"I/O Link\" screen by selecting and pressing the \"I/O Link\" button",
-            "00:16.00": "Select the Steam Valve DO",
-            "00:38.00": "Press the \"OK\" button to enter the edit mode",
-            "00:40.00": "Change the current DO to one of the available DOs by pressing the up-down direction buttons"
+            "00.00": "Enter the \"Main\" menu by selecting and pressing the \"Menu\" button",
+            "07.00": "Enter the \"Service\" menu by selecting and pressing the \"Service\" button",
+            "11.00": "Enter the \"I/O Link\" screen by selecting and pressing the \"I/O Link\" button",
+            "16.00": "Select the Steam Valve DO",
+            "38.00": "Press the \"OK\" button to enter the edit mode",
+            "40.00": "Change the current DO to one of the available DOs by pressing the up-down direction buttons"
           }
-        ]
+        
       }
     ],
     "question": "Are there any unused available DOs?",

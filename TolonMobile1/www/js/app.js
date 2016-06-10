@@ -257,11 +257,16 @@ $scope.checkScrollDetail = function () {
 };
     var vidList=[];
 swiperV.on('SlideNextStart', function () {
-
+     $(".sequence").removeClass('currentSequence');
+     $(".playpause").removeClass('icon-pause');
+     $(".playpause").addClass('icon-play');
+     play=0;
+     play1=0;
     var videoCount=0;
     var vidCount=0;
-
     var detailListElement="";
+    var detailListTitle="";
+    var detailContent="";
     if(historyOpen==0&&detailOpen==0){detailOpen++;}else if(historyOpen==1&&detailOpen==0){historyOpen--; }
     var id=$(".swiper-slide .swiper-slide-active").attr('id');
     $.getJSON( "js/data.json", function(data) {
@@ -282,7 +287,7 @@ swiperV.on('SlideNextStart', function () {
                          }
                         break;
                    default:
-
+                        break;
               }
              if (data[id].processes[i].video!=null) {
                videoCount++;
@@ -293,9 +298,16 @@ swiperV.on('SlideNextStart', function () {
                myvids.push("video/"+data[id].processes[i].video+".mp4");
              }
              $(".detailScroll").scrollTop(1);
+
+             detailContent="<section>"+
+                            "<h2>"+data[id].processes[i].title+"</h2>"+
+                            "<ol>"+detailListElement+"</ol>"+
+                           "</section>";
+
+            $(".detailScroll").html( $(".detailScroll").html()+detailContent);
         }
            $(".detailTitle").html(data[id].title);
-        $(".detailScroll").html(detailListElement);
+
 
         if (videoCount!=0) {
              $(".videoContent").css("visibility","visible");
@@ -418,6 +430,16 @@ $('.icon-right').click(function() {
      if (activeVideo+1<myvids.length) {
              myvid.src=myvids[activeVideo+1];
           myvid.play();
+     }
+});
+
+$('.icon-fullscreen').click(function() {
+     if (myvid.requestFullscreen) {
+       myvid.requestFullscreen();
+     } else if (myvid.mozRequestFullScreen) {
+       myvid.mozRequestFullScreen(); // Firefox
+     } else if (myvid.webkitRequestFullscreen) {
+       myvid.webkitRequestFullscreen(); // Chrome and Safari
      }
 });
 
