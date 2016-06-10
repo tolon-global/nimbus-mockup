@@ -62,8 +62,6 @@ $urlRouterProvider.otherwise('/');
     $scope.Login = function() {
 
       $cordovaBarcodeScanner.scan().then(function(imageData) {
-        console.log("Barcode Format -> " + imageData.format);
-        console.log("Cancelled -> " + imageData.cancelled);
         var res1 = imageData.text;
         if(res1!=null){
 
@@ -180,7 +178,7 @@ $urlRouterProvider.otherwise('/');
          "</div>");
          detailListElement = "<section>"+
          "<h2 class='detailTitle' style='margin: 2em 1em 1em; font-size: .75em; font-weight: 100;'>Enter the serial number</h2>"+
-         "<div class='videoContent' style='visibility: collapse'>"+
+         "<div class='videoContent' style='visibility: hidden'>"+
          "<video id='n-VideoElement' preload='auto'  type='video/mp4'  webkitallowfullscreen mozallowfullscreen allowfullscreen  poster='css/video.svg'>"+
          "</video>"+
          "<div class='video-controls'>"+
@@ -198,7 +196,7 @@ $urlRouterProvider.otherwise('/');
          "</ol>"+
          "</scrollview>"+
          "</section>";
-         $("#detail").html(detailListElement);
+         $("#detail").html(""); $(".detailScroll").html(""); $("#detail").html(detailListElement);
 
        }else {
          appendSwiperH(
@@ -287,12 +285,11 @@ $urlRouterProvider.otherwise('/');
     {
       var negativeid=$(".swiper-slide .swiper-slide-active .n-negative").attr('id');
       var positiveid=$(".swiper-slide .swiper-slide-active .n-positive").attr('id');
-
+      console.log("negative => "+ negativeid);
+     console.log("positive => "+positiveid);
       $.getJSON( "js/data.json", function(data) {
         if(dir==0){
-          console.log(negativeid)
           if((typeof data[negativeid].title)=='undefined'){
-            console.log("asdasdasssss");
             var title ="Unnamed";
           }else{
             var title = data[negativeid].title;
@@ -309,7 +306,6 @@ $urlRouterProvider.otherwise('/');
           var txt=data[positiveid].positive.label;
           var clas="n-positive";
         }
-        console.log(title);
         var histEve=true;
         var histEveDet=false;
         var histEveSt=0;
@@ -318,7 +314,6 @@ $urlRouterProvider.otherwise('/');
           histEve=false;
         }else {
           for (var i = 0; i < HistList.length; i++) {
-            console.log(HistList[i]);
             if (start == HistList[i].id) {
               if (HistList[i].ans != txt) {
                 HistList[i].id = start;
@@ -342,13 +337,11 @@ $urlRouterProvider.otherwise('/');
         }
 
 
-        console.log(HistList);
         if(dir==0){
           start=negativeid;
         }else{
           start=positiveid;
         }
-        console.log("sonra"+start);
         prependSwiperH(
                     negativeid,
                     data[negativeid].processes,
@@ -403,6 +396,9 @@ $scope.checkScrollDetail = function () {
 };
     var vidList=[];
 swiperV.on('SlideNextStart', function () {
+      var active=$(".swiper-slide .swiper-slide-active").attr('id');
+      start=active;
+     $(".detailScroll").html("");
      $(".sequence").removeClass('currentSequence');
      $(".playpause").removeClass('icon-pause');
      $(".playpause").addClass('icon-play');
@@ -429,6 +425,7 @@ swiperV.on('SlideNextStart', function () {
                          for (var step in steps) {
                               detailListElement = detailListElement + "<li class='sequence' id='"+vidCount+"'>"+ steps[step] +"</li>";
                               vidList.push({"id":vidCount,"src":"video/"+data[id].processes[i].video+".mp4", "time":step});
+                              console.log("video geldi");
                               vidCount++;
                          }
                         break;
@@ -506,7 +503,6 @@ swiperH.on('SlideNextEnd', function () {
         }
         swiperH.removeSlide([0, 1]);
         getCard(dir);
-
 });
 
 swiperH.on('SlidePrevEnd', function () {
@@ -712,7 +708,6 @@ $(document).on("click",".n-negative",function()
         "<nav><section class='final' id='final'>Main menu</section></nav>"+
         "</section>"+
         "</div>");
-        console.log("<main>"+detail+"</main>");
         $("#DetailCard").css("background-color","#442227 ");
         $("#detail").html("<main>"+detail+"</main>");
       })
@@ -770,8 +765,7 @@ $(document).on("click",".sequence",function()
 });
 $(document).on("click","#simdilik",function()
    {
-
-        start="we60/emergency-stop-alarm/button-pressed";
+        start="we110/steam/heater-fail/check-steam-pressure";
         swiperH.removeSlide([0]);
         getFirstCard(start);
    });
@@ -784,8 +778,6 @@ $(document).on("click","#final",function()
 $(document).on("click","#QrButton",function()
    {
      $cordovaBarcodeScanner.scan().then(function(imageData) {
-       console.log("Barcode Format -> " + imageData.format);
-       console.log("Cancelled -> " + imageData.cancelled);
        var res1 = JSON.parse(imageData.text);
        if(res1!=null){
          start=res1["start"];
@@ -801,7 +793,6 @@ $(document).on("click","#QrButton",function()
     $(document).on("click","#histList .n-positive",function()
     {
 
-      console.log($(this)[0].id);
       var start1=$(this)[0].id;
       swiperH.removeSlide([0, 1, 2]);
       $.getJSON( "js/data.json", function(data) {
@@ -823,7 +814,6 @@ $(document).on("click","#QrButton",function()
           data[data[start1].negative.target].negative.label,
           data[data[start1].negative.target].positive.target,
           data[data[start1].negative.target].negative.target);
-        console.log(data[start1].positive.target);
         appendSwiperH(
           data[start1].positive.target,
           data[data[start1].positive.target].processes,
@@ -842,7 +832,6 @@ $(document).on("click","#QrButton",function()
     $(document).on("click","#histList .n-negative",function()
     {
       swiperH.removeSlide([0, 1, 2]);
-      console.log($(this)[0].id);
       var start1=$(this)[0].id;
       $.getJSON( "js/data.json", function(data) {
         appendSwiperH(
