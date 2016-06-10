@@ -178,12 +178,24 @@ $urlRouterProvider.otherwise('/');
          "</section>"+
          "</div>");
          detailListElement = "<section>"+
-         "<h2>Enter the serial number</h2>"+
+         "<h2 class='detailTitle' style='margin: 2em 1em 1em; font-size: .75em; font-weight: 100;'>Enter the serial number</h2>"+
+         "</section>"+
+         "<div class='videoContent' style='visibility: collapse'>"+
+         "<video id='n-VideoElement' preload='auto'  type='video/mp4'  webkitallowfullscreen mozallowfullscreen allowfullscreen  poster='css/video.svg'>"+
+         "</video>"+
+         "<div class='video-controls'>"+
+         "<div class='playpause icon-play'></div>"+
+         "<progress class='seekBarDetail' value='' max='100'></progress>"+
+         "<div class='icon-subtitles'></div>"+
+         "<div class='icon-left'></div>"+
+         "<div class='icon-right'></div>"+
+         "<div class='icon-fullscreen'></div>"+
+         "</div>"+
+         "</div>"+
+         "<scrollview class='detailScroll' id='detailDelegate'>"+
          "<ol>"+
          "<li>The serial number can be found at the backplate</li>"+
          "</ol>"+
-         "</section>"+
-         "<scrollview class='detailScroll' id='detailDelegate'>"+
          "</scrollview>";
          $("#detail").html(detailListElement);
 
