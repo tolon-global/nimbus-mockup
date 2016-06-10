@@ -7,7 +7,7 @@
       {
         "title": "No parts",
         "description": "Choose **No parts** if you don't currently have the spare parts\nand consumables required for the procedure. You can come back\nwith the parts later, or order them.",
-        "target": "escape/general/no-parts"
+        "target": "we110/steam/heater-fail/check-steam-heating-do"
       },
       {
         "title": "No tools",
@@ -18,15 +18,109 @@
         "title": "No time",
         "description": "Choose **No time** if working hours are over, or if you have\nanother appointment you must keep, and you will come back for this later.",
         "target": "escape/general/no-time"
-      },
-      {
-        "title": "No skills",
-        "description": "Choose **No skills** if you do not have the required training or\ncertification to complete this procedure, or if you need the\nhelp of others to complete it.",
-        "target": "escape/general/no-skills"
       }
     ],
     "positive": {
       "label": "That's it"
+    },
+    "negative": {
+      "label": "Something else",
+      "target": "we110/steam/heater-fail/check-steam-heating-do"
+    }
+  },
+  "escape/general/no-parts": {
+    "class": "escape",
+    "title": "Order parts",
+    "question": "Do you need to order parts?",
+    "positive": {
+      "label": "Yes, order",
+      "target": "escape/general/order-parts"
+    },
+    "negative": {
+      "label": "No need",
+      "target": "escape/general/continue-later"
+    }
+  },
+  "escape/general/order-parts": {
+    "class": "escape",
+    "title": "Order parts",
+    "question": "What parts do you need?",
+    "checklist": "$parts",
+    "positive": {
+      "label": "Order",
+      "target": "escape/general/order-parts-done"
+    },
+    "negative": {
+      "label": "Something else",
+      "target": "escape/general/something-else"
+    }
+  },
+  "escape/general/order-parts-done": {
+    "class": "escape",
+    "title": "Order sent",
+    "question": "Order received",
+    "description": "Your order has been received. You can continue this service call by\nentering the machine serial number again.",
+    "final": true
+  },
+  "escape/general/continue-later": {
+    "class": "escape",
+    "title": "Continue later",
+    "question": "Continue later",
+    "description": "Your progress is saved. You can continue this service call by\nentering the machine serial number again.",
+    "final": true
+  },
+  "escape/general/something-else": {
+    "class": "escape",
+    "title": "Something else",
+    "question": "Please describe the problem",
+    "input": {
+      "tag": "serial",
+      "type": "textarea",
+      "description": "Please describe the problem to the best of your understanding"
+    },
+    "positive": {
+      "label": "Done",
+      "target": "escape/general/continue-later"
+    },
+    "negative": {
+      "label": "I can't",
+      "target": "escape/general/continue-later"
+    }
+  },
+  "escape/general/no-tools": {
+    "class": "escape",
+    "title": "No tools",
+    "question": "What tools are you missing?",
+    "checklist": "$tools",
+    "positive": {
+      "label": "Selected",
+      "target": "escape/general/continue-later"
+    },
+    "negative": {
+      "label": "Something else",
+      "target": "escape/general/something-else"
+    }
+  },
+  "escape/general/no-time": {
+    "class": "escape",
+    "title": "No time",
+    "question": "Why is time not enough?",
+    "options": [
+      {
+        "title": "End of workday",
+        "target": "escape/general/continue-later"
+      },
+      {
+        "title": "Facilites closing",
+        "target": "escape/general/continue-later"
+      },
+      {
+        "title": "Other commitments",
+        "target": "escape/general/continue-later"
+      }
+    ],
+    "positive": {
+      "label": "Done"
     },
     "negative": {
       "label": "Something else",
@@ -78,6 +172,10 @@
       {
         "title": "TWE110",
         "target": "we110/alarm/alarm-code"
+      },
+      {
+        "title": "TD series",
+        "target": "td/alarm/alarm-code"
       }
     ],
     "description": "Choose the model of your machine from the list provided.\nThe machine identifier can be seen behind the machine on\nthe top right corner of the nameplate.",
@@ -95,6 +193,420 @@
     "question": "Please call +90-232-363-0000 for help",
     "call": "+90-232-363-0000",
     "description": "We are sorry that we couldn't find a solution immediately. Our staff\nis always happy to help and solve your problem. Just give us a call."
+  },
+  "td/alarm/alarm-code": {
+    "title": "Alarm code",
+    "question": "What is the alarm code on the screen?",
+    "options": [
+      {
+        "title": "NO ALRM",
+        "target": "td/alarm/no-alarm",
+        "tag": {
+          "alarm": "no-alarm"
+        }
+      },
+      {
+        "title": "VACUUM",
+        "target": "td/vacuum-alarm/check-vacuum-parameters",
+        "tag": {
+          "alarm": "vacuum-alarm"
+        }
+      },
+      {
+        "title": "HEATER",
+        "target": "td/alarm/heater-fail",
+        "tag": {
+          "alarm": "heater-fail"
+        }
+      },
+      {
+        "title": "MEM READ",
+        "target": "td/alarm/no-alarm",
+        "tag": {
+          "alarm": "no-alarm"
+        }
+      },
+      {
+        "title": "MEM WRITE",
+        "target": "td/alarm/no-alarm",
+        "tag": {
+          "alarm": "no-alarm"
+        }
+      },
+      {
+        "title": "SOFTWARE",
+        "target": "td/alarm/no-alarm",
+        "tag": {
+          "alarm": "no-alarm"
+        }
+      },
+      {
+        "title": "HIGH TEMP",
+        "target": "td/alarm/no-alarm",
+        "tag": {
+          "alarm": "no-alarm"
+        }
+      },
+      {
+        "title": "TEMP SNSR",
+        "target": "td/alarm/no-alarm",
+        "tag": {
+          "alarm": "no-alarm"
+        }
+      },
+      {
+        "title": "HUMDT SNSR",
+        "target": "td/alarm/no-alarm",
+        "tag": {
+          "alarm": "no-alarm"
+        }
+      },
+      {
+        "title": "AC DRIVE",
+        "target": "td/alarm/no-alarm",
+        "tag": {
+          "alarm": "no-alarm"
+        }
+      },
+      {
+        "title": "DOOR OPEN",
+        "target": "td/alarm/no-alarm",
+        "tag": {
+          "alarm": "no-alarm"
+        }
+      },
+      {
+        "title": "NO TILT",
+        "target": "td/alarm/no-alarm",
+        "tag": {
+          "alarm": "no-alarm"
+        }
+      },
+      {
+        "title": "NO SEAT",
+        "target": "td/alarm/no-alarm",
+        "tag": {
+          "alarm": "no-alarm"
+        }
+      },
+      {
+        "title": "FLTR DOOR",
+        "target": "td/alarm/no-alarm",
+        "tag": {
+          "alarm": "no-alarm"
+        }
+      },
+      {
+        "title": "DRUM SPD",
+        "target": "td/alarm/no-alarm",
+        "tag": {
+          "alarm": "no-alarm"
+        }
+      }
+    ],
+    "description": "Press the menu button and select \"alarms\". You can scroll through the\nlogged alarms."
+  },
+  "td/alarm/no-alarm": {
+    "title": "No alarm",
+    "question": "That's good then :)",
+    "final": true
+  },
+  "td/vacuum-alarm/check-vacuum-parameters": {
+    "title": "Check Vacuum Parameters",
+    "processes": [
+      {
+        "title": "Check the vacuum related system parameters"
+      }
+    ],
+    "question": "Have they been modified?",
+    "positive": {
+      "target": "td/vacuum-alarm/revert-parameters-to-original",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "td/vacuum-alarm/check-sail-switch",
+      "label": "No"
+    }
+  },
+  "td/vacuum-alarm/revert-parameters-to-original": {
+    "title": "Revert parameters back to original settings",
+    "processes": [
+      {
+        "title": "Revert the parameters back to their original settings"
+      },
+      "td/general/run-a-program"
+    ],
+    "question": "Is the problem solved?",
+    "positive": {
+      "target": "td/vacuum-alarm/problem-solved",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "td/vacuum-alarm/check-sail-switch",
+      "label": "No"
+    }
+  },
+  "td/vacuum-alarm/check-sail-switch": {
+    "title": "Check Operation of Sail Switch",
+    "processes": [
+      {
+        "title": "Check the operation of the sail switch"
+      }
+    ],
+    "question": "Is it operating?",
+    "positive": {
+      "target": "td/vacuum-alarm/check-sail-switch-flap",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "td/vacuum-alarm/check-loading-door-closing",
+      "label": "No"
+    }
+  },
+  "td/vacuum-alarm/check-loading-door-closing": {
+    "title": "Check closing of Loading Door",
+    "processes": [
+      {
+        "title": "Check the closing of the loading door"
+      }
+    ],
+    "question": "Is it closing?",
+    "positive": {
+      "target": "td/vacuum-alarm/check-lint-filter-closing",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "td/vacuum-alarm/fix-loading-door-closing",
+      "label": "No"
+    }
+  },
+  "td/vacuum-alarm/check-lint-filter-closing": {
+    "title": "Check closing of Lint Filter Door",
+    "processes": [
+      {
+        "title": "Check the closing of the lint filter door"
+      }
+    ],
+    "question": "Is it closing?",
+    "positive": {
+      "target": "td/vacuum-alarm/check-lint-filter-dust",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "td/vacuum-alarm/close-lint-filter-door",
+      "label": "No"
+    }
+  },
+  "td/vacuum-alarm/fix-loading-door-closing": {
+    "title": "Fix closing of Loading Door Problem",
+    "processes": [
+      {
+        "title": "Fix the closing problem of the loading door"
+      },
+      "td/general/run-a-program"
+    ],
+    "question": "Is the problem solved?",
+    "positive": {
+      "target": "td/vacuum-alarm/problem-solved",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "td/vacuum-alarm/check-lint-filter-closing",
+      "label": "No"
+    }
+  },
+  "td/vacuum-alarm/close-lint-filter-door": {
+    "title": "Close Lint Filter Door",
+    "processes": [
+      {
+        "title": "Close the lint filter door correctly"
+      },
+      "td/general/run-a-program"
+    ],
+    "question": "Is the problem solved?",
+    "positive": {
+      "target": "td/vacuum-alarm/problem-solved",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "td/vacuum-alarm/check-lint-filter-dust",
+      "label": "No"
+    }
+  },
+  "td/vacuum-alarm/check-lint-filter-dust": {
+    "title": "Check Dust on Lint Filter",
+    "processes": [
+      {
+        "title": "Check the dustiness of the lint filter"
+      }
+    ],
+    "question": "Is the filter dusty?",
+    "positive": {
+      "target": "td/vacuum-alarm/clean-lint-filter",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "td/vacuum-alarm/check-fan-motor-rotation",
+      "label": "No"
+    }
+  },
+  "td/vacuum-alarm/clean-lint-filter": {
+    "title": "Clean Lint Filter",
+    "processes": [
+      {
+        "title": "Clean the lint filter"
+      },
+      "td/general/run-a-program"
+    ],
+    "question": "Is the problem solved?",
+    "positive": {
+      "target": "td/vacuum-alarm/problem-solved",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "td/vacuum-alarm/check-fan-motor-rotation",
+      "label": "No"
+    }
+  },
+  "td/vacuum-alarm/check-fan-motor-rotation": {
+    "title": "Check Fan Motor Rotation Direction",
+    "processes": [
+      {
+        "title": "Check the rotation direction of the fan motor"
+      }
+    ],
+    "question": "Is it rotating CW?",
+    "positive": {
+      "target": "td/vacuum-alarm/check-exhaust-outlet",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "td/vacuum-alarm/fix-fan-motor-rotation",
+      "label": "No"
+    }
+  },
+  "td/vacuum-alarm/fix-fan-motor-rotation": {
+    "title": "Fix Fan Motor Rotation Direction",
+    "processes": [
+      {
+        "title": "Fix the rotation direction of the fan motor"
+      },
+      "td/general/run-a-program"
+    ],
+    "question": "Is the problem solved?",
+    "positive": {
+      "target": "td/vacuum-alarm/problem-solved",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "td/vacuum-alarm/check-exhaust-outlet",
+      "label": "No"
+    }
+  },
+  "td/vacuum-alarm/check-exhaust-outlet": {
+    "title": "Check Exhaust Outlet",
+    "processes": [
+      {
+        "title": "Check the exhaust outlet"
+      }
+    ],
+    "question": "Is the exhaust blocked?",
+    "positive": {
+      "target": "td/vacuum-alarm/clean-exhaust",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "td/vacuum-alarm/check-sail-switch-flap",
+      "label": "No"
+    }
+  },
+  "td/vacuum-alarm/clean-exhaust": {
+    "title": "Clean/Clear Exhaust",
+    "processes": [
+      {
+        "title": "Clean/Clear the exhaust"
+      },
+      "td/general/run-a-program"
+    ],
+    "question": "Is the problem solved?",
+    "positive": {
+      "target": "td/vacuum-alarm/problem-solved",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "td/vacuum-alarm/check-sail-switch-flap",
+      "label": "No"
+    }
+  },
+  "td/vacuum-alarm/check-sail-switch-flap": {
+    "title": "Check Sail Switch Flap",
+    "processes": [
+      {
+        "title": "Check the flap of the sail switch"
+      }
+    ],
+    "question": "Is the flap functioning?",
+    "positive": {
+      "target": "td/vacuum-alarm/check-sail-switch-flap-pallet",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "td/vacuum-alarm/replace-sail-switch-flap",
+      "label": "No"
+    }
+  },
+  "td/vacuum-alarm/replace-sail-switch-flap": {
+    "title": "Replace Sail Switch Flap",
+    "processes": [
+      {
+        "title": "Replace the sail switch flap"
+      },
+      "td/general/run-a-program"
+    ],
+    "question": "Is the problem solved?",
+    "positive": {
+      "target": "td/vacuum-alarm/problem-solved",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "td/vacuum-alarm/check-sail-switch-flap-pallet",
+      "label": "No"
+    }
+  },
+  "td/vacuum-alarm/check-sail-switch-flap-pallet": {
+    "title": "Check Sail Switch Flap Pallet",
+    "processes": [
+      {
+        "title": "Check the sail switch flap pallet"
+      }
+    ],
+    "question": "Is it set correctly?",
+    "positive": {
+      "target": "td/vacuum-alarm/check-sail-switch-terminal-cable",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "td/vacuum-alarm/reset-sail-switch-flap",
+      "label": "No"
+    }
+  },
+  "td/vacuum-alarm/reset-sail-switch-flap": {
+    "title": "Reset Sail Switch Flap",
+    "processes": [
+      {
+        "title": "Reset the sail switch flap"
+      },
+      "td/general/run-a-program"
+    ],
+    "question": "Is the problem solved?",
+    "positive": {
+      "target": "td/vacuum-alarm/problem-solved",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "td/vacuum-alarm/check-sail-switch-terminal-cable",
+      "label": "No"
+    }
   },
   "we110/alarm/alarm-code": {
     "title": "Alarm code",
@@ -165,117 +677,6 @@
       }
     }
   },
-  "we110/steam/heater-fail/check-steam-pressure": {
-    "title": "Check Steam Pressure",
-    "processes": [
-      {
-        "title": "Check the steam pressure",
-        "steps": []
-      }
-    ],
-    "question": "Is it sufficient?",
-    "positive": {
-      "target": "we110/steam/heater-fail/check-steam-vane",
-      "label": "Yes"
-    },
-    "negative": {
-      "target": "we110/steam/heater-fail/adjust-steam-pressure",
-      "label": "No"
-    }
-  },
-  "we110/steam/heater-fail/adjust-steam-pressure": {
-    "title": "Adjust Steam Pressure",
-    "processes": [
-      {
-        "title": "Adjust the steam pressure",
-        "steps": []
-      },
-      "we110/steam/general/run-a-program"
-    ],
-    "question": "Is the problem solved?",
-    "positive": {
-      "target": "we110/steam/heater-fail/problem-solved",
-      "label": "Yes"
-    },
-    "negative": {
-      "target": "we110/steam/heater-fail/check-steam-vane",
-      "label": "No"
-    }
-  },
-  "we110/steam/heater-fail/check-steam-vane": {
-    "title": "Check Steam Vane",
-    "processes": [
-      {
-        "title": "Check the steam vane",
-        "steps": []
-      }
-    ],
-    "question": "Is it open?",
-    "positive": {
-      "target": "we110/steam/heater-fail/check-strainer-clogging",
-      "label": "Yes"
-    },
-    "negative": {
-      "target": "we110/steam/heater-fail/open-steam-vane",
-      "label": "No"
-    }
-  },
-  "we110/steam/heater-fail/open-steam-vane": {
-    "title": "Open Steam Vane",
-    "processes": [
-      {
-        "title": "Open the steam vane",
-        "steps": []
-      },
-      "we110/steam/general/run-a-program"
-    ],
-    "question": "Is the problem solved?",
-    "positive": {
-      "target": "we110/steam/heater-fail/problem-solved",
-      "label": "Yes"
-    },
-    "negative": {
-      "target": "we110/steam/heater-fail/check-strainer-clogging",
-      "label": "No"
-    }
-  },
-  "we110/steam/heater-fail/check-strainer-clogging": {
-    "title": "Check Strainer Clogging",
-    "processes": [
-      {
-        "title": "Check the strainer for clogging",
-        "steps": []
-      }
-    ],
-    "question": "Is the strainer clogged?",
-    "positive": {
-      "target": "we110/steam/heater-fail/check-steam-heating-do",
-      "label": "Yes"
-    },
-    "negative": {
-      "target": "we110/steam/heater-fail/clear-strainer",
-      "label": "No"
-    }
-  },
-  "we110/steam/heater-fail/clear-strainer": {
-    "title": "Clear Strainer",
-    "processes": [
-      {
-        "title": "Clear the strainer",
-        "steps": []
-      },
-      "we110/steam/general/run-a-program"
-    ],
-    "question": "Is the problem solved?",
-    "positive": {
-      "target": "we110/steam/heater-fail/problem-solved",
-      "label": "Yes"
-    },
-    "negative": {
-      "target": "we110/steam/heater-fail/check-steam-heating-do",
-      "label": "No"
-    }
-  },
   "we110/steam/heater-fail/check-steam-heating-do": {
     "title": "Check Steam Heating DO",
     "processes": [
@@ -283,12 +684,12 @@
         "title": "Check the Steam Heating DO on the Diagnostic",
         "video": "ht_0025",
         "steps": {
-          "00:00.00": "Enter the \"Main\" menu by selecting and pressing the \"Menu\" button",
-          "00:05.00": "Enter the \"Service\" menu by selecting and pressing the \"Service\" button",
-          "00:09.00": "Enter the \"Diagnostics\" screen by selecting and pressing the \"Diagnostics\" button (The \"Manual Control\" button on versions prior to 1.0)",
-          "00:15.00": "Select the \"Steam Valve\" DO on the \"Digital Outputs\" frame",
-          "00:19.00": "Press the \"OK\" button to activate the \"Steam Valve\" DO",
-          "00:23.00": "Insert one lead of the multimeter to any socket between the 12. and the 22. sockets on the S11 socket group and insert the other lead of the multimeter to the 7. socket on the S13 socket group"
+          "0.00": "Enter the \"Main\" menu by selecting and pressing the \"Menu\" button",
+          "5.00": "Enter the \"Service\" menu by selecting and pressing the \"Service\" button",
+          "9.00": "Enter the \"Diagnostics\" screen by selecting and pressing the \"Diagnostics\" button (The \"Manual Control\" button on versions prior to 1.0)",
+          "15.00": "Select the \"Steam Valve\" DO on the \"Digital Outputs\" frame",
+          "19.00": "Press the \"OK\" button to activate the \"Steam Valve\" DO",
+          "23.00": "Insert one lead of the multimeter to any socket between the 12. and the 22. sockets on the S11 socket group and insert the other lead of the multimeter to the 7. socket on the S13 socket group"
         }
       }
     ],
@@ -308,16 +709,14 @@
       {
         "title": "Check the Steam Heating DO availability",
         "video": "ht_0138",
-        "steps":
-          {
-            "00.00": "Enter the \"Main\" menu by selecting and pressing the \"Menu\" button",
-            "07.00": "Enter the \"Service\" menu by selecting and pressing the \"Service\" button",
-            "11.00": "Enter the \"I/O Link\" screen by selecting and pressing the \"I/O Link\" button",
-            "16.00": "Select the Steam Valve DO",
-            "38.00": "Press the \"OK\" button to enter the edit mode",
-            "40.00": "Change the current DO to one of the available DOs by pressing the up-down direction buttons"
-          }
-        
+        "steps": {
+          "0.00": "Enter the \"Main\" menu by selecting and pressing the \"Menu\" button",
+          "7.00": "Enter the \"Service\" menu by selecting and pressing the \"Service\" button",
+          "11.00": "Enter the \"I/O Link\" screen by selecting and pressing the \"I/O Link\" button",
+          "16.00": "Select the Steam Valve DO",
+          "38.00": "Press the \"OK\" button to enter the edit mode",
+          "40.00": "Change the current DO to one of the available DOs by pressing the up-down direction buttons"
+        }
       }
     ],
     "question": "Are there any unused available DOs?",
@@ -335,22 +734,23 @@
     "processes": [
       {
         "title": "Change the DO assignment for the Steam Heating",
-        "steps": [
-          "Press the \"OK\" button to assign the target DO",
-          "Press the \"Exit\" button to exit. At this stage the software will ask you if you want to save the changes. To save your changes select the \"Yes\" button by pressing the left-right direction buttons and press the \"OK\" button to confirm the selection",
-          "The software will return to the \"Service\" menu",
-          "Detach the S13 socket plug from the back of the Control Panel",
-          "Remove the 7. socket terminal from the S13 socket plug by pushing down the fins of the socket terminal with the terminal removal tool",
-          "Attach the S13 socket plug into the S13 socket",
-          "Raise up the fins of the socket terminal with the terminal removal tool",
-          "Detach the S19 socket plug from the back of the Control Panel",
-          "Insert the socket terminal into the 6. socket of the S19 socket plug which corresponds to the DO which has been assigned in the DO assignment step in this video (Step no 1). Warning: You have to select the corresponding socket and socket plug if you choose another DO for this procedure. You can find a list of the DOs and their corresponding sockets on the back of the Control Panel",
-          "Attach the S19 socket plug into the S19 socket",
-          "Enter the \"Diagnostic\" screen by selecting and pressing the \"Diagnostic\" button",
-          "Select the \"Steam Valve\" DO on the \"Digital Outputs\" frame",
-          "Press the \"OK\" button to activate the \"Steam Valve\" DO",
-          "Check the voltage value by inserting one lead of the multimeter into any socket between the 12. and the 22. sockets on the S11 socket group and inserting the other lead of the multimeter into the 6. socket on the S19 socket group"
-        ]
+        "video": "ht_0026",
+        "steps": {
+          "0.00": "Press the \"OK\" button to assign the target DO",
+          "7.00": "Press the \"Exit\" button to exit. At this stage the software will ask you if you want to save the changes. To save your changes select the \"Yes\" button by pressing the left-right direction buttons and press the \"OK\" button to confirm the selection",
+          "10.00": "The software will return to the \"Service\" menu",
+          "16.00": "Detach the S13 socket plug from the back of the Control Panel",
+          "28.00": "Remove the 7. socket terminal from the S13 socket plug by pushing down the fins of the socket terminal with the terminal removal tool",
+          "50.00": "Attach the S13 socket plug into the S13 socket",
+          "55.00": "Raise up the fins of the socket terminal with the terminal removal tool",
+          "71.00": "Detach the S19 socket plug from the back of the Control Panel",
+          "76.00": "Insert the socket terminal into the 6. socket of the S19 socket plug which corresponds to the DO which has been assigned in the DO assignment step in this video (Step no 1). Warning: You have to select the corresponding socket and socket plug if you choose another DO for this procedure. You can find a list of the DOs and their corresponding sockets on the back of the Control Panel",
+          "83.00": "Attach the S19 socket plug into the S19 socket",
+          "89.00": "Enter the \"Diagnostic\" screen by selecting and pressing the \"Diagnostic\" button",
+          "95.00": "Select the \"Steam Valve\" DO on the \"Digital Outputs\" frame",
+          "100.00": "Press the \"OK\" button to activate the \"Steam Valve\" DO",
+          "104.00": "Check the voltage value by inserting one lead of the multimeter into any socket between the 12. and the 22. sockets on the S11 socket group and inserting the other lead of the multimeter into the 6. socket on the S19 socket group"
+        }
       }
     ],
     "question": "Does ±24V DC exist on the DO?",
@@ -384,10 +784,10 @@
         "title": "Check the cable between the steam control valve and the CP",
         "video": "ht_0029",
         "steps": {
-          "00:00.00": "Unscrew the control valve socket holder screw from the steam control valve coil by using a screwdriver",
-          "00:10.00": "Detach the steam valve coil socket from the steam control valve coil",
-          "00:17.00": "Detach the terminal block of the socket from its housing by using the screwdriver as a lever",
-          "00:22.00": "Check the voltage between the terminals of the terminal block by using a voltmeter"
+          "0.00": "Unscrew the control valve socket holder screw from the steam control valve coil by using a screwdriver",
+          "10.00": "Detach the steam valve coil socket from the steam control valve coil",
+          "17.00": "Detach the terminal block of the socket from its housing by using the screwdriver as a lever",
+          "22.00": "Check the voltage between the terminals of the terminal block by using a voltmeter"
         }
       }
     ],
@@ -406,19 +806,22 @@
     "processes": [
       {
         "title": "Replace/Repair the cable between the Steam Control Valve and the CP",
-        "steps": [
-          "Burada tanımlanan sıra ile arka kapak açma, üst kapaklar (üstte üç ayrı parça kapak var) açma, ön kapak açma yapılır.",
-          "Kablo yolu üzerindeki klipsler açılır.",
-          "Pano içi makaron çıkartılır.",
-          "Kontrol paneli arkasındaki buhar, sıcak su, soğuk su, tahliye, devrilme (yukarı-aşağı) DO kabloları ve ortak uç (eksi) -24V DC kablosu soketlerinden çıkartılırlar.",
-          "Yukarıdaki maddede değinilen uçların cihaz arkasındaki karşı uçları da valf soketlerinden çıkartılırlar.",
-          "Yeni kablo valf uçları soketlerine takılır.",
-          "Kontrol paneli arkasındaki buhar, sıcak su, soğuk su, tahliye, devrilme (yukarı-aşağı) DO kabloları ve ortak uç (eksi) -24V DC kablosu soketlerine takılır.",
-          "Pano içi makaron kablolara sarılır.",
-          "Kablo yolu üzerindeki kablolar klipslenir."
-        ]
+        "video": "ht_0030",
+        "steps": {
+          "0.00": "Open the rear cover, the top covers, and the front left door and replace the cable"
+        }
       },
-      "we110/steam/general/check-do-on-diagnostic"
+      {
+        "title": "Check the Steam Valve DO on the Diagnostic",
+        "video": "ht_0159",
+        "steps": {
+          "0.00": "Enter the \"Main\" menu by selecting and pressing the \"Menu\" button",
+          "5.00": "Enter the \"Service\" menu by selecting and pressing the \"Service\" button",
+          "9.00": "Enter the \"Diagnostics\" screen by selecting and pressing the \"Diagnostics\" button (The \"Manual Control\" button on versions prior to 1.0)",
+          "15.00": "Select the \"Steam Valve\" DO on the \"Digital Outputs\" frame",
+          "19.00": "Press the \"OK\" button to activate the \"Steam Valve\" DO"
+        }
+      }
     ],
     "question": "Is the problem solved?",
     "positive": {
@@ -434,15 +837,26 @@
     "title": "Check Steam Control Valve Coil",
     "processes": [
       {
+        "title": "Check the Steam Valve DO on the Diagnostic",
+        "video": "ht_0159",
+        "steps": {
+          "0.00": "Enter the \"Main\" menu by selecting and pressing the \"Menu\" button",
+          "5.00": "Enter the \"Service\" menu by selecting and pressing the \"Service\" button",
+          "9.00": "Enter the \"Diagnostics\" screen by selecting and pressing the \"Diagnostics\" button (The \"Manual Control\" button on versions prior to 1.0)",
+          "15.00": "Select the \"Steam Valve\" DO on the \"Digital Outputs\" frame",
+          "19.00": "Press the \"OK\" button to activate the \"Steam Valve\" DO"
+        }
+      },
+      {
         "title": "Check the coil of the steam control valve",
-        "steps": [
-          "If the Steam Heating DO has been deactivated by the automatic logout process then re-activate it",
-          "Check the resistance value between the terminals of the steam control valve coil terminals by using a multimeter",
-          "Attach the terminal block of the socket into its housing",
-          "Insert the socket holder screw into its screw hole",
-          "Attach the steam valve coil socket onto the steam control valve coil",
-          "Screw the coil socket onto the coil via its holder screw by using a screwdriver"
-        ]
+        "video": "ht_0027",
+        "steps": {
+          "0.00": "Check the resistance value between the terminals of the steam control valve coil terminals by using a multimeter",
+          "16.00": "Attach the terminal block of the socket into its housing",
+          "20.00": "Insert the socket holder screw into its screw hole",
+          "24.00": "Attach the steam valve coil socket onto the steam control valve coil",
+          "29.00": "Screw the coil socket onto the coil via its holder screw by using a screwdriver"
+        }
       }
     ],
     "question": "Is the coil functioning?",
@@ -462,12 +876,12 @@
         "title": "Replace the coil of the Steam Control Valve",
         "video": "ht_0028",
         "steps": {
-          "00:00.00": "Unbolt the plastic nut which fastens the coil onto the coil armature on the back of the valve",
-          "00:11.00": "Remove the coil from the steam control valve by pulling it downwards from the front side of the coil along the armature (back of the machine)",
-          "00:24.00": "Install the new coil onto the steam control valve by pushing it upwards from the front side until the coil reaches the base of the armature (back of the machine)",
-          "00:39.00": "Bolt the plastic nut which fastens the coil onto the armature whilst pushing the coil upwards",
-          "00:52.00": "Attach the steam valve coil socket onto the new coil",
-          "00:57.00": "Screw the coil socket onto the coil via its holder screw by using a screwdriver"
+          "0.00": "Unbolt the plastic nut which fastens the coil onto the coil armature on the back of the valve",
+          "11.00": "Remove the coil from the steam control valve by pulling it downwards from the front side of the coil along the armature (back of the machine)",
+          "24.00": "Install the new coil onto the steam control valve by pushing it upwards from the front side until the coil reaches the base of the armature (back of the machine)",
+          "39.00": "Bolt the plastic nut which fastens the coil onto the armature whilst pushing the coil upwards",
+          "52.00": "Attach the steam valve coil socket onto the new coil",
+          "57.00": "Screw the coil socket onto the coil via its holder screw by using a screwdriver"
         }
       },
       "we110/steam/general/run-a-program"
@@ -478,38 +892,94 @@
       "label": "Yes"
     },
     "negative": {
-      "target": "we110/steam/heater-fail/check-hose-pneumatic-valve-base",
+      "target": "we110/steam/heater-fail/check-hose-piston-valve-control-valve",
       "label": "No"
     }
   },
-  "we110/steam/heater-fail/check-hose-pneumatic-valve-base": {
-    "title": "Check Hose Between Steam Valve and CP",
+  "we110/steam/heater-fail/check-hose-piston-valve-control-valve": {
+    "title": "Check Hose Between Steam Piston Valve and Steam Control Valve",
     "processes": [
       {
         "title": "Check the reliability of the hose between the Steam Piston Valve and the Steam Control Valve",
-        "steps": [
-          "Check the reliability of the hose between the Steam Piston Valve and the\nSteam Control Valve by detaching the hose from the steam output fitting\nof the Steam Control Valve and observing the air flow"
-        ]
+        "video": "ht_0031",
+        "steps": {
+          "0.00": "Check the reliability of the hose between the Steam Piston Valve and the\nSteam Control Valve by detaching the hose from the steam output fitting\nof the Steam Control Valve and observing the air flow"
+        }
       }
     ],
     "question": "Is the hose valid?",
     "positive": {
-      "target": "we110/steam/heater-fail/check-pneumatic-steam-valve",
+      "target": "we110/steam/heater-fail/check-air-steam-piston-valve",
       "label": "Yes"
     },
     "negative": {
-      "target": "we110/steam/heater-fail/replace-hose-pneumatic-valve-vane",
+      "target": "we110/steam/heater-fail/replace-hose-piston-valve-control-valve",
       "label": "No"
     }
   },
-  "we110/steam/heater-fail/replace-hose-pneumatic-valve-vane": {
-    "title": "Replace Hose Between Pneumatic Valve and Vane",
+  "we110/steam/heater-fail/replace-hose-piston-valve-control-valve": {
+    "title": "Replace Hose Between Steam Piston Valve and Steam Control Valve",
     "processes": [
       {
-        "title": "Replace the hose between the pneumatic steam valve and the steam vane with actuator",
-        "steps": [
-          "Check the reliability of the hose between the Steam Piston Valve and the Steam Control Valve by detaching the hose from the steam output fitting of the Steam Control Valve and observing the air flow"
-        ]
+        "title": "Replace the hose between the Steam Piston Valve and the Steam Control Valve",
+        "video": "ht_0084",
+        "steps": {
+          "0.00": "Unplug the hose from the steam control valve",
+          "5.00": "Follow the cable route and free the cable from its clips",
+          "20.00": "Unplug the other end of the hose from the steam valve",
+          "25.00": "Plug the new hose into the steam valve and get the hose clipsed and plug the other end of the hose into the steam control valve"
+        }
+      },
+      "we110/steam/general/run-a-program"
+    ],
+    "question": "Is the problem solved?",
+    "positive": {
+      "target": "we110/steam/heater-fail/problem-solved",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "we110/steam/heater-fail/check-air-steam-piston-valve",
+      "label": "No"
+    }
+  },
+  "we110/steam/heater-fail/check-air-steam-piston-valve": {
+    "title": "Check air input of Steam Piston Valve",
+    "processes": [
+      {
+        "title": "Check the air input of the Steam Piston Valve",
+        "video": "ht_0032",
+        "steps": {
+          "9.00": "Unplug the air hose from its fitting on the steam piston valve",
+          "11.00": "Check the airflow by holding the tip of the hose towards your hand or towards something which can flap by airflow"
+        }
+      }
+    ],
+    "question": "Is the piston valve functioning?",
+    "positive": {
+      "target": "we110/steam/heater-fail/send-cp-to-service",
+      "label": "Yes"
+    },
+    "negative": {
+      "target": "we110/steam/heater-fail/replace-steam-piston-valve",
+      "label": "No"
+    }
+  },
+  "we110/steam/heater-fail/replace-steam-piston-valve": {
+    "title": "Replace Steam Piston Valve",
+    "processes": [
+      {
+        "title": "Replace the Steam Piston Valve",
+        "video": "ht_0033",
+        "steps": {
+          "0.00": "Unplug the air hose from its fitting on the steam piston valve",
+          "10.00": "Detach the steam piston valve from the connection pipe by unbolting it using a pipe wrench",
+          "42.00": "Attach the new steam piston valve onto the connection pipe by bolting it using a pipe wrench. Tighten the valve whilst bolting it",
+          "104.00": "Plug the air hose into the fitting on the steam piston valve",
+          "114.00": "Select the \"Steam Valve\" DO on the \"Digital Outputs\" frame",
+          "118.00": "Press the \"OK\" button to activate the \"Steam Valve\" DO",
+          "120.00": "Press the \"OK\" button to deactivate the \"Steam Valve\" DO",
+          "124.00": "Check the movement of the indicator rod on the steam piston valve visually"
+        }
       },
       "we110/steam/general/run-a-program"
     ],
@@ -522,6 +992,17 @@
       "target": "we110/steam/heater-fail/send-cp-to-service",
       "label": "No"
     }
+  },
+  "we110/steam/heater-fail/problem-solved": {
+    "title": "Problem solved",
+    "final": true,
+    "question": "Looks like your problem is solved :)"
+  },
+  "we110/steam/heater-fail/send-cp-to-service": {
+    "title": "CP to service",
+    "final": true,
+    "question": "Send control panel to service",
+    "description": "The control panel needs to be serviced in the factory. Please contact\nTolon at service@tolon.com for instructions."
   },
   "we60/emergency-stop-alarm/check-alarm": {
     "title": "Check alarm",
@@ -716,9 +1197,9 @@
         "title": "Open the left front panel",
         "video": "ht_9009",
         "steps": {
-          "00:01.12": "Unscrew the two fixing screws on the left edge",
-          "00:03.00": "Release the latch",
-          "00:04.20": "Swing the panel left"
+          "1.12": "Unscrew the two fixing screws on the left edge",
+          "3.00": "Release the latch",
+          "4.20": "Swing the panel left"
         },
         "tags": {
           "done": {
@@ -763,9 +1244,9 @@
         "title": "Open the left front panel",
         "steps": {
           "0": "Check the screen for the alert box",
-          "00:01.12": "Unscrew the two fixing screws on the left edge",
-          "00:03.00": "Release the latch",
-          "00:04.20": "Swing the panel left"
+          "1.12": "Unscrew the two fixing screws on the left edge",
+          "3.00": "Release the latch",
+          "4.20": "Swing the panel left"
         },
         "source": "we60/general/left-panel-open",
         "video": "ht_9009",

@@ -70,8 +70,9 @@ $urlRouterProvider.otherwise('/');
        direction: 'vertical',
        spaceBetween: 1,
        initialSlide:1
-     });
 
+     });
+   var optionValue=0;
    var start="we110/steam/heater-fail/check-steam-heating-do";
       var strt=true;
      $.getJSON( "js/data.json", function(data) {
@@ -100,6 +101,7 @@ $urlRouterProvider.otherwise('/');
          $("#detail").html(detailListElement);
 
        }else {
+            if ((typeof data[start].options)=='undefined') {optionValue=0;}else{optionValue=1;}
          appendSwiperH(
            start,
            data[start].processes,
@@ -108,7 +110,9 @@ $urlRouterProvider.otherwise('/');
            data[start].positive.label,
            data[start].negative.label,
            data[start].positive.target,
-           data[start].negative.target);
+           data[start].negative.target,
+           optionValue);
+             if ((typeof data[data[start].negative.target].options)=='undefined') {optionValue=0;}else{optionValue=1;}
          prependSwiperH(
            data[start].negative.target,
            data[data[start].negative.target].processes,
@@ -117,7 +121,9 @@ $urlRouterProvider.otherwise('/');
            data[data[start].negative.target].positive.label,
            data[data[start].negative.target].negative.label,
            data[data[start].negative.target].positive.target,
-           data[data[start].negative.target].negative.target);
+           data[data[start].negative.target].negative.target,
+           optionValue);
+             if ((typeof  data[data[start].positive.target].options)=='undefined') {optionValue=0;}else{optionValue=1;}
          appendSwiperH(
            data[start].positive.target,
            data[data[start].positive.target].processes,
@@ -126,63 +132,96 @@ $urlRouterProvider.otherwise('/');
            data[data[start].positive.target].positive.label,
            data[data[start].positive.target].negative.label,
            data[data[start].positive.target].positive.target,
-           data[data[start].positive.target].negative.target);
+           data[data[start].positive.target].negative.target,
+           optionValue);
        }
      });
-     function appendSwiperH(id,processes,processlength,question,positive,negative,positive_target,negative_target)
+     function appendSwiperH(id,processes,processlength,question,positive,negative,positive_target,negative_target,Isoption)
      {
-          var processestitle="";
-          for (var i = 0; i < processlength; i++) {
-              processestitle = processestitle +"<section class='n-process'>"+processes[i].title+"<span class='nimbusexit'></span></section>";
+          if (Isoption==0) {
+               var processestitle="";
+               for (var i = 0; i < processlength; i++) {
+                   processestitle = processestitle +"<section class='n-process'>"+processes[i].title+"<span class='nimbusexit'></span></section>";
+               }
+               if (positive==null) {
+                    positive="Yes";
+               }
+               if (negative==null) {
+                    negative="No";
+               }
+               swiperH.appendSlide("<div class='swiper-slide' id='"+id+"'>"+
+                                   "<section class='n-card' >"+
+                                   "<header>"+
+                                   processestitle+
+                                   "<section class='n-question'>"+question+"</section> "+
+                                   " </header>"+
+                                   "<nav>"+
+                                   "<section class='n-positive' id='"+positive_target+"'>"+positive+"</section>"+
+                                   "<section class='n-negative' id='"+negative_target+"'>"+negative+"</section>"+
+                                   "</nav>"+
+                                   "</section>"+
+                                   "</div>");
           }
-          if (positive==null) {
-               positive="Yes";
+          else {
+               swiperH.appendSlide("<div class='swiper-slide' id='"+"id"+"'>"+
+                             "<section class= 'n-escape n-card' >"+
+                             "<header class='n-esc'>"+
+                             "<section class='question' style='margin: 1em 1.2em;'>"+ques+opt+
+                             "</section>"+
+                             " </header>"+
+                             "<nav>"+
+                             "<section class='n-positive' id='"+positive_target+"'>"+positive+"</section>"+
+                             "<section class='n-negative' id='"+negative_target+"'>"+negative+"</section>"+
+                             "</nav>"+
+                             "</section>"+
+                             "</div>");
           }
-          if (negative==null) {
-               negative="No";
-          }
-          swiperH.appendSlide("<div class='swiper-slide' id='"+id+"'>"+
-                              "<section class='n-card' >"+
-                              "<header>"+
-                              processestitle+
-                              "<section class='n-question'>"+question+"</section> "+
-                              " </header>"+
-                              "<nav>"+
-                              "<section class='n-positive card-main1' id='"+positive_target+"'>"+positive+"</section>"+
-                              "<section class='n-negative card-main2' id='"+negative_target+"'>"+negative+"</section>"+
-                              "</nav>"+
-                              "</section>"+
-                              "</div>");
-     }
-
-     function prependSwiperH(id,processes,processlength,question,positive,negative,positive_target,negative_target)
-     {
-          var processestitle="";
-          for (var i = 0; i < processlength; i++) {
-              processestitle = processestitle +"<section class='n-process'>"+processes[i].title+"<span class='nimbusexit'></span></section>";
-          }
-          if (positive==null) {
-               positive="Yes";
-          }
-          if (negative==null) {
-               negative="No";
-          }
-          swiperH.prependSlide("<div class='swiper-slide' id='"+id+"'>"+
-                              "<section class='n-card' >"+
-                              "<header>"+
-                              processestitle+
-                              "<section class='n-question'>"+question+"</section> "+
-                              " </header>"+
-                              "<nav>"+
-                              "<section class='n-positive card-main1' id='"+positive_target+"'>"+positive+"</section>"+
-                              "<section class='n-negative card-main2' id='"+negative_target+"'>"+negative+"</section>"+
-                              "</nav>"+
-                              "</section>"+
-                              "</div>");
 
      }
 
-    function getCard(dir)
+     function prependSwiperH(id,processes,processlength,question,positive,negative,positive_target,negative_target,Isoption)
+     {
+          if (Isoption==0) {
+               var processestitle="";
+               for (var i = 0; i < processlength; i++) {
+                   processestitle = processestitle +"<section class='n-process'>"+processes[i].title+"<span class='nimbusexit'></span></section>";
+               }
+               if (positive==null) {
+                    positive="Yes";
+               }
+               if (negative==null) {
+                    negative="No";
+               }
+               swiperH.prependSlide("<div class='swiper-slide' id='"+id+"'>"+
+                                   "<section class='n-card' >"+
+                                   "<header>"+
+                                   processestitle+
+                                   "<section class='n-question'>"+question+"</section> "+
+                                   " </header>"+
+                                   "<nav>"+
+                                   "<section class='n-positive' id='"+positive_target+"'>"+positive+"</section>"+
+                                   "<section class='n-negative' id='"+negative_target+"'>"+negative+"</section>"+
+                                   "</nav>"+
+                                   "</section>"+
+                                   "</div>");
+          }
+          else {
+               swiperH.prependSlide("<div class='swiper-slide' id='"+"id"+"'>"+
+                             "<section class= 'n-escape n-card' >"+
+                             "<header class='n-esc'>"+
+                             "<section class='question' style='margin: 1em 1.2em;'>"+ques+opt+
+                             "</section>"+
+                             " </header>"+
+                             "<nav>"+
+                             "<section class='n-positive' id='"+positive_target+"'>"+positive+"</section>"+
+                             "<section class='n-negative' id='"+negative_target+"'>"+negative+"</section>"+
+                             "</nav>"+
+                             "</section>"+
+                             "</div>");
+          }
+     }
+
+     function getCard(dir)
     {
       var negativeid=$(".swiper-slide .swiper-slide-active .n-negative").attr('id');
       var positiveid=$(".swiper-slide .swiper-slide-active .n-positive").attr('id');
@@ -248,7 +287,8 @@ $urlRouterProvider.otherwise('/');
           start=positiveid;
         }
         console.log("sonra"+start);
-        prependSwiperH(
+         if ((typeof  data[negativeid].options)=='undefined') {optionValue=0;}else{optionValue=1;}
+                    prependSwiperH(
                     negativeid,
                     data[negativeid].processes,
                     data[negativeid].processes.length,
@@ -256,7 +296,9 @@ $urlRouterProvider.otherwise('/');
                     data[negativeid].positive.label,
                     data[negativeid].negative.label,
                     data[negativeid].positive.target,
-                    data[negativeid].negative.target);
+                    data[negativeid].negative.target,
+                    optionValue);
+         if ((typeof  data[positiveid].options)=='undefined') {optionValue=0;}else{optionValue=1;}
                     appendSwiperH(
                     positiveid,
                     data[positiveid].processes,
@@ -265,7 +307,8 @@ $urlRouterProvider.otherwise('/');
                     data[positiveid].positive.label,
                     data[positiveid].negative.label,
                     data[positiveid].positive.target,
-                    data[positiveid].negative.target);
+                    data[positiveid].negative.target,
+                    optionValue);
                     swiperH.update();
 
                });
@@ -380,14 +423,13 @@ swiperV.on("onTouchEnd",function(e){
 swiperV.on('SlidePrevStart', function () {
      if(historyOpen==0&&detailOpen==0){
       historyOpen++;
-       $("#histList").html("");
+ 	 $("#histList").html("");
      if($('#histList').scroll()[0].scrollHeight>$(window).height()){
              $('.history').addClass('swiper-no-swiping');
            }else{
              $('.history').removeClass('swiper-no-swiping');
            }
-
-       for(var i =0;i<HistList.length;i++){
+for(var i =0;i<HistList.length;i++){
          $("#histList").html($("#histList").html() + "<li class='"+HistList[i].class+"' id='"+HistList[i].id+"'><em>" + HistList[i].title +"<strong> "+HistList[i].ans +"</strong></em></li>");
        }
      }else if(historyOpen==0&&detailOpen==1){
@@ -482,6 +524,16 @@ $('.icon-right').click(function() {
           myvid.play();
      }
 });
+var subtitleOpen=false;
+$('.icon-subtitles').click(function() {
+     if (!subtitleOpen) {
+             myvid.textTracks[0].mode = 'hidden';
+     }
+     else {
+
+             myvid.textTracks[0].mode = 'showing';
+     }
+});
 
 $('.icon-fullscreen').click(function() {
      if (myvid.requestFullscreen) {
@@ -508,39 +560,39 @@ $(document).on("click",".n-negative",function()
  swiperH.slidePrev();
 });
 
-var escapeCard="service/identify-machine";
+
 $(document).on("click",".nimbusexit",function()
 {
-     var neg="";var pos=""; var negtar="";var postar="";var opt=""; var ques=""; var detail="";
-     $.getJSON( "js/data.json", function(data) {
+});
 
-          neg= data[escapeCard].negative.label;
-          pos= data[escapeCard].positive.label;
-          negtar= data[escapeCard].negative.target;
-          postar= data[escapeCard].positive.target;
-          ques=data[escapeCard].question;
-          for (var i = 0; i < data[escapeCard].options.length; i++) {
-               opt=opt+"<input type='radio' name='whats-wrong' value='"+data[escapeCard].options[i].target+"' id='"+data[escapeCard].options[i].title+"'><label for='"+data[escapeCard].options[i].title+"'>"+data[escapeCard].options[i].title+"</label>";
-               detail=detail + "<section><h2>"+data[escapeCard].options[i].title+"</h2><p>"+data[escapeCard].options[i].description+"</p></section>";
-          }
+$(document).on("click",".exitPositive",function()
+{
+      dir=1;
+     swiperH.removeSlide([0, 1]);
+     getCard(dir);
+});
+$(document).on("click",".exitNegative",function()
+{
+      dir=0;
+     swiperH.removeSlide([1, 2]);
+     getCard(dir);
+});
+$(document).on("click",".exitOpt",function()
+{
+     if (optLR==3) {
+          $('.exitPositive').attr('id',(this).value);
+          $('.exitNegative').attr('id',(this).value);
 
-          swiperH.removeSlide([0, 1,2]);
-           swiperH.appendSlide("<div class='swiper-slide' id='"+"id"+"'>"+
-                               "<section class= 'n-escape n-card' >"+
-                               "<header class='n-esc'>"+
-                               "<section class='question'>"+ques+opt+
-                               "</section>"+
-                               " </header>"+
-                               "<nav>"+
-                               "<section class='n-positive' id='"+postar+"'>"+pos+"</section>"+
-                               "<section class='n-negative' id='"+negtar+"'>"+neg+"</section>"+
-                               "</nav>"+
-                               "</section>"+
-                               "</div>");
-          console.log("<main>"+detail+"</main>");
-           $("#DetailCard").css("background-color","#442227");
-           $("#detail").html("<main>"+detail+"</main>");
-     })
+     }
+     else if (optLR==2) {
+          $('.exitPositive').attr('id',(this).value);
+          getEscapeCard($('.exitPositive').attr('id'));
+     }
+     else if (optLR==1) {
+          $('.exitNegative').attr('id',(this).value);
+          getEscapeCard($('.exitNegative').attr('id'));
+     }
+
 });
 
 var previtem="";
@@ -580,6 +632,7 @@ $(document).on("click","#QrButton",function()
       var start1=$(this)[0].id;
       swiperH.removeSlide([0, 1, 2]);
       $.getJSON( "js/data.json", function(data) {
+           if ((typeof  data[start1].options)=='undefined') {optionValue=0;}else{optionValue=1;}
         appendSwiperH(
           start1,
           data[start1].processes,
@@ -588,7 +641,9 @@ $(document).on("click","#QrButton",function()
           data[start1].positive.label,
           data[start1].negative.label,
           data[start1].positive.target,
-          data[start1].negative.target);
+          data[start1].negative.target,
+          optionValue);
+           if ((typeof  data[data[start1].negative.target].options)=='undefined') {optionValue=0;}else{optionValue=1;}
         prependSwiperH(
           data[start1].negative.target,
           data[data[start1].negative.target].processes,
@@ -597,8 +652,9 @@ $(document).on("click","#QrButton",function()
           data[data[start1].negative.target].positive.label,
           data[data[start1].negative.target].negative.label,
           data[data[start1].negative.target].positive.target,
-          data[data[start1].negative.target].negative.target);
-        console.log(data[start1].positive.target);
+          data[data[start1].negative.target].negative.target,
+          optionValue);
+           if ((typeof  data[data[start1].positive.target].options)=='undefined') {optionValue=0;}else{optionValue=1;}
         appendSwiperH(
           data[start1].positive.target,
           data[data[start1].positive.target].processes,
@@ -607,7 +663,8 @@ $(document).on("click","#QrButton",function()
           data[data[start1].positive.target].positive.label,
           data[data[start1].positive.target].negative.label,
           data[data[start1].positive.target].positive.target,
-          data[data[start1].positive.target].negative.target);
+          data[data[start1].positive.target].negative.target,
+          optionValue);
         swiperH.update();
       });
       swiperV.slideNext();
@@ -620,6 +677,7 @@ $(document).on("click","#QrButton",function()
       console.log($(this)[0].id);
       var start1=$(this)[0].id;
       $.getJSON( "js/data.json", function(data) {
+        if ((typeof  data[positiveid].options)=='undefined') {optionValue=0;}else{optionValue=1;}
         appendSwiperH(
           start1,
           data[start1].processes,
@@ -628,7 +686,9 @@ $(document).on("click","#QrButton",function()
           data[start1].positive.label,
           data[start1].negative.label,
           data[start1].positive.target,
-          data[start1].negative.target);
+          data[start1].negative.target,
+          optionValue);
+          if ((typeof  data[data[start1].negative.target].options)=='undefined') {optionValue=0;}else{optionValue=1;}
         prependSwiperH(
           data[start1].negative.target,
           data[data[start1].negative.target].processes,
@@ -637,7 +697,9 @@ $(document).on("click","#QrButton",function()
           data[data[start1].negative.target].positive.label,
           data[data[start1].negative.target].negative.label,
           data[data[start1].negative.target].positive.target,
-          data[data[start1].negative.target].negative.target);
+          data[data[start1].negative.target].negative.target,
+          optionValue);
+          if ((typeof  data[data[start1].positive.target].options)=='undefined') {optionValue=0;}else{optionValue=1;}
         appendSwiperH(
           data[start1].positive.target,
           data[data[start1].positive.target].processes,
@@ -646,7 +708,8 @@ $(document).on("click","#QrButton",function()
           data[data[start1].positive.target].positive.label,
           data[data[start1].positive.target].negative.label,
           data[data[start1].positive.target].positive.target,
-          data[data[start1].positive.target].negative.target);
+          data[data[start1].positive.target].negative.target,
+          optionValue);
         swiperH.update();
         start=start1;
       });
