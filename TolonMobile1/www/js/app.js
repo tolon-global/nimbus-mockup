@@ -70,7 +70,6 @@ $urlRouterProvider.otherwise('/');
        direction: 'vertical',
        spaceBetween: 1,
        initialSlide:1
-
      });
 
    var start="we110/steam/heater-fail/check-steam-heating-do";
@@ -149,8 +148,8 @@ $urlRouterProvider.otherwise('/');
                               "<section class='n-question'>"+question+"</section> "+
                               " </header>"+
                               "<nav>"+
-                              "<section class='n-positive' id='"+positive_target+"'>"+positive+"</section>"+
-                              "<section class='n-negative' id='"+negative_target+"'>"+negative+"</section>"+
+                              "<section class='n-positive card-main1' id='"+positive_target+"'>"+positive+"</section>"+
+                              "<section class='n-negative card-main2' id='"+negative_target+"'>"+negative+"</section>"+
                               "</nav>"+
                               "</section>"+
                               "</div>");
@@ -175,37 +174,81 @@ $urlRouterProvider.otherwise('/');
                               "<section class='n-question'>"+question+"</section> "+
                               " </header>"+
                               "<nav>"+
-                              "<section class='n-positive' id='"+positive_target+"'>"+positive+"</section>"+
-                              "<section class='n-negative' id='"+negative_target+"'>"+negative+"</section>"+
+                              "<section class='n-positive card-main1' id='"+positive_target+"'>"+positive+"</section>"+
+                              "<section class='n-negative card-main2' id='"+negative_target+"'>"+negative+"</section>"+
                               "</nav>"+
                               "</section>"+
                               "</div>");
 
      }
 
-     function getCard()
-     {
-          var negativeid=$(".swiper-slide .swiper-slide-active .n-negative").attr('id');
-          var positiveid=$(".swiper-slide .swiper-slide-active .n-positive").attr('id');
+    function getCard(dir)
+    {
+      var negativeid=$(".swiper-slide .swiper-slide-active .n-negative").attr('id');
+      var positiveid=$(".swiper-slide .swiper-slide-active .n-positive").attr('id');
 
-          $.getJSON( "js/data.json", function(data) {
-               if(dir==0){
-                 var title = data[start].title;
-                 var txt=data[start].negative.label;
-                 var clas="n-negative";
-                 start=data[start].negative.target;
+      $.getJSON( "js/data.json", function(data) {
+        if(dir==0){
+          console.log(negativeid)
+          if((typeof data[negativeid].title)=='undefined'){
+            console.log("asdasdasssss");
+            var title ="Unnamed";
+          }else{
+            var title = data[negativeid].title;
+          }
+          var txt=data[negativeid].negative.label;
+          var clas="n-negative";
 
-               }else{
-                 var title = data[start].title;
-                 var txt=data[start].positive.label;
-                 var clas="n-positive";
-                 start=data[start].positive.target;
+        }else{
+          if((typeof data[positiveid].title)=='undefined'){
+            var title ="Unnamed";
+          }else{
+            var title = data[positiveid].title;
+          }
+          var txt=data[positiveid].positive.label;
+          var clas="n-positive";
+        }
+        console.log(title);
+        var histEve=true;
+        var histEveDet=false;
+        var histEveSt=0;
+        if(HistList.length==0){
+          HistList.push({"title":title, "ans":txt, "class":clas, "id":start});
+          histEve=false;
+        }else {
+          for (var i = 0; i < HistList.length; i++) {
+            console.log(HistList[i]);
+            if (start == HistList[i].id) {
+              if (HistList[i].ans != txt) {
+                HistList[i].id = start;
+                HistList[i].ans = txt;
+                HistList[i].class = clas
+                histEveDet=true;
+                histEveSt=i;
+                break;
+              }
+              histEve=false;
+            }
+          }
+        }
 
-               }
-               HistList.push({"title":title, "ans":txt, "class":clas});
-               $("#histList").html($("#histList").html() + "<li class='"+HistList[HistList.length-1].class+"'><em>" + HistList[HistList.length-1].title +"<strong> "+HistList[HistList.length-1].ans +"</strong></em></li>");
+        if (histEve){
+          HistList.push({"title": title, "ans": txt, "class": clas, "id": start});
+        }
+        if (histEveDet){
+          for(var i=histEveSt+1;i<HistList.length;i++)
+            delete HistList[i];
+        }
 
-                    prependSwiperH(
+
+        console.log("once"+start);
+        if(dir==0){
+          start=negativeid;
+        }else{
+          start=positiveid;
+        }
+        console.log("sonra"+start);
+        prependSwiperH(
                     negativeid,
                     data[negativeid].processes,
                     data[negativeid].processes.length,
@@ -224,7 +267,9 @@ $urlRouterProvider.otherwise('/');
                     data[positiveid].positive.target,
                     data[positiveid].negative.target);
                     swiperH.update();
+
                });
+
 
      }
 
@@ -268,7 +313,7 @@ swiperV.on('SlideNextStart', function () {
     var detailListTitle="";
     var detailContent="";
     if(historyOpen==0&&detailOpen==0){detailOpen++;}else if(historyOpen==1&&detailOpen==0){historyOpen--; }
-    var id=$(".swiper-slide .swiper-slide-active").attr('id');
+    var id=start;
     $.getJSON( "js/data.json", function(data) {
          for (var i = 0; i < data[id].processes.length; i++) {
               var steps = data[id].processes[i].steps;
@@ -335,11 +380,16 @@ swiperV.on("onTouchEnd",function(e){
 swiperV.on('SlidePrevStart', function () {
      if(historyOpen==0&&detailOpen==0){
       historyOpen++;
+       $("#histList").html("");
      if($('#histList').scroll()[0].scrollHeight>$(window).height()){
              $('.history').addClass('swiper-no-swiping');
            }else{
              $('.history').removeClass('swiper-no-swiping');
            }
+
+       for(var i =0;i<HistList.length;i++){
+         $("#histList").html($("#histList").html() + "<li class='"+HistList[i].class+"' id='"+HistList[i].id+"'><em>" + HistList[i].title +"<strong> "+HistList[i].ans +"</strong></em></li>");
+       }
      }else if(historyOpen==0&&detailOpen==1){
       detailOpen--;
      }
@@ -523,4 +573,83 @@ $(document).on("click","#QrButton",function()
        console.log("An error happened -> " + error);
      });
    });
+    $(document).on("click","#histList .n-positive",function()
+    {
+
+      console.log($(this)[0].id);
+      var start1=$(this)[0].id;
+      swiperH.removeSlide([0, 1, 2]);
+      $.getJSON( "js/data.json", function(data) {
+        appendSwiperH(
+          start1,
+          data[start1].processes,
+          data[start1].processes.length,
+          data[start1].question,
+          data[start1].positive.label,
+          data[start1].negative.label,
+          data[start1].positive.target,
+          data[start1].negative.target);
+        prependSwiperH(
+          data[start1].negative.target,
+          data[data[start1].negative.target].processes,
+          data[data[start1].negative.target].processes.length,
+          data[data[start1].negative.target].question,
+          data[data[start1].negative.target].positive.label,
+          data[data[start1].negative.target].negative.label,
+          data[data[start1].negative.target].positive.target,
+          data[data[start1].negative.target].negative.target);
+        console.log(data[start1].positive.target);
+        appendSwiperH(
+          data[start1].positive.target,
+          data[data[start1].positive.target].processes,
+          data[data[start1].positive.target].processes.length,
+          data[data[start1].positive.target].question,
+          data[data[start1].positive.target].positive.label,
+          data[data[start1].positive.target].negative.label,
+          data[data[start1].positive.target].positive.target,
+          data[data[start1].positive.target].negative.target);
+        swiperH.update();
+      });
+      swiperV.slideNext();
+      start=start1;
+    });
+
+    $(document).on("click","#histList .n-negative",function()
+    {
+      swiperH.removeSlide([0, 1, 2]);
+      console.log($(this)[0].id);
+      var start1=$(this)[0].id;
+      $.getJSON( "js/data.json", function(data) {
+        appendSwiperH(
+          start1,
+          data[start1].processes,
+          data[start1].processes.length,
+          data[start1].question,
+          data[start1].positive.label,
+          data[start1].negative.label,
+          data[start1].positive.target,
+          data[start1].negative.target);
+        prependSwiperH(
+          data[start1].negative.target,
+          data[data[start1].negative.target].processes,
+          data[data[start1].negative.target].processes.length,
+          data[data[start1].negative.target].question,
+          data[data[start1].negative.target].positive.label,
+          data[data[start1].negative.target].negative.label,
+          data[data[start1].negative.target].positive.target,
+          data[data[start1].negative.target].negative.target);
+        appendSwiperH(
+          data[start1].positive.target,
+          data[data[start1].positive.target].processes,
+          data[data[start1].positive.target].processes.length,
+          data[data[start1].positive.target].question,
+          data[data[start1].positive.target].positive.label,
+          data[data[start1].positive.target].negative.label,
+          data[data[start1].positive.target].positive.target,
+          data[data[start1].positive.target].negative.target);
+        swiperH.update();
+        start=start1;
+      });
+      swiperV.slideNext();
+    });
 })
