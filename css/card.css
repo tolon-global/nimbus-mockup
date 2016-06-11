@@ -42,7 +42,7 @@ body {
 
 .card header .process::after {
     opacity: .5;
-    content: "\e900";
+    content: "\e901";
     position: absolute;
     font-size: 2em;
     right: 0; top: 0;
@@ -62,30 +62,40 @@ body {
 }
 
 .card nav .positive {
-    background-color: #38a;
+    background-color: #2B6C73;
     order: 2;
     padding-right: 2.2em;
 }
 .card nav .positive::after {
-    content: "\e90c";
+    content: "\e909";
     right: 0;
 }
 
 .card nav .negative {
-    background-color: #842;
+    background-color: #6B3B58;
     order: 1;
     padding-left: 2.2em;
 }
 .card nav .negative::before {
-    content: "\e90b";
+    content: "\e908";
     left: 0;
+}
+
+.card nav .final {
+    background-color: #2B6C73;
+}
+.card nav .final::before {
+    content: "\e907 ";
+    font-size: 2.4em;
+    vertical-align: middle;
+    mix-blend-mode: overlay;
 }
 
 .card nav .positive::after,
 .card nav .negative::before {
     font-size: 2.4em;
     top: .25em;
-    opacity: 0.5;
+    mix-blend-mode: overlay;
     position: absolute;
 }
 
@@ -116,7 +126,7 @@ body {
 
 .card main li.current { color: white; }
 .card main li.current::before {
-    content: "\e906";
+    content: "\e90c";
     float: right;
     margin-left: .5em;
     font-size: 2em;
@@ -127,8 +137,8 @@ body {
     padding: 1em 0 0.5em;
     max-height: 90vh;
 }
-.history li.positive strong { background-color: #38a; }
-.history li.negative strong { background-color: #842; }
+.history li.positive strong { background-color: #2B6C73; }
+.history li.negative strong { background-color: #6B3B58; }
 .history li strong {
     display: inline-block;
     padding: 0 .4em;
@@ -136,6 +146,10 @@ body {
 }
 .history li {
     padding: .5ex;
+    min-height: 2em;
+    vertical-align: middle;
+    padding-top: .3em;
+    box-sizing: border-box;
 }
 .history li:nth-of-type(2n+1) {
     background-color: rgba(249, 249, 242, .1)
@@ -143,13 +157,15 @@ body {
 .history ol li:before {
     content: counter(history-counter, decimal);
     counter-increment: history-counter;
-    opacity: .5;
     font-size: .5em;
     display: inline-block;
     width: 1em;
     text-align: right;
     padding-right: .7em;
     vertical-align: text-top;
+    color: #FFE0FC;
+    mix-blend-mode: overlay;
+    opacity: .75;
 }
 .history ol {
     list-style-type: none;
@@ -166,12 +182,11 @@ body {
     font-weight: 100;
 }
 .history h1::before {
-    content: "\e907";
+    content: "\e904";
     margin-right: .5ex;
     font-size: 1.6em;
     vertical-align: middle;
 }
-
 
 .video-controls {
     display: flex;
@@ -223,19 +238,43 @@ body {
 }
 
 .card input[type=radio]:checked + label::after {
-    content: "\e908";
+    content: "\e905";
     font-size: 1.5em;
     vertical-align: middle;
     float: right;
     margin-right: .5em;
 }
 
+.card button.qr {
+    background-color: #38a;
+    border: none;
+    width: 100vw;
+    color: white;
+    margin: .5em -0.5em;
+    padding: 0;
+    box-sizing: content-box;
+    font-family: inherit !important;
+    font-size: inherit;
+    height: 3em;
+}
+
+.card button.qr::before {
+    font: 2em 'nimbus-icons';
+    content: "\e911";
+    vertical-align: middle;
+    display: inline-block;
+    margin-right: .2em;
+    opacity: .6;
+}
+
 .card.escape { background-color: #442227;}
 .card.escape header section:first-child::before {
-    content: "\e900 ";
+    content: "\e901 ";
     font-size: 2em;
     vertical-align: middle;
 }
+
+.card.deadend { background-color: black;}
 
 .card main p {
     margin: 0em .5em 1em;

@@ -25,9 +25,11 @@ h1, h4 {
 
 h1 {
     font-size: 2.75em;
+    mix-blend-mode: overlay;
+    color: white;
 }
 h1::before {
-    margin-right: 1ex;
+    margin-right: .2em;
 }
 
 .guides {
@@ -35,4 +37,7 @@ h1::before {
 }
 .service {
     background-color: #2A3B44;
+}
+.login {
+    background-color: #31304E;
 }
