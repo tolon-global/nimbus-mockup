@@ -1,0 +1,20 @@
+WEBVTT Nimbus Service Procedure ht_0025
+
+00:00.000 --> 00:05.000
+- Enter the "Main" menu by selecting and pressing the "Menu" button
+
+00:05.000 --> 00:09.000
+- Enter the "Service" menu by selecting and pressing the "Service" button
+
+00:09.000 --> 00:15.000
+- Enter the "Diagnostics" screen by selecting and pressing the "Diagnostics" button (The "Manual Control" button on versions prior to 1.0)
+
+00:15.000 --> 00:19.000
+- Select the "Steam Valve" DO on the "Digital Outputs" frame
+
+00:19.000 --> 00:23.000
+- Press the "OK" button to activate the "Steam Valve" DO
+
+00:23.000 --> 59:59.000
+- Insert one lead of the multimeter to any socket between the 12. and the 22. sockets on the S11 socket group and insert the other lead of the multimeter to the 7. socket on the S13 socket group
+
