@@ -64,7 +64,7 @@ $urlRouterProvider.otherwise('/');
       $cordovaBarcodeScanner.scan().then(function(imageData) {
         var res1 = imageData.text;
         if(res1!=null){
-             alert(datLog[res1]);
+             alert("Password : "+ datLog[res1]);
           $cordovaToast
             .show("Password : "+datLog[res1], 'long', 'center')
             .then(function(success) {
@@ -82,14 +82,30 @@ $urlRouterProvider.otherwise('/');
             });
         };
       }, function(error) {
-        console.log("An error happened -> " + error);
+        //console.log("An error happened -> " + error);
       });
     };
  })
 
 
 .controller('mainCtrl', function($scope, $ionicScrollDelegate, $cordovaBarcodeScanner,$state, $ionicHistory) {
-
+     $cordovaBarcodeScanner.scan().then(function(imageData) {
+       var res1 = JSON.parse(imageData.text);
+       if(res1!=null){
+            if (res1["start"]!="undefined") {
+                 start=res1["start"];
+               swiperH.removeSlide([0]);
+               getFirstCard(start);
+            }
+            else{
+             alert("QrCode is not Valid Please Try Again!");
+           }
+       }else{
+         alert("QrCode is not Valid Please Try Again!");
+       }
+     }, function(error) {
+      // console.log("An error happened -> " + error);
+     });
     $scope.checkScrollHist = function () {
 
       var currentTop = $ionicScrollDelegate.$getByHandle('scrollerHist').getScrollPosition().top;
@@ -97,13 +113,13 @@ $urlRouterProvider.otherwise('/');
 
       if(currentTop == 0)
       {
-        alert('top of scroll!');
+       // alert('top of scroll!');
       }
 
       if (currentTop >= maxTop)
       {
         // hit the bottom
-        alert('bottom of scroll!');
+        //alert('bottom of scroll!');
       }
     };
     $scope.object={'src': ''};
@@ -166,15 +182,8 @@ $urlRouterProvider.otherwise('/');
          swiperH.appendSlide("<div class='swiper-slide' id=''>"+
          "<section class='n-card'>"+
          "<header>"+
-         "<section class='n-process'>"+
-         "Enter the serial number"+
-         "<input style='width: 91vw' type='number' name='some_name' value='' placeholder='Serial number'>"+
-         "</section><section><button class='qr' id='simdilik'>Get from QR code</button></section> "+
+          "<section><button class='qr' id='simdilik'>Get from QR code</button></section> "+
          " </header>"+
-         "<nav>"+
-         "<section class='n-positive'>"+"Done </section>"+
-         "<section class='n-negative' id=''>"+"I can't</section>"+
-         "</nav>"+
          "</section>"+
          "</div>");
          swiperV.lockSwipes();
@@ -293,8 +302,8 @@ $urlRouterProvider.otherwise('/');
     {
       var negativeid=$(".swiper-slide .swiper-slide-active .n-negative").attr('id');
       var positiveid=$(".swiper-slide .swiper-slide-active .n-positive").attr('id');
-      console.log("negative => "+ negativeid);
-     console.log("positive => "+positiveid);
+      //console.log("negative => "+ negativeid);
+     //console.log("positive => "+positiveid);
       $.getJSON( "js/data.json", function(data) {
         if(dir==0){
           if((typeof data[negativeid].title)=='undefined'){
@@ -432,8 +441,8 @@ swiperV.on('SlideNextStart', function () {
                    case Object:
                          for (var step in steps) {
                               detailListElement = detailListElement + "<li class='sequence' id='"+vidCount+"'>"+ steps[step] +"</li>";
-                              vidList.push({"id":vidCount,"src":"video/"+data[id].processes[i].video+".mp4", "time":step});
-                              console.log("video geldi");
+                              vidList.push({"id":vidCount,"src":"https://s3.amazonaws.com/nimbus-video.tolon.com/"+data[id].processes[i].video+".m4v", "time":step});
+                              //console.log("video geldi");
                               vidCount++;
                          }
                         break;
@@ -441,17 +450,17 @@ swiperV.on('SlideNextStart', function () {
                         break;
               }
              if (data[id].processes[i].video!=null) {
-                  console.log(data[id].processes[i].video);
+                  //console.log(data[id].processes[i].video);
                videoCount++;
-               myvid.src="video/"+data[id].processes[0].video+".mp4";
+               myvid.src="https://s3.amazonaws.com/nimbus-video.tolon.com/"+data[id].processes[0].video+".m4v";
                  $(".seekBarDetail").val(0);
                  $(".playpause").addClass('icon-play');
                  $(".playpause").removeClass('icon-pause');
-               myvids.push("video/"+data[id].processes[i].video+".mp4");
+               myvids.push("https://s3.amazonaws.com/nimbus-video.tolon.com/"+data[id].processes[i].video+".m4v");
              }
              else {
-                    console.log($(".detailScroll").html());
-                  console.log("e null bu");
+                    //console.log($(".detailScroll").html());
+                 // console.log("e null bu");
              }
              $(".detailScroll").scrollTop(1);
 
@@ -569,7 +578,7 @@ $('.playpause').click(function() {
             myvid.src=myvids[0];
             document.getElementById('n-VideoElement').load();
             $("track").attr('src',myvids[0].substring(0, myvids[0].length-4)+".vtt");
-            console.log($("track").attr('src'));
+            //console.log($("track").attr('src'));
             ilk=true;
        }
       document.getElementById('n-VideoElement').play();
@@ -592,7 +601,7 @@ $('#n-VideoElement').click(function() {
           myvid.src=myvids[0];
            document.getElementById('n-VideoElement').load();
            $("track").attr('src',myvids[0].substring(0, myvids[0].length-4)+".vtt");
-           console.log($("track").attr('src'));
+           //console.log($("track").attr('src'));
            ilk=true;
       }
       document.getElementById('n-VideoElement').play();
@@ -617,7 +626,7 @@ myvid.addEventListener('ended', function(e) {
          activeVideo = (++activeVideo) % myvids.length;
          myvid.src=myvids[activeVideo];
          $("track").attr('src',myvids[activeVideo].substring(0, myvids[activeVideo].length-4)+".vtt");
-         console.log($("track").attr('src'));
+       //  console.log($("track").attr('src'));
          myvid.play();
     }
 });
@@ -627,7 +636,7 @@ $('.icon-left').click(function() {
      if (activeVideo-1>0) {
              myvid.src=myvids[activeVideo-1];
              $("track").attr('src',myvids[activeVideo-1].substring(0, myvids[activeVideo-1].length-4)+".vtt");
-             console.log($("track").attr('src'));
+            // console.log($("track").attr('src'));
           myvid.play();
      }
 });
@@ -637,7 +646,7 @@ $('.icon-right').click(function() {
      if (activeVideo+1<myvids.length) {
         myvid.src=myvids[activeVideo+1];
         $("track").attr('src',myvids[activeVideo+1].substring(0, myvids[activeVideo+1].length-4)+".vtt");
-        console.log($("track").attr('src'));
+       // console.log($("track").attr('src'));
           myvid.play();
      }
      else {
@@ -759,8 +768,9 @@ $(document).on("click",".n-negative",function()
           myvid.pause();
           myvid.load();
       var id1= $(this).attr('id');
+      console.log(vidList[id1].src);
       myvid.src=vidList[id1].src;
-      $("track").attr('src',vidList[id1].substring(0, vidList[id1].length-4)+".vtt");
+      $("track").attr('src',vidList[id1].src.substring(0, vidList[id1].src.length-4)+".vtt");
       console.log($("track").attr('src'));
       $(".sequence").removeClass('currentSequence');
       $(this).addClass('currentSequence');
@@ -802,6 +812,7 @@ $(document).on("click","#QrButton",function()
      $cordovaBarcodeScanner.scan().then(function(imageData) {
        var res1 = JSON.parse(imageData.text);
        if(res1!=null){
+            //alert(res1["start"]);
          start=res1["start"];
          swiperH.removeSlide([0]);
          getFirstCard(start);
@@ -809,7 +820,7 @@ $(document).on("click","#QrButton",function()
          alert("QrCode is not Valid Please Try Again!");
        }
      }, function(error) {
-       console.log("An error happened -> " + error);
+      // console.log("An error happened -> " + error);
      });
    });
     $(document).on("click","#histList .n-positive",function()
