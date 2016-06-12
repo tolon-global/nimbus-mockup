@@ -441,7 +441,7 @@ swiperV.on('SlideNextStart', function () {
                    case Object:
                          for (var step in steps) {
                               detailListElement = detailListElement + "<li class='sequence' id='"+vidCount+"'>"+ steps[step] +"</li>";
-                              vidList.push({"id":vidCount,"src":"https://s3.amazonaws.com/nimbus-video.tolon.com/"+data[id].processes[i].video+".m4v", "time":step});
+                              vidList.push({"id":vidCount,"src":"http://dcxnuwg6xekdh.cloudfront.net/"+data[id].processes[i].video+".m4v", "time":step});
                               //console.log("video geldi");
                               vidCount++;
                          }
@@ -452,11 +452,11 @@ swiperV.on('SlideNextStart', function () {
              if (data[id].processes[i].video!=null) {
                   //console.log(data[id].processes[i].video);
                videoCount++;
-               myvid.src="https://s3.amazonaws.com/nimbus-video.tolon.com/"+data[id].processes[0].video+".m4v";
+               myvid.src="http://dcxnuwg6xekdh.cloudfront.net/"+data[id].processes[0].video+".m4v";
                  $(".seekBarDetail").val(0);
                  $(".playpause").addClass('icon-play');
                  $(".playpause").removeClass('icon-pause');
-               myvids.push("https://s3.amazonaws.com/nimbus-video.tolon.com/"+data[id].processes[i].video+".m4v");
+               myvids.push("http://dcxnuwg6xekdh.cloudfront.net/"+data[id].processes[i].video+".m4v");
              }
              else {
                     //console.log($(".detailScroll").html());
