@@ -50,17 +50,30 @@ $stateProvider
  url: '/',
  templateUrl: 'main.html'
 })
+.state('guides', {
+ url: '/',
+ templateUrl: 'guides.html'
+})
+.state('start', {
+ url: '/',
+ templateUrl: 'start.html'
+})
+
 
 $urlRouterProvider.otherwise('/');
 
 })
 .controller('OpenCtrl', function($scope, $state, $cordovaBarcodeScanner, $cordovaToast,$ionicHistory) {
    $scope.Servis = function() {
-
      $state.go('main');
    };
-    $scope.Login = function() {
-
+   $scope.Guides = function() {
+     $state.go('guides');
+   };
+   $scope.Start = function() {
+     $state.go('start');
+   };
+   $scope.Login = function() {
       $cordovaBarcodeScanner.scan().then(function(imageData) {
         var res1 = imageData.text;
         if(res1!=null){

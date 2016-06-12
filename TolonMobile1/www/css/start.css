@@ -42,3 +42,24 @@ h1::before {
 .login {
     background-color: #31304E;
  }
+
+.guides nav,
+.guides header {
+    padding: 1em;
+}
+
+.guides nav::before {
+    font-size: 2em;
+    vertical-align: middle;
+}
+
+.guides a {
+    color: inherit;
+    text-decoration: inherit;
+    font-weight: lighter;
+}
+.guides section {
+    padding: 1em;
+    border-bottom: solid 1px #5C8854;
+}
+.guides section:first-of-type { border-top: solid 1px #5C8854; }
